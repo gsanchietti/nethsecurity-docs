@@ -12,16 +12,16 @@ NethSecurity releases changelogs.
 
 ## Major changes on 2026-06-25
 
-Image version: <span class="title-ref">8.8.0-beta1</span> (based on OpenWrt 25.12.4)
+Image version: `8.8.0-beta1` (based on OpenWrt 25.12.4)
 
 **New Features**
 
-- Rebased NethSecurity on OpenWrt 25.12.4 and switched package management from <span class="title-ref">opkg</span> to <span class="title-ref">apk</span>.
+- Rebased NethSecurity on OpenWrt 25.12.4 and switched package management from `opkg` to `apk`.
 - Monitoring now stores metrics in VictoriaMetrics and automatically uses persistent storage when available.
 - Alerts are now accessibile inside the web interface.
-- Preserved Bash history across reboots and enabled persistent <span class="title-ref">/var</span> when storage is available.
+- Preserved Bash history across reboots and enabled persistent `/var` when storage is available.
 - Added Avahi (mDNS) package to the NethSecurity reposistory.
-- Added the firewall <span class="title-ref">DON'T TRACK</span> action.
+- Added the firewall `DON\'T TRACK` action.
 - Several features previously limited to subscription-based versions are now available in the Community edition.
 
 **Improvements**
@@ -43,11 +43,11 @@ Image version: <span class="title-ref">8.8.0-beta1</span> (based on OpenWrt 25.1
 
 ## Major changes on 2026-03-25
 
-Image version: <span class="title-ref">8.7.2</span> (based on OpenWrt 24.10.5)
+Image version: `8.7.2` (based on OpenWrt 24.10.5)
 
 :::warning
 
-If you are restoring a backup from version 8-24.10.0-ns.1.6.0 or earlier, please check the section restore_old_backup_bug-section at the end of this section.
+If you are restoring a backup from version 8-24.10.0-ns.1.6.0 or earlier, please check the section [Restore backup from older versions](#restore_old_backup_bug-section) at the end of this section.
 
 :::
 
@@ -69,7 +69,7 @@ If you are restoring a backup from version 8-24.10.0-ns.1.6.0 or earlier, please
 - WireGuard: fixed DNS responses not reaching clients due to incorrect address format (missing CIDR notation).
 - WireGuard: removed duplicate empty entries in allowed_ips list configuration.
 - WireGuard: fixed issue where WireGuard zone was incorrectly available for other interface types.
-- Port Forwarding: fixed UI validation for "ALL" protocol selection; now properly disables port fields and prevents mixing with other protocols.
+- Port Forwarding: fixed UI validation for \"ALL\" protocol selection; now properly disables port fields and prevents mixing with other protocols.
 - Snort/IPS: fixed configuration failure on systems with more than 16 logical CPU cores; now correctly limits thread and queue count to maximum of 16.
 - Flashstart: fixed bypassed IPs still being redirected to catch-all DNS rule; bypasses now properly elude catch-all filtering.
 - Flashstart: changed from forceful firewall restart to graceful reload when updating ProPlus configuration, preventing connection drops during updates.
@@ -77,14 +77,14 @@ If you are restoring a backup from version 8-24.10.0-ns.1.6.0 or earlier, please
 - MultiWAN: fixed rule editing to retain previously configured source and destination options instead of reverting to defaults.
 - QoS: fixed inverted upload/download bandwidth values for non-WAN (LAN) interfaces.
 - Network bonding: added default link monitoring settings (MII monitoring every 100ms) to ensure active-backup mode correctly switches to backup interface.
-- Migration: fixed firewall rules wrongly tagged as "automated" after migration; rules are now correctly editable.
+- Migration: fixed firewall rules wrongly tagged as \"automated\" after migration; rules are now correctly editable.
 - Network interfaces: fixed VLAN regex matching issue after migration where VLANs on bridges (e.g., br111.112) were incorrectly parsed as bridges.
 - DPI: fixed logging limit configuration; hardcoded proper nftables rate syntax to prevent firewall reload failures.
 - PPPoE: fixed pppd crashes with SIGILL during LCP negotiation on specific ISPs; disabled FORTIFY_SOURCE to resolve memcpy issues.
 - WireGuard default gateway: fixed missing default gateway after tunnel disconnection on single-WAN systems; assigned proper default metric for WAN interfaces.
 - WireGuard setup: fixed silent failures when public IP cannot be resolved; now handles DNS resolution failures gracefully without blocking installation.
 
-### Restore backup from older versions
+### Restore backup from older versions {#restore_old_backup_bug-section}
 
 When restoring a backup from version 8-24.10.0-ns.1.6.0 or earlier, the UI and reverse proxy could be unavailable because nginx fails to start. In this case, you can check for any issue by running:
 
@@ -100,7 +100,7 @@ This happens because the old backup contains the file `` `/etc/nginx/module.d/lu
 
 ## Major changes on 2025-10-30
 
-Image version: <span class="title-ref">8.7.1</span> (based on OpenWrt 24.10.3)
+Image version: `8.7.1` (based on OpenWrt 24.10.3)
 
 **Bug Fixes**
 
@@ -108,7 +108,7 @@ Image version: <span class="title-ref">8.7.1</span> (based on OpenWrt 24.10.3)
 
 ## Major changes on 2025-10-29
 
-Image version: <span class="title-ref">8.7.0</span> (based on OpenWrt 24.10.3)
+Image version: `8.7.0` (based on OpenWrt 24.10.3)
 
 **New Features**
 
@@ -136,14 +136,14 @@ Image version: <span class="title-ref">8.7.0</span> (based on OpenWrt 24.10.3)
 - Fixed OpenVPN tunnels with LZO compression failing to start.
 - QoS and MultiWAN configurations now correctly update when a WAN interface is removed.
 - DPI rules now correctly block ICMP traffic; resolved startup segfault and improved performance under load.
-- Fixed kebab menu functionality in port forwarding when domain sets are used in the “limit access to” section.
+- Fixed kebab menu functionality in port forwarding when domain sets are used in the "limit access to" section.
 - Reverse proxy certificate usage indicators now show the correct status.
 - Fixed controller issue where 2FA could activate after canceling setup; now only activates after successful OTP confirmation.
 - DHCP server now replies with a single message per request when multiple dnsmasq instances are configured.
 
 ## Major changes on 2025-06-30
 
-Image version: <span class="title-ref">8-24.10.0-ns.1.6.0</span>
+Image version: `8-24.10.0-ns.1.6.0`
 
 **New Features**
 
@@ -152,7 +152,7 @@ Image version: <span class="title-ref">8-24.10.0-ns.1.6.0</span>
 - Security wizard: assists with initial security setup (password, ssh, and ui). appears after login if not yet completed and can be skipped.
 - Automatic persistent storage for logs: free disk space is auto-assigned to logs by default, preventing log loss during reboot. admins can change the destination.
 - Threat Shield: blocked ip management from the ui: added interface to view, search, and unblock ips. ipv4 and ipv6 blocklists manageable from the ui.
-- Service center sync status: subscription page now shows connection status, last sync time, and a "sync now" button.
+- Service center sync status: subscription page now shows connection status, last sync time, and a \"sync now\" button.
 - SNAT limited by interface: allows SNAT rules on specific network interfaces. simplifies advanced routing and failover setups. manageable via ui.
 - Static leases filtering: added filter for dhcp static leases by interface for easier management of complex setups.
 - Version in migration logs: migration logs and exports now include migration tool and destination system versions.
@@ -162,14 +162,14 @@ Image version: <span class="title-ref">8-24.10.0-ns.1.6.0</span>
 - OpenVPN: fixed issue where renamed/deleted ad users could still access with old credentials. access tracking now updates correctly.
 - Firewall: prevented firewall zone names starting with numbers: avoids rule application issues.
 - Port forward: allows port forwarding without specifying a destination address.
-- Certificates: possible to delete let's encrypt requests even if still pending.
+- Certificates: possible to delete let\'s encrypt requests even if still pending.
 - OpenVPN: net-to-net openvpn tunnels with hyphens in the name can now be modified after migration.
 - Logs: fixed issue where logs could occupy root filesystem after a restore.
 - OpenVPN RW: adjusted renegotiation to prevent unexpected disconnections for certain authentication methods.
 
 ## Major changes on 2025-04-10
 
-Image version: <span class="title-ref">8-24.10.0-ns.1.5.1</span>
+Image version: `8-24.10.0-ns.1.5.1`
 
 **Bug fixes**
 
@@ -183,7 +183,7 @@ Image version: <span class="title-ref">8-24.10.0-ns.1.5.1</span>
 
 ## Major changes on 2025-04-08
 
-Image version: <span class="title-ref">8-24.10.0-ns.1.5.0</span>
+Image version: `8-24.10.0-ns.1.5.0`
 
 This release addresses a bug spotted in the previous release due to strengthening of the API backend.
 
@@ -193,7 +193,7 @@ No additional changes have been made from the 1.5.0-rc1 to this release.
 
 ## Major changes on 2025-03-28
 
-Image version: <span class="title-ref">8-24.10.0-ns.1.5.0-rc1</span>
+Image version: `8-24.10.0-ns.1.5.0-rc1`
 
 This release contains new User Interfaces for services previously accessible only via Command Line, along with security enhancements and bug fixes.
 
@@ -203,7 +203,7 @@ This release contains new User Interfaces for services previously accessible onl
 - Threat Shield DNS: UI has been released
 - IP/MAC Binding: UI has been released
 - Netify Informatics: UI has been released released for service registration
-- FlashStart DNS: Implementation improvements. NethSecurity’s DNS management is now independent from the DNS used for FlashStart to avoid any interaction with firewall services. External DNS servers are no longer required for unfiltered networks.
+- FlashStart DNS: Implementation improvements. NethSecurity's DNS management is now independent from the DNS used for FlashStart to avoid any interaction with firewall services. External DNS servers are no longer required for unfiltered networks.
 - Various modifications have been made to strengthen the system, including: API hardening, SNMP service is now disabled by default, Backup management modifications (subscription only)
 
 **Bug fixes (this is a limited list of the most reported ones)**
@@ -216,14 +216,14 @@ This release contains new User Interfaces for services previously accessible onl
 - Enabling logging in firewall rules can overload the CPU
 - Netmap rules not loaded after a version update
 - OpenVPN server web interface crashes if the user database is removed
-- Firewall: “any” zone displayed as inactive
+- Firewall: "any" zone displayed as inactive
 - Port forward: error when assigning an object with an IP range
 
 ------------------------------------------------------------------------
 
 ## Major changes on 2024-12-18
 
-Image version: <span class="title-ref">8-23.05.6-ns.1.4.1</span>
+Image version: `8-23.05.6-ns.1.4.1`
 
 This release focuses on improved local monitoring and adds some experimental features.
 
@@ -261,7 +261,7 @@ The following features are experimental and must be configured from the CLI:
 
 ## Major changes on 2024-10-17
 
-Image version: <span class="title-ref">8-23.05.5-ns.1.3.0</span>
+Image version: `8-23.05.5-ns.1.3.0`
 
 This release focuses on monitoring, migration improvements and better NethSecurity Controller integration.
 
@@ -274,12 +274,12 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 - Real time monitoring page: create a comprehensive dashboard for NethSecurity monitoring
 - Historical monitoring: historical monitoring allows the user to see how the firewall is behaving from the NethSecurity Controller
 - Support virtual machine tools for KVM an VMware: remove all tools from the image and provide them as optional packages
-- Port forward: support all objects inside restrict field: implement support for multiple object types in the "restrict access from" field
+- Port forward: support all objects inside restrict field: implement support for multiple object types in the \"restrict access from\" field
 - Inventory, advanced usage statistics: gather anonymous statistics on system usage
 - Improve Threat Shield UI: expose logging and brute force protection settings in the Threat Shield page
 - NAT helpers UI: new NAT helper configuration page
 - Remote support (ns-don): open netdata port (19999): add access to port 19999 from tunDON to allow viewing netdata UI from remote support sessions
-- NAT rules: add "0.0.0.0/0 any address": add "0.0.0.0/0 any address" option among destination address suggestions
+- NAT rules: add \"0.0.0.0/0 any address\": add \"0.0.0.0/0 any address\" option among destination address suggestions
 - Zoned and policies: allow to set the logging policy for each zone
 - DNS and DHCP page: search is now case insensitive
 - OpenVPN Road Warrior: add a button to download all OpenVPN certificates associated with a specific Road Warrior instance
@@ -291,7 +291,7 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 
 - Migration: fix firewall rules that were using blue zone
 - Migration: network configuration not migrated if alias has no gateway
-- Migration: fixes firewall rules with "any" service migrate incorrectly
+- Migration: fixes firewall rules with \"any\" service migrate incorrectly
 - Migration: fixes root password authentication flag incorrectly displayed
 - Migration: rename VPN interfaces that caused a firewall error if the name was too long
 - Migration: fixes missing account_email in ACME that caused a certificate renewal failure
@@ -300,15 +300,15 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 - Migration: remove custom zones on migration, zones are converted to CIDR networks
 - Migration: fixes FlashStart not enabled on guest/blue interface
 - Migration: fixes OpenVPN Road Warrior certificate not exported if CN contains the dot character
-- Migration: correctly import OpenVPN Road Warrior users without 'status' prop
+- Migration: correctly import OpenVPN Road Warrior users without \'status\' prop
 - OpenVPN Road Warrior: add client compression setting missing that was missing in .ovpn file
 - OpenVPN Road Warrior: fix IP pool management
 - OpenVPN Road Warrior: fix expired CRL that was causing a connection failure after 6 months
-- OpenVPN tunnel between NS7 and NS8 cipher: connection was failing despite showing "connected"
+- OpenVPN tunnel between NS7 and NS8 cipher: connection was failing despite showing \"connected\"
 - OpenVPN tunnel client: fix displayed mode
-- OpenVPN tunnel client: wrong "bridged" mode as new default, new default is now r"outed"
+- OpenVPN tunnel client: wrong \"bridged\" mode as new default, new default is now r\"outed\"
 - OpenVPN tunnel client resets cipher to \`AES-128-CBC\`: correctly set cipher without resetting it
-- OpenVPN tunnel client: correctly set "tap" and "tun" mode on client tunnel creation
+- OpenVPN tunnel client: correctly set \"tap\" and \"tun\" mode on client tunnel creation
 - Unable to disable legacy LuCI UI after system upgrade: fix LuCI UI disable option
 - Controller connection (ns-plug): force cleanup of package cache and sync unit status
 - Migration: improve in place migrate, add delay before image write to reduce issues when writing the kernel
@@ -320,12 +320,12 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 - API server: fix restarting on package update
 - Interface page fails with QoS enabled on PPPoE: improve validator on network configuration page
 - Cannot duplicate a port forward: fix duplication of port forwarding rule
-- Report: disable "open report" button when UI is displayed from the controller
+- Report: disable \"open report\" button when UI is displayed from the controller
 - DPI report: fix crash on netifyd restart
 
 ## Major changes on 2024-08-08
 
-Image version: <span class="title-ref">8-23.05.4-ns.1.2.0</span>
+Image version: `8-23.05.4-ns.1.2.0`
 
 This release focuses on new features for subscriptions and improved user experience.
 
@@ -343,8 +343,8 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 - Add objects support in Firewall rules: include objects support for source and destination addresses in Firewall rules
 - OpenVPN Road Warrior IP reservation: improve handling of reserved IPs in OpenVPN configuration to prevent conflicts
 - Backup: include installed package list in backup for easier restoration after image upgrade
-- Let's Encrypt certificate on web interface extra port: extend Let's Encrypt certificate usage to the ns-ui extra port
-- OpenVPN tunnel server: add option "remote-cert-tls" in exported file client configuration file
+- Let\'s Encrypt certificate on web interface extra port: extend Let\'s Encrypt certificate usage to the ns-ui extra port
+- OpenVPN tunnel server: add option \"remote-cert-tls\" in exported file client configuration file
 - Custom DNS for hotspot: add support for changing default DNS for hotspot
 - Limited support for USB-to-Ethernet adapters: provide experimental support for USB-to-Ethernet adapters with manual driver installation
 - Limited support for USB-to-Serial adapters: add experimental support for USB-to-Serial adapters with manual driver installation
@@ -370,7 +370,7 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 
 ## Major changes on 2024-07-05
 
-Image version: <span class="title-ref">8-23.05.3-ns.1.1.0</span>
+Image version: `8-23.05.3-ns.1.1.0`
 
 This releases focuses on fixing bugs and delivering new features.
 
@@ -391,7 +391,7 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 - Backup restore validation: added specific error messaging for incorrect passphrase input during backup restoration process
 - MWAN metrics adjustment: modified interface metric allocation to start at 20 and increment by 10 for improved load balancing
 - Scheduled update UI consistency: corrected persistent display of completed scheduled updates in user interface
-- MultiWAN policy labeling: fixed incorrect "balance" label display for custom single-gateway policies
+- MultiWAN policy labeling: fixed incorrect \"balance\" label display for custom single-gateway policies
 - MultiWAN form validation and input handling: implemented proper input field state management and form validation in policy editor
 - MultiWAN UI/UX refinement: enhanced port input flexibility and form submission logic for rules and policies
 - Post-migration DHCP functionality: addressed DHCP address assignment failure after version 7.9 to 8 migration
@@ -409,7 +409,7 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 
 **This is a security release**
 
-Image version: <span class="title-ref">8-23.05.3-ns.1.0.1</span>
+Image version: `8-23.05.3-ns.1.0.1`
 
 Addressed security vulnerability: [GHSA-74xv-ww67-jjpx](https://github.com/NethServer/nethsecurity/security/advisories/GHSA-74xv-ww67-jjpx) (disclosure will be published on 2024-06-20)
 
@@ -427,7 +427,7 @@ Addressed security vulnerability: [GHSA-74xv-ww67-jjpx](https://github.com/NethS
 
 **Stable**
 
-Image version: <span class="title-ref">8-23.05.3-ns.1.0.0</span>
+Image version: `8-23.05.3-ns.1.0.0`
 
 The Stable release focuses on fixing bugs and improving the overall user experience.
 
@@ -456,7 +456,7 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 
 - FlashStart: DNS resolution fails after disabling the service
 - FlashStart: fix first configuratin
-- Let’s Encrypt: certificates are not created
+- Let's Encrypt: certificates are not created
 - FlashStart: redirect rule is ineffective
 - Firewall: ipset is not updated after removing an address
 - Migration: host groups are not imported correctly in firewall rules
@@ -485,7 +485,7 @@ Detailed changelog can be found [here](https://github.com/NethServer/nethsecurit
 
 **Relase Candidate 2**
 
-Image version: <span class="title-ref">8-23.05.3-ns.0.0.5-rc2</span>
+Image version: `8-23.05.3-ns.0.0.5-rc2`
 
 The Release Candidate 2 release focuses on fixing bugs and improving the overall user experience. Detailed changelog can be found [here](https://github.com/NethServer/nethsecurity/milestone/1?closed=1).
 
@@ -527,7 +527,7 @@ The Release Candidate 2 release focuses on fixing bugs and improving the overall
 
 **Release Candidate 1**
 
-Image version: <span class="title-ref">8-23.05.3-ns.0.0.3-rc1</span>
+Image version: `8-23.05.3-ns.0.0.3-rc1`
 
 The Release Candidate 1 release focuses on fixing bugs, adding the centralized controller, and improving the migration process from NethServer 7.
 
@@ -536,7 +536,7 @@ The issue tracker has been moved to GitHub. The new URL is: <https://github.com/
 **New features and improvements**
 
 - NethSecurity has been rebased on [OpenWrt 23.05.3](https://forum.openwrt.org/t/openwrt-23-05-3-service-release/192587).
-- Added the centralized controller to manage multiple NethSecurity instances from a single interface.
+- Added the [centralized controller](../system/controller.md) to manage multiple NethSecurity instances from a single interface.
 - Port forwards: support port ranges in the source port field.
 - Firewall rules: support IP ranges as destination rules.
 - Backup: allow download of the backup file from the UI even if the machine has an enterprise subscription and remote backup server is not available.
@@ -577,11 +577,11 @@ The issue tracker has been moved to GitHub. The new URL is: <https://github.com/
 
 **Known bugs**
 
-Network bonds still suffer from some issues. If you're migrating from NethServer 7, please be aware of the following:
+Network bonds still suffer from some issues. If you\'re migrating from NethServer 7, please be aware of the following:
 
-- VLAN over a bond interface is not created if bond hasn't a role
-- During bond creation, sometimes, the web UI doesn't show the devices to add to the bond
-- The newly created bond shows a button saying "Configure bond", but then it does not configure the bond itself but the interface member of the bond
+- VLAN over a bond interface is not created if bond hasn\'t a role
+- During bond creation, sometimes, the web UI doesn\'t show the devices to add to the bond
+- The newly created bond shows a button saying \"Configure bond\", but then it does not configure the bond itself but the interface member of the bond
 
 **Upgrade notes**
 
@@ -597,7 +597,7 @@ uci commit ipsec
 
 **Beta 2**
 
-Image version: <span class="title-ref">8-23.05.2-ns.0.0.2-beta2</span>
+Image version: `8-23.05.2-ns.0.0.2-beta2`
 
 The Beta2 release focuses on improving the new UI and enhancing the overall user experience.
 
@@ -619,7 +619,7 @@ User interface (UI):
 Network:
 
 - PPPoE with DHCPv6-PD support implemented.
-- It's now possible to configure bond network interfaces from the UI.
+- It\'s now possible to configure bond network interfaces from the UI.
 
 DPI:
 
@@ -651,20 +651,20 @@ MultiWAN:
 
 Firewall:
 
-- Enhanced protocol handling: creates rules for all protocols (not just TCP/UDP) when "any" is selected.
+- Enhanced protocol handling: creates rules for all protocols (not just TCP/UDP) when \"any\" is selected.
 - Improved rule readability: in rules with 2 or more source/destination addresses, only the second address was readily visible in the tooltip.
 
 Port Forwarding:
 
 - Streamlined configuration: source and destination ports are only required for TCP/UDP protocols.
-- Simplified ALL protocol selection: when "ALL" protocol is chosen, other protocol options are disabled as they are redundant.
+- Simplified ALL protocol selection: when \"ALL\" protocol is chosen, other protocol options are disabled as they are redundant.
 
 Certificates:
 
 - Fixed issue: custom certificate being overwritten with self-generated certificate when set as default certificate for the firewall FQDN.
 - Correctly display certificate domain: on the certificate list, the subject displayed now corresponds to the client certificate instead of the first certificate in the chain.
-- Fix Let's Encrypt certificate deletion: forced acme.sh to generate a new configuration when recreating a Let's Encrypt certificate for the same domain, instead of reusing the existing one.
-- Let's Encrypt certificate request: disabled automatic redirection from port 80 to 443 to avoid conflicts with acme.sh.
+- Fix Let\'s Encrypt certificate deletion: forced acme.sh to generate a new configuration when recreating a Let\'s Encrypt certificate for the same domain, instead of reusing the existing one.
+- Let\'s Encrypt certificate request: disabled automatic redirection from port 80 to 443 to avoid conflicts with acme.sh.
 
 DPI:
 
@@ -681,13 +681,13 @@ API:
 OpenVPN:
 
 - Resolved port update issue: changing OpenVPN Road Warrior service port through the UI now correctly reflects the update in the service configuration and associated firewall rule.
-- Configuration protection: fixed issue where RoadWarrior configuration was lost when changing a user's password.
+- Configuration protection: fixed issue where RoadWarrior configuration was lost when changing a user\'s password.
 - Enhanced authentication: addressed OpenVPN Roadwarrior authentication failures using local users in NethSecurity beta1.
 - Resolved tunnel server status: fixed issue where the tunnel server status was not correctly displayed in the UI.
 
 Hotspot:
 
-- MAC address inclusion: resolved problem where MAC addresses were missing in the "unit" section of the Hotspot Manager when the hotspot relied on a VLAN.
+- MAC address inclusion: resolved problem where MAC addresses were missing in the \"unit\" section of the Hotspot Manager when the hotspot relied on a VLAN.
 - VLAN deletion: fixed issue preventing deletion of VLANs previously used by unregistered hotspots, even after the VLAN was freed.
 - Enhanced status visibility: added enabled/disabled status to the main tab for quick reference.
 
@@ -712,14 +712,14 @@ IPsec:
 
 **Beta 1**
 
-Image version: <span class="title-ref">8-23.05.2-ns.0.0.1-beta1</span>
+Image version: `8-23.05.2-ns.0.0.1-beta1`
 
 The Beta1 release marks the transition to the new UI as the primary configuration interface. Luci remains active by default for configurations not yet available in the new UI and for verification purposes. Known bugs in the new interface can be found [here](https://trello.com/b/FndRrgIp/nethsecurity-project?filter=label:BUG).
 
 Main changes:
 
 - Added a dedicated page for managing certificates and reverse proxy settings. Improved the import process for both configurations.
-- Introduced a new page for configuring firewall rules. Users are advised to use this page instead of Luci's, as using both may lead to incompatibilities.
+- Introduced a new page for configuring firewall rules. Users are advised to use this page instead of Luci\'s, as using both may lead to incompatibilities.
 - Added a page for Quality of Service (QoS) configuration to enhance network traffic management.
 - Added a page for configuring OpenVPN Roadwarrior. Updated the migration process for the new implementation.
 - Introduced the option to use a partition of the main disk as storage for logs.
@@ -732,7 +732,7 @@ Main changes:
 
 **Alpha 2**
 
-This alpha release is specifically crafted for evaluation purposes, focusing on testing the functionalities of the new system's user interface. Users are provided with the option to experience either the ongoing development of the new interface or stick with the established LuCI interface. Known bugs in the new interface can be found [here](https://trello.com/b/FndRrgIp/nethsecurity-project?filter=label:BUG).
+This alpha release is specifically crafted for evaluation purposes, focusing on testing the functionalities of the new system\'s user interface. Users are provided with the option to experience either the ongoing development of the new interface or stick with the established LuCI interface. Known bugs in the new interface can be found [here](https://trello.com/b/FndRrgIp/nethsecurity-project?filter=label:BUG).
 
 **UI Enhancements**
 
@@ -783,14 +783,14 @@ The new interface includes the following features:
 - Root User Password Change
 - Access to System Logs
 
-## Releases glossary
+## Releases glossary {#release_glossary-section}
 
 The software release cycle includes four stages: Alpha, Beta, Release Candidate (RC), and Stable.
 
-During the **Alpha** stage, the software is not thoroughly tested and may not include all planned features. This release is not suitable for production environments. However, it can be used to preview what's coming in the upcoming version. Please note that updates from an Alpha release to other releases are not supported.
+During the **Alpha** stage, the software is not thoroughly tested and may not include all planned features. This release is not suitable for production environments. However, it can be used to preview what\'s coming in the upcoming version. Please note that updates from an Alpha release to other releases are not supported.
 
 The **Beta** stage indicates that the software is mostly feature complete, but it may still contain many known and unknown bugs. This release should not be used on production environments. However, it can be used to test the software before deploying it to production. Updates from a Beta release to an RC or Stable release are supported but may require a manual procedure.
 
-During the **Release Candidate (RC)** stage, the software is feature complete, and it contains no known bugs. If no major issues arise, it can be promoted to Stable. Updates from an RC release to a Stable release are supported and should be almost automatic. However, if you're new to the software, it's best to use it in production only if you already have some experience with it.
+During the **Release Candidate (RC)** stage, the software is feature complete, and it contains no known bugs. If no major issues arise, it can be promoted to Stable. Updates from an RC release to a Stable release are supported and should be almost automatic. However, if you\'re new to the software, it\'s best to use it in production only if you already have some experience with it.
 
 The **Stable** release is the most reliable and safe to use in production environments. It has been thoroughly tested and is considered to be free of major bugs.

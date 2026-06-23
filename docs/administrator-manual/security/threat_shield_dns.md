@@ -3,13 +3,13 @@ title: "Threat shield DNS"
 sidebar_position: 3
 ---
 
-# Threat shield DNS
+# Threat shield DNS {#threat_shield_dns-section}
 
 Threat shield DNS uses Adblock which blocks any request to domains considered malicious. The service can load community-maintained blocklists or use Enterprise feeds provided by [Nethesis](https://www.nethesis.it) and [Yoroi](https://yoroi.company) a leading company focused on CyberSecurity and member of [Cyber Threat Alliance](https://www.cyberthreatalliance.org).
 
 Please note that to access the Nethesis and Yoroi blocklists, the unit must have a valid extra entitlement for this service.
 
-## Configuration
+## Configuration {#configuration-section}
 
 :::note
 
@@ -25,23 +25,23 @@ To specify on which zones the service should be active, select them in the `Forc
 
 `Redirected ports` allows you to specify which ports should be redirected to Threat shield DNS service.
 
-### Community blocklists
+### Community blocklists {#community_blocklists-section}
 
 Community blocklists are sourced from community contributors and block various domains related to: ads, malware, spam, tracker, explicit sexual content, piracy and so on. NethSecurity makes them available as they are.
 
-Community lists do not provide a standardized "Confidence" metric, therefore the UI shows their confidence as "Unknown". As a practical heuristic, when the list name contains a severity or trust indicator (e.g. "lvl 1", "level 1"), it generally denotes the lowest false positive rate and the highest confidence; conversely, higher indicated levels (e.g. "lvl 2", "lvl 3", "lvl 4") typically imply lower confidence and a higher risk of aggressive or incorrect entries. Naming conventions vary and not all community providers include such indicators, so always review a community list's contents and purpose before enabling it in production. The type of usage license may vary depending on the provider, so if the use is not personal, you may need to inquire with the provider.
+Community lists do not provide a standardized \"Confidence\" metric, therefore the UI shows their confidence as \"Unknown\". As a practical heuristic, when the list name contains a severity or trust indicator (e.g. \"lvl 1\", \"level 1\"), it generally denotes the lowest false positive rate and the highest confidence; conversely, higher indicated levels (e.g. \"lvl 2\", \"lvl 3\", \"lvl 4\") typically imply lower confidence and a higher risk of aggressive or incorrect entries. Naming conventions vary and not all community providers include such indicators, so always review a community list\'s contents and purpose before enabling it in production. The type of usage license may vary depending on the provider, so if the use is not personal, you may need to inquire with the provider.
 
 **Community lists maintenance**
 
 Each blocklist is maintained by its specific provider. NethSecurity already includes the URLs for downloading the feeds, which are valid at the time of the release. However, because these URLs are hard-coded, if the provider changes them, some blocklists may no longer be downloadable.
 
-### Enterprise blocklists
+### Enterprise blocklists {#enterprise_blocklists-section}
 
 :::note
 
-**Subscription required**
+Subscription required
 
-This feature is available only if the unit has a valid Community or Enterprise subscription.
+This feature is available only if the unit has a valid [Community or Enterprise subscription](../system/subscription.md).
 
 :::
 
@@ -54,21 +54,21 @@ Enterprise blocklists are specifically focused on security and offer several adv
 
 ### Confidence
 
-Enterprise blocklists include a "Confidence" score which is shown in the UI. The score is expressed as a value from 1 to 10 and represents the provider's assessment of the list quality: higher values indicate higher confidence and a lower likelihood of false positives. This "Confidence" metric is available only for Enterprise lists; Community lists are presented "as is" and display "Unknown" for confidence.
+Enterprise blocklists include a \"Confidence\" score which is shown in the UI. The score is expressed as a value from 1 to 10 and represents the provider\'s assessment of the list quality: higher values indicate higher confidence and a lower likelihood of false positives. This \"Confidence\" metric is available only for Enterprise lists; Community lists are presented \"as is\" and display \"Unknown\" for confidence.
 
-Yoroi and Nethesis blocklists are Enterprise blocklists. These lists will be listed only if the unit has a valid Enterprise or Community subscription and a valid entitlement for the Threat Shield service.
+Yoroi and Nethesis blocklists are Enterprise blocklists. These lists will be listed only if the unit has a valid [Enterprise or Community subscription](../system/subscription.md) and a valid entitlement for the Threat Shield service.
 
-## Filter bypass
+## Filter bypass {#filter_bypass-section}
 
 Some hosts or subnets may need to bypass Threat shield DNS filtering. To configure filter bypass, navigate to the `Filter bypass` tab of Threat shield DNS. Use the **Add bypass** button to add a new address to the list. The address can be a valid IPv4/IPv6 address with optional CIDR notation.
 
-## Local allowlist
+## Local allowlist {#local_allowlist_dns-section}
 
 To allow specific domains that may be included in blocklists, you can navigate to the `Local allowlist` tab of Threat shield DNS. Use the **Add domain** button to add a domain to the list; you can add a description to the domain to help you remember why it was added.
 
 Domains in the allowlist take priority over `Blocklists` and the `Local blocklist`
 
-## Local blocklist
+## Local blocklist {#local_blocklist_dns-section}
 
 To block specific domains not included in the blocklists, you can navigate to the `Local blocklist` tab of Threat shield DNS. Use the **Add domain** button to add a domain to the list; you can add a description to the domain to help you remember why it was added.
 
@@ -78,17 +78,17 @@ The DNS resolution for the names listed in the blocklist will also affect the un
 
 :::
 
-## Check if a domain is blocked
+## Check if a domain is blocked {#check_domain_blocklist-section}
 
 If you are experiencing issues with domain resolution and want to check whether a specific domain is blocked, you can perform a query directly from the local terminal.
 
 Use the following command to check a domain:
 
-<span class="title-ref">/etc/init.d/adblock query \<domain\></span>
+`/etc/init.d/adblock query \<domain\>`
 
 For example:
 
-<span class="title-ref">root@nethsecurity8:~# /etc/init.d/adblock query baddomain.com</span>
+`root@nethsecurity8:\~# /etc/init.d/adblock query baddomain.com`
 
 The output might look like this:
 
@@ -102,9 +102,9 @@ The output might look like this:
     :::
       + adb_list.adult.gz             baddomain.com
 
-This output shows if the domain is currently blocked by any active blocklists. In this specific example, the domain <span class="title-ref">baddomain.com</span> is part of the category **adult**, as indicated by `adb_list.adult.gz`. This helps you identify which category or list caused the domain to be blocked.
+This output shows if the domain is currently blocked by any active blocklists. In this specific example, the domain `baddomain.com` is part of the category **adult**, as indicated by `adb_list.adult.gz`. This helps you identify which category or list caused the domain to be blocked.
 
-## Troubleshooting
+## Troubleshooting {#adblock_troubleshooting-section}
 
 After enabling Adblock or changing its configuration, wait up to 30 seconds for the changes to be applied. During boot, Adblock also waits around 30 seconds for the network to come up before loading the feeds.
 
@@ -146,7 +146,7 @@ If there were network problems and Adblock could not download any feed, just res
 
     /etc/init.d/adblock restart
 
-## Advanced configuration
+## Advanced configuration {#advanced_configuration-section}
 
 When Threat shield DNS is enabled:
 
@@ -154,4 +154,4 @@ When Threat shield DNS is enabled:
 - All DNS queries are redirected to the local machine.
 - Adblock is configured to use the new category source file and will be started automatically.
 
-Even if not recommended, it's possible to use Adblock without Threat shield DNS. For more detailed configuration options, please refer to the [developer manual](https://dev.nethsecurity.org/packages/ns-threat_shield/#ts-dns).
+Even if not recommended, it\'s possible to use Adblock without Threat shield DNS. For more detailed configuration options, please refer to the [developer manual](https://dev.nethsecurity.org/packages/ns-threat_shield/#ts-dns).

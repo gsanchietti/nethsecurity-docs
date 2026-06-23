@@ -3,13 +3,13 @@ title: "Maintenance and Troubleshooting"
 sidebar_position: 3
 ---
 
-# Maintenance and Troubleshooting
+# Maintenance and Troubleshooting {#ha_maintenance_and_troubleshooting-section}
 
 ## Alerting
 
 :::note
 
-**Subscription required**
+Subscription required
 
 This feature is available only if the firewall has a valid subscription.
 
@@ -30,13 +30,13 @@ The HA cluster is designed to be highly available and requires minimal maintenan
 
 The secondary node can be switched off for maintenance without affecting the primary node.
 
-1.  Stop <span class="title-ref">keepalived</span> on the **secondary node**: :
+1.  Stop `keepalived` on the **secondary node**: :
 
         /etc/init.d/keepalived stop
 
 2.  Perform maintenance.
 
-3.  Start <span class="title-ref">keepalived</span> on the **secondary node**: :
+3.  Start `keepalived` on the **secondary node**: :
 
         /etc/init.d/keepalived start
 
@@ -44,13 +44,13 @@ The secondary node can be switched off for maintenance without affecting the pri
 
 The primary node can be switched off for maintenance, the secondary node will take over the virtual IP addresses and all services.
 
-1.  Stop <span class="title-ref">keepalived</span> on the **primary node**: :
+1.  Stop `keepalived` on the **primary node**: :
 
         /etc/init.d/keepalived stop
 
 2.  Perform maintenance.
 
-3.  Start <span class="title-ref">keepalived</span> on the **primary node**: :
+3.  Start `keepalived` on the **primary node**: :
 
         /etc/init.d/keepalived start
 
@@ -72,7 +72,7 @@ The secondary node does not receive system updates automatically because it does
 
 This command will download the latest image, upload it to the secondary node, and install it. As a normal upgrade, the secondary node will reboot after the installation.
 
-## Troubleshooting
+## Troubleshooting {#troubleshooting_ha-section}
 
 Troubleshooting the HA setup can be challenging, especially if the secondary node is not reachable or the primary node is not responding as expected.
 
@@ -86,7 +86,7 @@ The following instructions can help you identify and resolve common issues. To s
 
 ### Identifying the nodes
 
-Since the secondary node hostname syncs with the primary, the bash prompt changes to indicate the node's role:
+Since the secondary node hostname syncs with the primary, the bash prompt changes to indicate the node\'s role:
 
 - Primary node prompt: `root@NethSec [P]:~#`
 - Secondary node prompt: `root@NethSec [S]:~#`
@@ -111,9 +111,9 @@ Execute `ns-ha-config status` to check Keepalived statistics. Extract from the o
       pri_zero_rcvd: 1
       pri_zero_sent: 0
 
-On a primary node, the <span class="title-ref">master.become_master</span> should be <span class="title-ref">1</span> or more, indicating it has successfully taken over as the master. Also the <span class="title-ref">master.advert.sent</span> should be greater than <span class="title-ref">0</span>, indicating it is actively sending advertisements to the secondary node.
+On a primary node, the `master.become_master` should be `1` or more, indicating it has successfully taken over as the master. Also the `master.advert.sent` should be greater than `0`, indicating it is actively sending advertisements to the secondary node.
 
-On a secondary node, the <span class="title-ref">master.advert_rcvd</span> should be greater than <span class="title-ref">0</span>, indicating it is receiving advertisements from the primary node. If the <span class="title-ref">master.become_master</span> is <span class="title-ref">0</span>, it means the node has not taken over as the master, which is expected for a secondary node.
+On a secondary node, the `master.advert_rcvd` should be greater than `0`, indicating it is receiving advertisements from the primary node. If the `master.become_master` is `0`, it means the node has not taken over as the master, which is expected for a secondary node.
 
 ### VRRP traffic
 
@@ -121,7 +121,7 @@ The primary node sends VRRP advertisements to the secondary node every second. Y
 
     tcpdump -vnnpi <lan_interface> vrrp
 
-Replace <span class="title-ref">\<lan_interface\></span> with the name of the LAN interface (e.g., <span class="title-ref">eth0</span>).
+Replace `\<lan_interface\>` with the name of the LAN interface (e.g., `eth0`).
 
 The output should show VRRP packets being sent from the primary node to the secondary node. Some example output: :
 
@@ -157,15 +157,15 @@ You can examine specific components of the HA system in logs:
 
 When log files are not sufficient, you can enable debug logging for specific components:
 
-Debug the <span class="title-ref">ns-ha-config</span> script: :
+Debug the `ns-ha-config` script: :
 
     bash -x ns-ha-config <action> [<options>]
 
-View active <span class="title-ref">keepalived</span> configuration: :
+View active `keepalived` configuration: :
 
     cat /tmp/keepalived.conf
 
-Enable <span class="title-ref">keepalived</span> debug logging (on primary): :
+Enable `keepalived` debug logging (on primary): :
 
     uci set keepalived.primary.debug=1
     uci commit keepalived
@@ -179,9 +179,9 @@ The reset command restores the cluster configuration to its default state. Typic
 
 To reset command will:
 
-- Stop and disable <span class="title-ref">keepalived</span> and <span class="title-ref">conntrackd</span>.
+- Stop and disable `keepalived` and `conntrackd`.
 - Remove HA configuration files.
-- Clean up <span class="title-ref">dropbear</span> configuration including SSH keys.
+- Clean up `dropbear` configuration including SSH keys.
 
 At the end, a reboot is required to apply the changes. Just execute: :
 

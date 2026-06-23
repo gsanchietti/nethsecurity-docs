@@ -3,15 +3,15 @@ title: "OpenVPN Road Warrior"
 sidebar_position: 1
 ---
 
-# OpenVPN Road Warrior
+# OpenVPN Road Warrior {#openvpn_roadwarrior-section}
 
 Road Warrior refers to a specific configuration of the OpenVPN VPN tailored for remote users, allowing them secure access to a private network from anywhere on the internet. This setup is particularly useful for businesses and organizations with employees or collaborators spread across different locations, ensuring encrypted communication and data privacy.
 
-OpenVPN is a protocol supported by the most widely used platforms, with free clients available for Windows, MacOS, Linux, Android, and iOS systems.
+OpenVPN is a protocol supported by the most widely used platforms, with [free clients](#client_software-section) available for Windows, MacOS, Linux, Android, and iOS systems.
 
 :::note
 
-Before configuring the OpenVPN Road Warrior, make sure you have read the chapter related to the user database.
+Before configuring the OpenVPN Road Warrior, make sure you have read the chapter related to the [user database](../users-objects/users_databases.md).
 
 :::
 
@@ -27,7 +27,7 @@ To configure a new OpenVPN server, click **Create Server** button and configure 
 
 - `Server name`: give a name to this OpenVPN server
 - `User database`: choose the user database to use for authentication, it can be a local database or a remote one (e.g. LDAP or Active Directory)
-- `Create an account for each user`: this is a special field and won't be shown again in the future, it allows you to automatically create a VPN account for each user present in the database. All accounts created will have a certificate valid for 3650 days.
+- `Create an account for each user`: this is a special field and won\'t be shown again in the future, it allows you to automatically create a VPN account for each user present in the database. All accounts created will have a certificate valid for 3650 days.
 - `Mode`: bridged or routed; routed mode is the default one and the most common, it allows to create a virtual network where clients are connected to the server and can communicate with each other. Bridged mode is less common and allows to connect the clients to the server as if they were connected to the same LAN this mode is useful when the clients need to access resources that are not directly accessible from the server. If unsure, select routed mode.
 - `Authentication mode`: several authentication modes are supported:
   - `Username and password`: the connecting client must provide a valid username and password; only users with a password set can use this mode
@@ -80,7 +80,7 @@ Now that the server has been configured, it is necessary to create the accounts 
 - `Reserved IP`: specify an IP address that is part of the defined VPN network but outside the dynamic range. The entered IP address will always be assigned to this specific account, this can be very useful for creating firewall rules. Leave it blank to assign a random IP address on every connection.
 - `Certificate expiration (days)`: specify a certificate duration (default 3650 days)
 
-Once the account is created, it is necessary to export the configuration and load it into the client that needs to connect. To do this, simply click on the menu of the specific account and choose `Download configuration`. This action downloads the ready-to-use file, simply to be loaded into the client. This file is dynamically generated based on the current configuration of the OpenVPN server and already contains all the necessary information, including configuration details (server addresses, port, etc.) and required certificates. In case the server's operating mode is changed (e.g., if the authentication mode is altered), it is necessary to download the file again.
+Once the account is created, it is necessary to export the configuration and load it into the client that needs to connect. To do this, simply click on the menu of the specific account and choose `Download configuration`. This action downloads the ready-to-use file, simply to be loaded into the client. This file is dynamically generated based on the current configuration of the OpenVPN server and already contains all the necessary information, including configuration details (server addresses, port, etc.) and required certificates. In case the server\'s operating mode is changed (e.g., if the authentication mode is altered), it is necessary to download the file again.
 
 Other available actions are:
 
@@ -100,10 +100,10 @@ If a client is already connected to the roadwarrior server, the `Disable` action
 Some information about the behavior of the clients:
 
 - Clients connected to the Road Warrior VPN are assigned to the `rwopenvpn` zone, which is inherently trusted. By default, this zone has privileged access to both LAN and WAN zones within the network infrastructure.
-- Connection backup: in case of multiple WANs, clients will connect using the first IP/hostname of the server configuration, if it's unavailable they will use the second IP/hostname and so on.
+- Connection backup: in case of multiple WANs, clients will connect using the first IP/hostname of the server configuration, if it\'s unavailable they will use the second IP/hostname and so on.
 - For security reasons, it is not possible to connect multiple clients with the same account. Each account can be used by only one client at a time. If a new client attempts to connect with an account that is already connected to the system, the first account will be disconnected.
 
-### Client software
+### Client software {#client_software-section}
 
 All major platforms are supported. Here are some references to download the necessary software:
 
@@ -113,7 +113,7 @@ All major platforms are supported. Here are some references to download the nece
 - Android Systems: [OpenVPN Connect on Play Store](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
 - iOS Systems: [OpenVPN Connect on App Store](https://apps.apple.com/it/app/openvpn-connect-openvpn-app/id590379981)
 
-## Managing certificate expiration
+## Managing certificate expiration {#managing-openvpn-certificate-expiration}
 
 An OpenVPN Road Warrior instance uses TLS certificates for authentication. To avoid connectivity issues, it is crucial to monitor the expiration dates of the certificates used across the entire infrastructure.
 
@@ -157,7 +157,7 @@ This operation will revoke the existing server certificate, create a new one wit
 
 :::warning
 
-When regerating the server certificate, the clients certificates remain valid (if not expired). If the certificate renewal is done while clients are connected, it's necessary for the client to disconnect and then reconnect to the server to restore the connection. If the certificate renewal is done while **clients are disconnected (recommended way)**, the connection will be automatically restored when they will try to connect again.
+When regerating the server certificate, the clients certificates remain valid (if not expired). If the certificate renewal is done while clients are connected, it\'s necessary for the client to disconnect and then reconnect to the server to restore the connection. If the certificate renewal is done while **clients are disconnected (recommended way)**, the connection will be automatically restored when they will try to connect again.
 
 :::
 
@@ -186,14 +186,14 @@ These are default values from OpenVPN which are generally suitable for most netw
 
 VPN users may experience connectivity issues due to packet fragmentation. The LAN interface has an MTU of 1500 by default, but when packets are encrypted for VPN transmission, the size increases, leading to packet drops. To resolve this, the MTU and the MSS on the OpenVPN RW server must be lowered. No changes are required on the client side.
 
-The values of MTU and MSS can be adjusted directly on the UI, when creating the OpenVPN RW server for the first time or later when editing it using the <span class="title-ref">Edit</span> button, under the <span class="title-ref">Advanced options</span> section in the drawer. Alternatively, you can adjust the two configuration values using the command line interface on the firewall:
+The values of MTU and MSS can be adjusted directly on the UI, when creating the OpenVPN RW server for the first time or later when editing it using the `Edit` button, under the `Advanced options` section in the drawer. Alternatively, you can adjust the two configuration values using the command line interface on the firewall:
 
     uci set openvpn.ns_<name>.tun_mtu='1300'
     uci set openvpn.ns_<name>.mssfix='1250'
     uci commit openvpn.ns_<name>
     /etc/init.d/openvpn restart ns_<name>
 
-The <span class="title-ref">tun_mtu</span> and <span class="title-ref">mssfix</span> values may need to be adjusted based on your specific network environment. A lower MTU ensures that packets fit within the limits of the OpenVPN tunnel without fragmentation. Depending on factors like network latency or overhead, you might find that slightly different values work better for your setup.
+The `tun_mtu` and `mssfix` values may need to be adjusted based on your specific network environment. A lower MTU ensures that packets fit within the limits of the OpenVPN tunnel without fragmentation. Depending on factors like network latency or overhead, you might find that slightly different values work better for your setup.
 
 For more specific information please see the [official OpenVPN documentation](https://openvpn.net/community-docs/community-articles/openvpn-2-6-manual.html).
 
@@ -214,4 +214,4 @@ By default, if persistent storage is available and configured, connection events
 
 If a RoadWarrior server is already configured and a new storage device is connected, the history is automatically moved from RAM to storage, making it persistent and able to survive reboots. Conversely, if the storage is removed, new connection events will be stored in the RAM database and will be visible in the Connections History section. If the storage is then reconnected, the histories from RAM and storage are merged without data loss.
 
-If the server is connected to a controller-section, the history is sent to the controller and can be viewed inside the historical_monitoring-section.
+If the server is connected to a [Controller](../system/controller.md), the history is sent to the controller and can be viewed inside the [Historical monitoring](../monitoring/monitoring.md#historical_monitoring-section).

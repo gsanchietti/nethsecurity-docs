@@ -3,7 +3,7 @@ title: "Zones and policies"
 sidebar_position: 5
 ---
 
-# Zones and policies
+# Zones and policies {#zones-section}
 
 Firewall zones categorize network interfaces, defining trust boundaries, while firewall rules dictate traffic handling between zones. Zones organize network segments, and rules enforce security policies by specifying conditions for permitted or denied actions. Together, they allow the definition and application of rules for network traffic within the firewall.
 
@@ -29,9 +29,9 @@ Denied traffic:
 
 In this configuration, the firewall regulates traffic between the WAN and LAN zones, allowing internal devices to access the internet and communicate internally while maintaining security by blocking direct external access to the firewall and preventing communication between external networks.
 
-Default zones can't be deleted but the network administrator can change existing policies or create new zones.
+Default zones can\'t be deleted but the network administrator can change existing policies or create new zones.
 
-Logging can be enabled for zones using the **Logging** option inside the `Zones and policies` page. By enabling logging, the network administrator can track network activity, identify potential threats, and analyze traffic patterns. Logging is limited to 5 entry per second by default. To change this limit, refer to the logging-limits section.
+Logging can be enabled for zones using the **Logging** option inside the `Zones and policies` page. By enabling logging, the network administrator can track network activity, identify potential threats, and analyze traffic patterns. Logging is limited to 5 entry per second by default. To change this limit, refer to the [Logging limits](./firewall_rules.md#logging-limits) section.
 
 ## Guests and DMZ zones
 

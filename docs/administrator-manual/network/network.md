@@ -3,14 +3,14 @@ title: "Network interfaces"
 sidebar_position: 1
 ---
 
-# Network interfaces
+# Network interfaces {#network-section}
 
 The `Interfaces and devices` page configures how the server is connected to the local network (LAN) and/or other networks (i.e. Internet).
 
 NethSecurity supports an unlimited number of network interfaces. Any network managed by the system must follow these rules:
 
 - networks must be logically separated: each network must have different addresses
-- private networks, like LANs, must follow address's convention from RFC1918 document
+- private networks, like LANs, must follow address\'s convention from [RFC1918](#RFC1918-section) document
 - networks should be physically separated using different switches or logically separated using VLAN (Virtual Local Area Network)
 
 Every network interface has a specific zone which determines its behavior. A basic network setup for a router typically includes a minimum of two interfaces, namely LAN (Local Area Network) and WAN (Wide Area Network):
@@ -20,13 +20,11 @@ Every network interface has a specific zone which determines its behavior. A bas
 
 All configured network interfaces are listed at the top of the page. Each interface is displayed with its name and the assigned firewall zone. This section offers an immediate overview of the current configurations, allowing users to quickly see which networks are already set up and associated with specific security zones.
 
-In the bottom section of the page, available but unconfigured network devices are listed. To configure a device, the user clicks on the **Configure** button corresponding to the desired device. The newly created VLAN devices are visible in this section.
+In the bottom section of the page, available but unconfigured network devices are listed. To configure a device, the user clicks on the **Configure** button corresponding to the desired device. The newly created [VLAN devices](#vlan-section) are visible in this section.
 
-<div id="RFC1918-section">
+<a id="RFC1918-section"></a>
 
 **IPv4 addresses for private networks (RFC1918)**
-
-</div>
 
 TCP/IP private networks not directly connected to Internet should use special addresses selected by Internet Assigned Numbers Authority (IANA).
 
@@ -36,7 +34,7 @@ TCP/IP private networks not directly connected to Internet should use special ad
 | 172.16.0.0      | 255.240.0.0 | 172.16.0.1 - 172.31.255.254   |
 | 192.168.0.0     | 255.255.0.0 | 192.168.0.1 - 192.168.255.254 |
 
-## Logical interfaces
+## Logical interfaces {#logical_interfaces-section}
 
 Logical network interfaces are virtual network interfaces that allow for additional flexibility and functionality in networking setups. Unlike physical network interfaces, which correspond to actual hardware ports, logical network interfaces are software-based and can be configured and managed to suit specific networking requirements.
 
@@ -60,20 +58,20 @@ Modes providing fault tolerance only:
 - Active backup (recommended)
 - Broadcast policy
 
-When creating a bond, the UI will display a management IP address in the private network 127.x.x.1/32. This IP address is used solely for managing the bond and is not involved in traffic forwarding. Once the bond device is created, you can assign an IP address and a firewall zone to it. Please note that bond configuration is not editable after creation. If you need to modify the bond's IP address or zone, you'll have to remove its configuration and reconfigure it again. If you need to change bond devices, bond mode or management IP you'll have to remove bond configuration and bond device and recreate it from scratch
+When creating a bond, the UI will display a management IP address in the private network 127.x.x.1/32. This IP address is used solely for managing the bond and is not involved in traffic forwarding. Once the bond device is created, you can assign an IP address and a firewall zone to it. Please note that bond configuration is not editable after creation. If you need to modify the bond\'s IP address or zone, you\'ll have to remove its configuration and reconfigure it again. If you need to change bond devices, bond mode or management IP you\'ll have to remove bond configuration and bond device and recreate it from scratch
 
-## VLAN
+## VLAN {#vlan-section}
 
 A VLAN, or Virtual Local Area Network, is a network technology that allows network administrators to create logically segmented networks within a physical network infrastructure. VLANs enable the creation of multiple broadcast domains in a network, even though they are physically connected to the same network switch.
 
 You can create a new VLAN device by clicking the **Create VLAN device** button. Select the VLAN device type:
 
 - VLAN 802.1q is primarily used for standard VLAN implementations within organizations
-- 802.1ad (QinQ) is used in service provider networks where multiple customers require VLAN segmentation, and these segmented VLANs need to be transported across the provider's network
+- 802.1ad (QinQ) is used in service provider networks where multiple customers require VLAN segmentation, and these segmented VLANs need to be transported across the provider\'s network
 
 Make sure also to chose correct VLAN ID. Please bear in mind that you must setup the same VLAN ID inside the network switch.
 
-## IP aliasing
+## IP aliasing {#IP_aliasing-section}
 
 Use IP aliasing to assign more IP addresses to the same network interface.
 
@@ -94,7 +92,7 @@ DHCPv6 Prefix Delegation (DHCPv6-DP) automates the assignment of IPv6 prefixes f
 First, make sure your ISP supports DHCPv6-PD, than follow these steps:
 
 - Configure WAN Interface: set the WAN interface mode to PPPoE and enable the `Enable IPv6` option
-- Configure LAN interface: enable the "Enable IPv6" option and leave the IPv6 address field blank
+- Configure LAN interface: enable the \"Enable IPv6\" option and leave the IPv6 address field blank
 
 By enabling IPv6 for both WAN and LAN interfaces without specifying an address for the LAN, your router will automatically request and receive an IPv6 prefix (usually a /64) from your ISP through DHCPv6-PD. This prefix will then be used to assign individual IPv6 addresses to devices on your network.
 

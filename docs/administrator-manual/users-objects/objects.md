@@ -26,7 +26,7 @@ The system provides several types of firewall objects:
 
 ## Static Leases
 
-Static leases, also known as DHCP reservations, allow you to assign fixed IP addresses to specific devices on your network. This feature combines the convenience of DHCP with the stability of static IP addressing.
+[Static leases](../network/dns_dhcp.md#static_leases-section), also known as DHCP reservations, allow you to assign fixed IP addresses to specific devices on your network. This feature combines the convenience of DHCP with the stability of static IP addressing.
 
 Key benefits:
 
@@ -42,7 +42,7 @@ A static lease consists of:
 
 ## DNS Records
 
-DNS records allow you to create local hostname-to-IP address mappings. These local records take precedence over external DNS queries, giving you more control over name resolution on your network.
+[DNS records](../network/dns_dhcp.md#dns_records-section) allow you to create local hostname-to-IP address mappings. These local records take precedence over external DNS queries, giving you more control over name resolution on your network.
 
 A DNS record includes:
 
@@ -51,17 +51,17 @@ A DNS record includes:
 
 Use cases for local DNS records:
 
-- create shortcuts to internal resources (e.g., "intranet.mycompany.local")
+- create shortcuts to internal resources (e.g., \"intranet.mycompany.local\")
 - override external DNS for testing or security purposes
 - set up custom domain names for local services
 
 By utilizing static leases and local DNS records, you can create a more organized and easily manageable network environment. These features work seamlessly with other firewall objects like host sets, providing you with powerful tools for network administration.
 
-For detailed instructions on how to create and manage static leases and DNS records, please refer to the DHCP and DNS configuration chapters.
+For detailed instructions on how to create and manage static leases and DNS records, please refer to the [DHCP and DNS configuration chapters](../network/dns_dhcp.md).
 
 ## VPN Users
 
-OpenVPN users with IP reservations can be used as firewall objects, enabling user-specific network access control. This feature applies to both local and remote (LDAP) users configured for OpenVPN access.
+[OpenVPN users](../vpn/openvpn_roadwarrior.md) with IP reservations can be used as firewall objects, enabling user-specific network access control. This feature applies to both local and remote (LDAP) users configured for OpenVPN access.
 
 Key points:
 
@@ -146,7 +146,7 @@ Please note that used objects cannot be deleted until they are removed from all 
 3.  Select IP version
     - Under `IP version`, choose between IPv4 and IPv6
     - Select IPv4 for standard internet protocol addresses
-    - Choose IPv6 if you're using the newer, expanded address format
+    - Choose IPv6 if you\'re using the newer, expanded address format
 4.  Add Records
     - In the `Records` field, you can add the hosts for this set
     - Click the dropdown menu to choose from predefined options, or enter a custom value
@@ -160,10 +160,10 @@ Please note that used objects cannot be deleted until they are removed from all 
 5.  Finalize the Host Set
     - Review all entered information for accuracy
     - If you need to remove a record, use the delete (trash can) icon next to it
-    - Once you're satisfied with your host set configuration, click **Add host set** to create it
+    - Once you\'re satisfied with your host set configuration, click **Add host set** to create it
     - If you need to start over or cancel the process, click **Cancel**
 
-## Domain Sets
+## Domain Sets {#domain_sets-section}
 
 Domain sets are firewall objects that allow you to group multiple domain names into a single, manageable unit. These sets are particularly useful for creating rules based on web addresses rather than IP addresses, which can change frequently for many websites.
 
@@ -209,7 +209,7 @@ When to use domain sets:
 
 Domain set entries are refreshed when dnsmasq performs a new lookup for the domain. If the answer is served from the local cache, the IP is not added back to the set.
 
-See dns_dhcp_domain_set_refresh-section for how cache timing affects domain set refreshes.
+See [Domain set refresh timing](../network/dns_dhcp.md#dns_dhcp_domain_set_refresh-section) for how cache timing affects domain set refreshes.
 
 ### Manage Domain Sets
 
@@ -241,5 +241,5 @@ If a domain set is not used in any firewall rule, it will be marked as `unused` 
 5.  Finalize the Domain Set:
     - Review all entered information for accuracy
     - If you need to remove a domain, use the delete (trash can) icon next to it
-    - Once you're satisfied with your domain set configuration, click **Add domain set** to create it
+    - Once you\'re satisfied with your domain set configuration, click **Add domain set** to create it
     - If you need to start over or cancel the process, click **Cancel**

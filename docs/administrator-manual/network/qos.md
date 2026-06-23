@@ -39,7 +39,7 @@ QoS uses four classes of priority, each class can use a maximum percentage of ba
 - **Video (AF4x, AF3x, CS3, AF2x, CS2, TOS4, TOS1):** Video traffic falls under this class, with a 50% threshold.
 - **Voice (CS7, CS6, EF, VA, CS5, CS4):** Voice traffic is given the highest priority, with a 25% threshold.
 
-QoS can temporarily reduce the priority of a flow if it generates a significant amount of traffic, which is configurable. For example, a flow might be temporarily shifted to the "Bulk" priority if it sends a high number of packets within a short time. QoS can also prioritize small packets to ensure low-latency transmission of time-sensitive data.
+QoS can temporarily reduce the priority of a flow if it generates a significant amount of traffic, which is configurable. For example, a flow might be temporarily shifted to the \"Bulk\" priority if it sends a high number of packets within a short time. QoS can also prioritize small packets to ensure low-latency transmission of time-sensitive data.
 
 In addition to IP and port-based rules, QoS allows you to define traffic rules based on DNS names, providing granular control over how traffic is classified and treated.
 
@@ -47,26 +47,47 @@ To override DSCP classification, create a file `/etc/qosify/10-custom.conf` with
 
 Match is one of:
 
-- `tcp:<port>[-<endport>]`  
-  TCP single port, or range from \<port\> to \<endport\>
+- 
 
-- `udp:<port>[-<endport>]`  
-  UDP single port, or range from \<port\> to \<endport\>
+  `tcp:<port>[-<endport>]`
 
-- `<ipaddr>`  
-  IPv4 address, e.g. 1.1.1.1
+  :   TCP single port, or range from \<port\> to \<endport\>
 
-- `<ipv6addr>`  
-  IPv6 address, e.g. ff01::1
+- 
 
-- `dns:<pattern>`  
-  fnmatch() pattern supporting \* and ? as wildcard characters
+  `udp:<port>[-<endport>]`
 
-- `dns:/<regex>`  
-  POSIX.2 extended regular expression for matching hostnames Only works, if dns lookups are passed to qosify via the add_dns_host ubus call.
+  :   UDP single port, or range from \<port\> to \<endport\>
 
-- `dns_c:...`  
-  Like dns, but only matches cname entries
+- 
+
+  `<ipaddr>`
+
+  :   IPv4 address, e.g. 1.1.1.1
+
+- 
+
+  `<ipv6addr>`
+
+  :   IPv6 address, e.g. ff01::1
+
+- 
+
+  `dns:<pattern>`
+
+  :   fnmatch() pattern supporting \* and ? as wildcard characters
+
+- 
+
+  `dns:/<regex>`
+
+  :   POSIX.2 extended regular expression for matching hostnames Only works, if dns lookups are passed to qosify via the add_dns_host ubus call.
+
+- 
+
+  `dns_c:...`
+
+  :   Like dns, but only matches cname entries
 
 The dscp can be a raw value, or a codepoint like CS0. Adding a `+` in front of the value tells qosify to only override the DSCP value if it is zero.
 

@@ -3,7 +3,7 @@ title: "System requirements"
 sidebar_position: 1
 ---
 
-# System requirements
+# System requirements {#system-requirements-section}
 
 NethSecurity is currently available only for [x86-64 architecture](https://en.wikipedia.org/wiki/X86-64).
 

@@ -3,12 +3,12 @@ title: "Logs"
 sidebar_position: 7
 ---
 
-# Logs
+# Logs {#logs-section}
 
 Logs are initially written to a temporary in-memory directory to prevent potential errors on the root file system in case of a failure.
 
-1.  **Local Storage**: Logs can be written directly to storage. This can be configured from the UI, see the storage-section.
-2.  **Remote Controller**: Logs can be automatically forwarded to a remote controller.
+1.  **Local Storage**: Logs can be written directly to storage. This can be configured from the UI, see the [Storage](../system/storage.md).
+2.  **Remote Controller**: Logs can be automatically forwarded to a [remote controller](../system/controller.md#controller_logs-section).
 3.  **Custom Syslog Forwarder**: Logs can be sent to a remote syslog server.
 4.  **Cloud Log Manager**: Logs can be forwarded to the Nethesis Cloud Log Manager (CLM) service.
 
@@ -46,7 +46,7 @@ It is possible to configure multiple forwarders by repeating the operation using
 
 :::note
 
-**Service entitlement required**
+Service entitlement required
 
 You need to purchase a subscription for the CLM service from Nethesis and obtain the tenant identifier. The service is currenlty reserved to Enterprise customers. For more information, please contact Nethesis sales.
 
@@ -130,13 +130,13 @@ To stop and disable the forwarder: :
 
     /etc/init.d/ns-clm stop && /etc/init.d/ns-clm disable
 
-## Log rotation
+## Log rotation {#log-rotation-section}
 
 Logs are rotated to manage disk space and ensure that log files do not grow indefinitely.
 
 ### In-memory log rotation
 
-The `/var/log/messages` log file is stored in RAM and it's rotated based on size. Once it reaches a predefined size limit, the log is rotated and compressed to conserve space. The rotated log is saved as `/var/log/messages.1.gz` in gzip format. The system retains only two versions of the log: the active log file and the latest rotated, compressed file. From version 1.4.0, by default, the log rotation threshold is set to 10% of the tmpfs filesystem mounted at `/tmp`.
+The `/var/log/messages` log file is stored in RAM and it\'s rotated based on size. Once it reaches a predefined size limit, the log is rotated and compressed to conserve space. The rotated log is saved as `/var/log/messages.1.gz` in gzip format. The system retains only two versions of the log: the active log file and the latest rotated, compressed file. From version 1.4.0, by default, the log rotation threshold is set to 10% of the tmpfs filesystem mounted at `/tmp`.
 
 The `ns-log-size` script manages the log rotation size for the Rsyslog service. It allows to **get** and **set** the log rotation size defined in bytes for the log file located at `/var/log/messages`.
 
@@ -167,7 +167,7 @@ The service rsyslog is restarted automatically after the size is set.
 
 All changes to the log rotation size are directly written in the Rsyslog configuration file `/etc/rsyslog.conf`.
 
-### Storage log rotation
+### Storage log rotation {#storage-log-rotation-section}
 
 When using persistent storage, log rotation is managed by the `logrotate` utility, which is configured to rotate logs weekly and keep a maximum of 52 weeks (1 year) of logs. After rotation, the logs are compressed using gzip and stored in the same directory with a naming convention that includes the date of rotation (e.g., `/mnt/data/log/messages-20260315.gz`).
 

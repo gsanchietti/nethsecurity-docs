@@ -5,9 +5,9 @@ sidebar_position: 3
 
 # Backup and restore
 
-NethSecurity provides a flexible and powerful backup system to save and restore your firewall's configuration settings.
+NethSecurity provides a flexible and powerful backup system to save and restore your firewall\'s configuration settings.
 
-Access the `Backup & Restore` page under the `System` section, then click on the **Download backup** button. If the machine has a valid Enterprise subscription, the backup is automatic.
+Access the `Backup & Restore` page under the `System` section, then click on the **Download backup** button. If the machine has a valid Enterprise subscription, the backup is [automatic](#automatic_backup-section).
 
 The backup includes all relevant configuration files and also the list of extra packages installed by the user. The list is saved in the file `/etc/backup/installed_packages.txt`.
 
@@ -25,7 +25,7 @@ If the backup is encrypted and the password is lost, it will no longer be possib
 
 To disable encrypted backups, click on the **Remove passphrase** button and **Download encrypted** button will become inactive.
 
-## Restore
+## Restore {#automatic_backup-section}
 
 The backup can be restored from the the `Restore` tab inside the page inside the `Backup & Restore` page The user can initiate the restore process by clicking the **Restore backup** button and uploading the backup file. If the machine has a valid Enterprise subscription, the web interface will additionally present a list of backups available from the remote server. If the backup is encrypted, enter the passphrase, and finally, click the **Restore** button to complete the process.
 
@@ -33,7 +33,7 @@ After the restore the system will be rebooted.
 
 :::note
 
-Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: restore_extra_packages-section.
+Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: [Restore extra packages](./updates.md#restore_extra_packages-section).
 
 :::
 
@@ -41,13 +41,13 @@ Starting from version 8.7.2, extra packages are automatically reinstalled after 
 
 :::note
 
-**Subscription required**
+Subscription required
 
 This feature is available only if the firewall has a valid subscription.
 
 :::
 
-Backups behave differently on devices with an active subscription.
+Backups behave differently on devices with an active [subscription](./subscription.md).
 
 Unencrypted backups can still be downloaded directly from the NethSecurity UI by clicking the **Download unencrypted** button.
 
@@ -62,11 +62,11 @@ Every encrypted backup will be sent directly to the Nethesis Operation Center ov
 
 :::warning
 
-Cloud backups without encryption have been deprecated. For a limited time, backups will still be sent to the cloud even if they are not encrypted. In the near future, only encrypted backups will be sent to the remote server. If you have a valid subscription, please enable encryption to ensure the security of your backup. See also backup_encryption-alert for more information.
+Cloud backups without encryption have been deprecated. For a limited time, backups will still be sent to the cloud even if they are not encrypted. In the near future, only encrypted backups will be sent to the remote server. If you have a valid subscription, please enable encryption to ensure the security of your backup. See also [Backup encryption alert](#backup_encryption-alert) for more information.
 
 :::
 
-### Backup encryption alert
+### Backup encryption alert {#backup_encryption-alert}
 
 Not encrypting the backup is a security risk. If the backup is not encrypted, anyone with access to the backup file can read the configuration settings stored inside it.
 

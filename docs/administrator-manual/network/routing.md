@@ -3,11 +3,11 @@ title: "Static routes"
 sidebar_position: 3
 ---
 
-# Static routes
+# Static routes {#static_routes-section}
 
 Static routing in Linux allows precise control over how data packets navigate a network. Unlike dynamic routing, which is automatic, static routing requires manual configuration by network administrators.
 
-Static routing is simple and predictable, making it ideal for stable networks where paths don't change frequently. Administrators can define routes manually, providing specific instructions on how data should travel through the network.
+Static routing is simple and predictable, making it ideal for stable networks where paths don\'t change frequently. Administrators can define routes manually, providing specific instructions on how data should travel through the network.
 
 Static routes can be configured from the `Routes` page, under the `Network` section from the left menu.
 

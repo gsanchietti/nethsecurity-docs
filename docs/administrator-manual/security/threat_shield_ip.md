@@ -3,7 +3,7 @@ title: "Threat shield IP"
 sidebar_position: 2
 ---
 
-# Threat shield IP
+# Threat shield IP {#threat_shield_ip-section}
 
 NethSecurity is equipped with various tools and integrations useful for countering threats coming from the internet. One of these tools is Threat Shield IP, which blocks any traffic coming from compromised IP addresses or destined to them as well as any requests addressed to hostnames that could be malicious.
 
@@ -21,7 +21,7 @@ When the service is enabled, the `Blocklist feeds` tab will display all availabl
 
 Community blocklists are sourced from community contributors and cover various areas: Ads blocking, Malware blocking, Spam blocking, Tracker blocking, and so on. NethSecurity makes them available as they are.
 
-Community lists do not provide a standardized "Confidence" metric, therefore the UI shows their confidence as "Unknown". As a practical heuristic, when the list name contains a severity or trust indicator (e.g. "lvl 1", "level 1"), it generally denotes the lowest false positive rate and the highest confidence; conversely, higher indicated levels (e.g. "lvl 2", "lvl 3", "lvl 4") typically imply lower confidence and a higher risk of aggressive or incorrect entries. However, naming conventions vary and not all community providers include such indicators, so always review a community list's contents and purpose before enabling it in production. The type of usage license may vary depending on the provider, so if the use is not personal, you may need to inquire with the provider.
+Community lists do not provide a standardized \"Confidence\" metric, therefore the UI shows their confidence as \"Unknown\". As a practical heuristic, when the list name contains a severity or trust indicator (e.g. \"lvl 1\", \"level 1\"), it generally denotes the lowest false positive rate and the highest confidence; conversely, higher indicated levels (e.g. \"lvl 2\", \"lvl 3\", \"lvl 4\") typically imply lower confidence and a higher risk of aggressive or incorrect entries. However, naming conventions vary and not all community providers include such indicators, so always review a community list\'s contents and purpose before enabling it in production. The type of usage license may vary depending on the provider, so if the use is not personal, you may need to inquire with the provider.
 
 **Community lists maintenance**
 
@@ -31,9 +31,9 @@ Each blocklist is maintained by its specific provider. NethSecurity already incl
 
 :::note
 
-**Subscription required**
+Subscription required
 
-This feature is available only if the firewall has a valid Community or Enterprise subscription.
+This feature is available only if the firewall has a valid [Community or Enterprise subscription](../system/subscription.md).
 
 :::
 
@@ -46,9 +46,9 @@ Enterprise blocklists are specifically focused on security and offer several adv
 
 ### Confidence
 
-Enterprise blocklists include a "Confidence" score which is shown in the UI. The score is expressed as a value from 1 to 10 and represents the provider's assessment of the list quality: higher values indicate higher confidence and a lower likelihood of false positives. This "Confidence" metric is available only for Enterprise lists; Community lists are presented "as is" and display "Unknown" for confidence.
+Enterprise blocklists include a \"Confidence\" score which is shown in the UI. The score is expressed as a value from 1 to 10 and represents the provider\'s assessment of the list quality: higher values indicate higher confidence and a lower likelihood of false positives. This \"Confidence\" metric is available only for Enterprise lists; Community lists are presented \"as is\" and display \"Unknown\" for confidence.
 
-Yoroi and Nethesis blocklists are Enterprise blocklists. These lists will be listed only if the machine has a valid Enterprise or Community subscription and a valid entitlement for the Threat Shield IP service.
+Yoroi and Nethesis blocklists are Enterprise blocklists. These lists will be listed only if the machine has a valid [Enterprise or Community subscription](../system/subscription.md) and a valid entitlement for the Threat Shield IP service.
 
 ### Logging
 
@@ -59,9 +59,9 @@ The Threat Shield IP feature includes advanced logging capabilities to monitor a
 3.  Log packets blocked in forward chain: Enabling this logs packets blocked in the forward chain, which processes packets being routed through the firewall.
 4.  Log packets blocked forwarded from LAN: This option logs packets that are blocked when forwarded from the Local Area Network (LAN).
 
-These logging options provide granular control over which blocked packets are recorded, allowing to expose metrics inside the real-time monitoring and historical monitoring sections.
+These logging options provide granular control over which blocked packets are recorded, allowing to expose metrics inside the [real-time monitoring](../monitoring/monitoring.md#real_time_monitoring-section) and [historical monitoring](../monitoring/monitoring.md#historical_monitoring-section) sections.
 
-### Local allowlist
+### Local allowlist {#local_allowlist-section}
 
 Sometimes it may be necessary to allow access to certain IP addresses, to do this you can use the `Local allowlist` tab. Use the **Add address** button to add a new address to the list. The address can be a valid IPv4/IPv6 address with optional CIDR notation, a MAC address, or a fully qualified hostname (FQDN).
 
@@ -77,15 +77,15 @@ A comment can be associated with each address to facilitate management.
 
 You can add a comment to provide additional information about the address, such as its purpose or owner. This can help in organizing and managing the allowlist effectively.
 
-### Local blocklist
+### Local blocklist {#local_blocklist_ip-section}
 
 Threat Shield IP includes a local blocklist functionality, which allows you to manually specify addresses that should always be blocked. This provides an additional layer of customization to your security setup.
 
-To access and customize the blocklist, navigate to the `Local blocklist` tab in the Threat Shield IP interface. Use the **Add address** button to include new entries. Each entry is composed by an address and a description. Valid syntax for the address is the same as for the local_allowlist-section.
+To access and customize the blocklist, navigate to the `Local blocklist` tab in the Threat Shield IP interface. Use the **Add address** button to include new entries. Each entry is composed by an address and a description. Valid syntax for the address is the same as for the [Local allowlist](#local_allowlist-section).
 
-When adding addresses to the local blocklist, ensure you enter them correctly to avoid accidentally blocking legitimate traffic. It's also a good practice to include a descriptive comment for each entry to help with future management and auditing of your blocklist.
+When adding addresses to the local blocklist, ensure you enter them correctly to avoid accidentally blocking legitimate traffic. It\'s also a good practice to include a descriptive comment for each entry to help with future management and auditing of your blocklist.
 
-## Block brute force attacks
+## Block brute force attacks {#brute_force-section}
 
 When Threat Shield IP is enabled, the system automatically starts checking for brute force attack attempts on firewall services. By default, the monitored services include SSH access and the login to NethSecurity UI. The system detects login attempts and automatically blocks IPs that have failed to enter the correct credentials.
 

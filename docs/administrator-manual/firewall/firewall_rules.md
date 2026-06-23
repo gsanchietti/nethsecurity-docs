@@ -3,7 +3,7 @@ title: "Rules"
 sidebar_position: 3
 ---
 
-# Rules
+# Rules {#firewall_rules-section}
 
 Firewall rules define how network traffic is segmented and controlled between different zones. Firewalls acts as barriers between trusted internal networks and untrusted external networks, such as the internet. These rules specify which traffic is allowed, denied, or monitored based on predefined security policies.
 
@@ -29,7 +29,7 @@ Locate the button to add a new rule, click on it to initiate the rule creation p
 
   This field is not present for `Output rules`, as the source address is always the firewall itself.
 
-- `Source zone`: specify the traffic source zone. Choose a specific zone or select 'Any' to include traffic from any zone.
+- `Source zone`: specify the traffic source zone. Choose a specific zone or select \'Any\' to include traffic from any zone.
 
 - `Destination address`: select the destination address from three different options:
 
@@ -39,9 +39,9 @@ Locate the button to add a new rule, click on it to initiate the rule creation p
 
   This field is not present for `Input rules`, as the destination address is always the firewall itself.
 
-- `Destination zone`: specify the traffic destination zone. Choose a specific zone. Bear in mind that the source and destination zones can't be the same.
+- `Destination zone`: specify the traffic destination zone. Choose a specific zone. Bear in mind that the source and destination zones can\'t be the same.
 
-- `Destination service`: select from the list or choose 'Custom' to enter specific ports and select protocols.
+- `Destination service`: select from the list or choose \'Custom\' to enter specific ports and select protocols.
 
 - `Action`: define the action when the rule conditions are met:
 
@@ -52,9 +52,9 @@ Locate the button to add a new rule, click on it to initiate the rule creation p
 
 - `Rule position`: decide whether to add the rule to the bottom or top of the rule list.
 
-- `Logging`: indicate whether traffic matching this rule should be logged. The log entry will include the rule name as a prefix. By default, logging is limited to 1 entry per second. See the logging-limits section for instructions on changing this limit.
+- `Logging`: indicate whether traffic matching this rule should be logged. The log entry will include the rule name as a prefix. By default, logging is limited to 1 entry per second. See the [Logging limits](#logging-limits) section for instructions on changing this limit.
 
-- `Tags`: optionally, add tags for organizational purposes. Note that the 'automated' tag is reserved for system use.
+- `Tags`: optionally, add tags for organizational purposes. Note that the \'automated\' tag is reserved for system use.
 
 ## Logging limits
 
@@ -80,17 +80,17 @@ Changing the default logging limits can impact system performance. Use caution w
 
 :::
 
-Default limits are saved in the <span class="title-ref">ns_defaults</span> section of the firewall configuration:
+Default limits are saved in the `ns_defaults` section of the firewall configuration:
 
 - `zone_log_limit`: the default limit for zones
 - `rule_log_limit`: the default limit for firewall rules
 - `redirect_log_limit`: the default limit for redirect rules
 
-1.  Set the desired log limit for the firewall rules using the <span class="title-ref">uci</span> command: :
+1.  Set the desired log limit for the firewall rules using the `uci` command: :
 
         uci set firewall.ns_defaults.zone_log_limit="10/s"
         uci commit firewall
 
-2.  Run the <span class="title-ref">firewall-apply-default-logging</span> script to apply the new log limit: :
+2.  Run the `firewall-apply-default-logging` script to apply the new log limit: :
 
         firewall-apply-default-logging

@@ -38,7 +38,7 @@ Limitations:
 - Cannot filter based on content type
 - May occasionally block legitimate services sharing an IP with malicious ones
 
-To configure Threat Shield IP, see the threat_shield_ip-section.
+To configure Threat Shield IP, see the [Threat shield IP](./threat_shield_ip.md).
 
 ## Threat Shield DNS
 
@@ -61,7 +61,7 @@ Limitations:
 - Could be bypassed by using alternative DNS servers, but can be mitigated with DPI filtering and by enabling special block categories
 - Less granular than full URL filtering
 
-To configure Threat Shield DNS, see the threat_shield_dns-section.
+To configure Threat Shield DNS, see the [Threat shield DNS](./threat_shield_dns.md).
 
 ## FlashStart DNS filter
 
@@ -80,7 +80,7 @@ Advantages:
 - Easy to manage
 - Scalable for organizations of various sizes
 
-To configure FlashStart DNS filtering, see the flashstart-section.
+To configure FlashStart DNS filtering, see the [FlashStart DNS filter](./flashstart.md).
 
 ## Deep Packet Inspection (DPI) filter
 
@@ -105,7 +105,7 @@ Considerations:
 - Requires careful configuration to balance security and performance
 - The administrator needs to create DPI rules for each interface
 
-To configure DPI filtering, see the dpi_filter-section.
+To configure DPI filtering, see the [Deep Packet Inspection (DPI) filter](./dpi_filter.md).
 
 ## Comparison of filtering options
 

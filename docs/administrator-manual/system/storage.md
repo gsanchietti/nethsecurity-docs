@@ -3,7 +3,7 @@ title: "Storage"
 sidebar_position: 5
 ---
 
-# Storage
+# Storage {#storage-section}
 
 Starting from version 8.6, NethSecurity automatically saves system logs to a persistent storage partition on bare metal installations (*refer to the dedicated section below for virtual machines*).
 
@@ -39,7 +39,7 @@ The storage is then:
 
 - Formatted with the `ext4` filesystem
 - Mounted at `/mnt/data`
-- Used by `rsyslog` to write logs to `/mnt/data/log/messages`. For more details, see storage-log-rotation-section.
+- Used by `rsyslog` to write logs to `/mnt/data/log/messages`. For more details, see [Storage log rotation](../advanced-cli/logs.md#storage-log-rotation-section).
 - Synchronized daily (at night) for additional data like metrics
 
 To remove persistent storage and return to in-memory logging, click on the button **Remove storage**.
@@ -48,7 +48,7 @@ To remove persistent storage and return to in-memory logging, click on the butto
 
 When installing NethSecurity on a virtual machine, the recommended method is to generate the virtual disk from the official image. In this mode, logs are not stored persistently by default. To enable persistent log storage, you must attach a second virtual disk to the virtual machine. As an alternative, you can extend the virtual disk and use the free disk space to create a new partition like on a physical hardware.
 
-### Behavior in versions prior to 8.6
+### Behavior in versions prior to 8.6 {#behavior-in-versions-prior-to-8.6}
 
 In earlier versions of NethSecurity, logs were written by default to a **volatile in-memory directory**. To persist logs, storage had to be configured **manually**, either by using unallocated space on the system disk or by attaching a secondary disk.
 

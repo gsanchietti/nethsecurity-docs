@@ -3,15 +3,15 @@ title: "Users databases"
 sidebar_position: 1
 ---
 
-# Users databases
+# Users databases {#users_database-section}
 
-NethSecurity introduces support for two types of users databases: a local database and a remote LDAP database, enhancing user management capabilities. Users inside the databases can be used for VPN connections, including the openvpn_roadwarrior-section.
+NethSecurity introduces support for two types of users databases: a local database and a remote LDAP database, enhancing user management capabilities. Users inside the databases can be used for VPN connections, including the [OpenVPN Road Warrior](../vpn/openvpn_roadwarrior.md).
 
 Only users with a password can connect to VPN by authenticating with a username and password. Users without a password can connect to VPN by authenticating with a certificate or other authentication methods.
 
 ## Local database
 
-The local user database is an inherent component of the firewall, it's available by default and does not require any additional configuration. It serves as a built-in user management system, allowing administrators to create and manage users directly on the firewall. It also integrates seamlessly with the VPN services, particularly the OpenVPN Road Warrior server,
+The local user database is an inherent component of the firewall, it\'s available by default and does not require any additional configuration. It serves as a built-in user management system, allowing administrators to create and manage users directly on the firewall. It also integrates seamlessly with the VPN services, particularly the OpenVPN Road Warrior server,
 
 To create a new user, click on the **Add user** button to initiate the process. When configuring a local user, you should fill all the following fields:
 
@@ -22,9 +22,9 @@ To create a new user, click on the **Add user** button to initiate the process. 
 
 The local user database is implemented as UCI configuration file. Passwords of local users are stored in the Unix passwd format, ensuring compatibility and security in the local user database.
 
-Users inside the local database can be granted administrative privileges on the web user interface by enabling the `Administrator user` option. The user must have a password set.
+Users inside the local database can be granted [administrative privileges](../installation/remote_access.md#admin_users-section) on the web user interface by enabling the `Administrator user` option. The user must have a password set.
 
-## Remote databases
+## Remote databases {#remote_user_databases-section}
 
 :::note
 
@@ -52,18 +52,18 @@ When configuring a remote database, click on the **Add remote database** button 
 
 - `User attribute field`: specifies the user attribute used to identify the user, this option is used by the OpenVPN road warrior server to compose the user bind DN. It should be `cn` for Active Directory or `uid` for OpenLDAP.
 
-  This field is used to authenticate users in the OpenVPN road warrior server. The authentication process is based on a LDAP bind operation which uses the user attribute field to compose the user bind DN with the user DN. Example: given a user named <span class="title-ref">jdoe</span> in the OpenLDAP directory, the user bind DN is composed as <span class="title-ref">uid=jdoe,ou=People,dc=directory,dc=nh</span>.
+  This field is used to authenticate users in the OpenVPN road warrior server. The authentication process is based on a LDAP bind operation which uses the user attribute field to compose the user bind DN with the user DN. Example: given a user named `jdoe` in the OpenLDAP directory, the user bind DN is composed as `uid=jdoe,ou=People,dc=directory,dc=nh`.
 
-- `User display name field`: specifies the user attribute containing the user's complete name like <span class="title-ref">John Doe</span>. Usually is `cn` for OpenLDAP and `displayName` for Active Directory.
+- `User display name field`: specifies the user attribute containing the user\'s complete name like `John Doe`. Usually is `cn` for OpenLDAP and `displayName` for Active Directory.
 
 - `Custom user bind DN`: if this field is set, it overrides the calculated user bind DN used to authenticate users in the OpenVPN road warrior server. The field can contain a `%u` placeholder which is replaced with the username during the authentication process. Use this setting if you do not know if the user CN field contains the user full name, like `John Doe`, or the username, like `jdoe`. If the remote server is an Active Directory server, you can use one of the following values:
 
-  - `%u@domain.local`: where <span class="title-ref">domain.local</span> is the domain name of the Active Directory server; inside the OpenVPN client, to authenticate the user use only the username like `jdoe`
-  - `DOMAIN\%u`: where <span class="title-ref">DOMAIN</span> is the realm of the Active Directory server; inside the OpenVPN client, to authenticate the user use only the username like `jdoe`
+  - `%u@domain.local`: where `domain.local` is the domain name of the Active Directory server; inside the OpenVPN client, to authenticate the user use only the username like `jdoe`
+  - `DOMAIN\%u`: where `DOMAIN` is the realm of the Active Directory server; inside the OpenVPN client, to authenticate the user use only the username like `jdoe`
 
   If the remote server is an OpenLDAP you can leave this field empty or specify it like `uid=%u,dc=directory,dc=nh`.
 
-- `Bind DN`: specifies the LDAP Bind Distinguished Name (DN), representing the user used to bind to the LDAP server. For an OpenLDAP server, it's usually something like `uid=ldapservice,dc=directory,dc=nh`, where for an Active Directory server, it's usually something like `ldapservice@example.com` or `cn=ldapservice,cn=Users,dc=example,dc=com`.
+- `Bind DN`: specifies the LDAP Bind Distinguished Name (DN), representing the user used to bind to the LDAP server. For an OpenLDAP server, it\'s usually something like `uid=ldapservice,dc=directory,dc=nh`, where for an Active Directory server, it\'s usually something like `ldapservice@example.com` or `cn=ldapservice,cn=Users,dc=example,dc=com`.
 
 - `Bind password`: specifies the password of the user used to bind to the LDAP server.
 
@@ -77,7 +77,7 @@ The following configurations are suggested for the most common LDAP servers. Whe
 
 - ensure the LDAP server is reachable from the firewall. If the LDAP URI contains a hostname, make sure the hostname is resolvable
 - replace the example values with the actual values of the LDAP server
-- for Active Directory, it's recommended to use `Custom user bind DN` to specify how the OpenVPN server should authenticate the user
+- for Active Directory, it\'s recommended to use `Custom user bind DN` to specify how the OpenVPN server should authenticate the user
 
 ### OpenLDAP (RFC 2307)
 

@@ -3,13 +3,13 @@ title: "Deep Packet Inspection (DPI) filter"
 sidebar_position: 4
 ---
 
-# Deep Packet Inspection (DPI) filter
+# Deep Packet Inspection (DPI) filter {#dpi_filter-section}
 
 NethSecurity uses the [Netify Agent](https://www.netify.ai/resources) to employ Deep Packet Inspection (DPI) techniques for filtering network traffic.
 
 The Netify Agent functions as a deep-packet inspection server, leveraging nDPI (formerly OpenDPI) to identify network protocols and applications. Detected information can be stored locally, accessed through UNIX or TCP sockets, or sent via HTTP POSTs to a remote third-party server. Details such as flow metadata, network statistics, and detection classifications can be used to take decision on the flow.
 
-Here's how it operates:
+Here\'s how it operates:
 
 - the Netify flow actions plugin assigns labels to matching connections
 - nft rules can then either block or adjust priority (DSCP) for connections based on these labels
@@ -28,9 +28,9 @@ The interface, as a default feature, presents a catalog of commonly used applica
 
 :::note
 
-**Subscription required**
+Subscription required
 
-This feature is available only if the firewall has a valid Community or Enterprise subscription.
+This feature is available only if the firewall has a valid [Community or Enterprise subscription](../system/subscription.md).
 
 :::
 
@@ -55,7 +55,7 @@ Each exception can be enabled or disabled as desired.
 
 By default, Netifyd monitors all interfaces. To exclude specific interfaces, you can define an exclusion list. Below are commands to add, modify, or remove excluded interfaces. The exclusion list is configured using the `ns_exclude` option that takes a list of patterns. Each entry is a shel glob pattern.
 
-- Add interfaces to exclusion list. The system will exclude the <span class="title-ref">eth1</span> interface and all OpenVPN and WireGuard interfaces: :
+- Add interfaces to exclusion list. The system will exclude the `eth1` interface and all OpenVPN and WireGuard interfaces: :
 
       uci add_list netifyd.@netifyd[0].ns_exclude='eth1'
       uci add_list netifyd.@netifyd[0].ns_exclude='tun*'

@@ -3,7 +3,7 @@ title: "Setup and management"
 sidebar_position: 2
 ---
 
-# Setup and management
+# Setup and management {#ha_setup_and_management-section}
 
 ## Requirements
 
@@ -15,16 +15,16 @@ Before setting up HA, ensure the following requirements are met:
 
 ## Setup and configuration
 
-The HA setup process involves several steps. If you just want to see the commands, you can skip to the [Configuration example](#configuration-example) section, but it's recommended to read the entire section to understand the process and requirements.
+The HA setup process involves several steps. If you just want to see the commands, you can skip to the [Configuration example](#configuration-example) section, but it\'s recommended to read the entire section to understand the process and requirements.
 
 The setup process is as follows:
 
-1.  **Install the same NethSecurity version** on two identical machines (physical or virtual). See install-section for detailed installation instructions.
+1.  **Install the same NethSecurity version** on two identical machines (physical or virtual). See [Installation](../installation/install.mdx) for detailed installation instructions.
 2.  **Connect network cables properly** to ensure redundancy. See [Network cabling](#network-cabling) section below for proper cabling guidelines.
 3.  **Configure the HA interface** on both nodes with static IP addresses. Create a LAN on primary and secondary node that will be needed for the cluster before proceeding with HA setup. See [HA interface](#ha-interface) section below for detailed instructions.
-4.  **Initialize the cluster** using the <span class="title-ref">ns-ha-config</span> commands to establish the HA cluster foundation. The initialization process configures the necessary services and prepares both nodes for synchronization. During the first configuration, all network interfaces that will be used in the HA cluster must must have the cable connected on both nodes, otherwise the node may enter a fault state and the HA cluster will not work properly. See [Cluster initialization](#cluster-initialization) section below for detailed instructions.
+4.  **Initialize the cluster** using the `ns-ha-config` commands to establish the HA cluster foundation. The initialization process configures the necessary services and prepares both nodes for synchronization. During the first configuration, all network interfaces that will be used in the HA cluster must must have the cable connected on both nodes, otherwise the node may enter a fault state and the HA cluster will not work properly. See [Cluster initialization](#cluster-initialization) section below for detailed instructions.
 5.  **Configure WAN interface in primary node** using the `Interfaces and devices` page in the web interface. WAN interfaces will be automatically configured inside the cluster and synchronized to the secondary node. See [WAN Interfaces](#wan-interfaces) section below for more info.
-6.  **Verify the configuration** to ensure everything is set up correctly. Use the <span class="title-ref">ns-ha-config</span> commands to check the status and configuration of the HA cluster. See [Verify the configuration](#verify-the-configuration) section below for detailed instructions.
+6.  **Verify the configuration** to ensure everything is set up correctly. Use the `ns-ha-config` commands to check the status and configuration of the HA cluster. See [Verify the configuration](#verify-the-configuration) section below for detailed instructions.
 7.  **Configure additional LAN interfaces (optional)** for the cluster. This step is optional and depends on your network setup. You can add any additional LAN interface that require HA support. See [Additional LAN interfaces](#additional-lan-interfaces) section below for detailed instructions. If you need to configure an hotspot, see [Hotspot support](#hotspot-support) section below for specific requirements.
 8.  **Add extra Virtual IPs (optional)** to the primary node on relevant LAN interfaces. This step is optional and allows you to add additional IP addresses to the primary node for services that require multiple IPs. See [Extra Virtual IPs](#extra-virtual-ips) section below for detailed instructions.
 
@@ -37,12 +37,12 @@ Sometimes, you may need to remove interfaces or aliases from the HA configuratio
 Proper network cabling is essential to ensure high availability and seamless failover between the primary and secondary firewalls.
 
 1.  **General Recommendations**:
-    - For each network zone (LAN, WAN, DMZ, etc.), use a dedicated switch or VLAN to connect both firewalls' interfaces.
+    - For each network zone (LAN, WAN, DMZ, etc.), use a dedicated switch or VLAN to connect both firewalls\' interfaces.
     - Avoid connecting the firewalls directly to each other; always use a switch or network segment in between.
     - Label all cables and switches for clarity and easier troubleshooting.
 2.  **LAN Connections**:
     - Connect the LAN interfaces of both the primary and secondary nodes to the same network segment.
-    - Ideally, use **two separate switches** for redundancy. Connect each firewall's LAN port to both switches (if supported), or at least ensure each firewall is connected to a different switch. This avoids a single point of failure if one switch fails.
+    - Ideally, use **two separate switches** for redundancy. Connect each firewall\'s LAN port to both switches (if supported), or at least ensure each firewall is connected to a different switch. This avoids a single point of failure if one switch fails.
     - If using two separate switches for redundancy, they must be properly interconnected and support Spanning Tree Protocol (STP) to prevent network loops. Unmanaged switches without STP support may cause broadcast storms when interconnected.
     - If only one switch is available, use VLAN segmentation to logically separate each network zone and minimize broadcast domains.
     - Repeat this process for **each network interface** configured for HA (e.g., LAN, GUEST, DMZ). Each interface should be connected to its corresponding network segment, preferably through redundant switches.
@@ -50,14 +50,14 @@ Proper network cabling is essential to ensure high availability and seamless fai
     - Connect the WAN interfaces of both nodes to the ISP or upstream router.
     - For best redundancy, use the same approach as with the LAN connections.
     - If only one WAN switch/router is available, both firewalls should connect to it, but this introduces a single point of failure.
-    - If your ISP provides a router with HA capability (e.g., VRRP or HSRP), you can connect both firewalls' WAN ports directly to the ISP's redundant routers.
+    - If your ISP provides a router with HA capability (e.g., VRRP or HSRP), you can connect both firewalls\' WAN ports directly to the ISP\'s redundant routers.
     - Alternatively, you can configure MultiWAN directly in NethSecurity to manage multiple WAN uplinks and failover.
 
 This setup ensures that if any single firewall or switch fails, network connectivity is maintained through the secondary node and the remaining switch.
 
 The below diagram illustrates the recommended redundant network setup, switches are omitted for clarity.
 
-<img src="/_static/high_availability.png" class="align-center" alt="High Availability network diagram showing proper cabling" />
+![High Availability network diagram showing proper cabling](/_static/high_availability.png)
 
 ### Interfaces management
 
@@ -89,16 +89,16 @@ For this reason, WAN failures do not trigger a switch from the primary firewall 
 
 The HA cluster requires static IP addresses for all LAN interfaces that will host a virtual IP. Follow these steps:
 
-- Power on the secondary node, access the web interface and set a physical interface with a static LAN IP address (e.g., <span class="title-ref">192.168.100.239</span>).
-- Power on the primary node, access the web interface and set a physical interface with a static LAN IP address (e.g., <span class="title-ref">192.168.100.238</span>).
+- Power on the secondary node, access the web interface and set a physical interface with a static LAN IP address (e.g., `192.168.100.239`).
+- Power on the primary node, access the web interface and set a physical interface with a static LAN IP address (e.g., `192.168.100.238`).
 
 These static IP addresses are used to access the nodes directly, even if the HA cluster is disabled. Consider them *management IP addresses*.
 
 ### Cluster initialization
 
-The setup process configures <span class="title-ref">keepalived</span> for failover, <span class="title-ref">rsync</span> over SSH for configuration synchronization, and <span class="title-ref">conntrackd</span> to sync the connection tracking table. All this data passes through the HA interface, which is the one configured during the initialization phase. Use the `ns-ha-config` script to simplify the process.
+The setup process configures `keepalived` for failover, `rsync` over SSH for configuration synchronization, and `conntrackd` to sync the connection tracking table. All this data passes through the HA interface, which is the one configured during the initialization phase. Use the `ns-ha-config` script to simplify the process.
 
-Before diving into the actual setup, it's important to ensure that both nodes are properly configured and meet the necessary requirements.
+Before diving into the actual setup, it\'s important to ensure that both nodes are properly configured and meet the necessary requirements.
 
 Access the console or SSH into the primary node and run the following commands.
 
@@ -140,10 +140,10 @@ Where the `primary_node_ip` is the static IP of the primary node already set for
 
 This script will:
 
-- Initialize <span class="title-ref">keepalived</span> with the virtual IP for the LAN interface.
-- Configure <span class="title-ref">conntrackd</span>.
+- Initialize `keepalived` with the virtual IP for the LAN interface.
+- Configure `conntrackd`.
 - Generate a random password and public key for synchronization.
-- Configure <span class="title-ref">dropbear</span> (SSH server) to listen on port <span class="title-ref">65022</span> and allow only key-based authentication for sync.
+- Configure `dropbear` (SSH server) to listen on port `65022` and allow only key-based authentication for sync.
 
 Initialize the secondary node, always execute the command on the primary node:
 
@@ -161,7 +161,7 @@ The system does not require any special configuration for the WAN interfaces. Ju
 
 WAN aliases can be added from the same network configuration page and will be automatically synchronized to the secondary node.
 
-WAN interfaces are brought up on the primary node and kept down on the secondary node. Please note that the web interface on the secondary may not be consistent: it may show the interface as "up" even if it's down. This is a known limitation and will be addressed in a future release.
+WAN interfaces are brought up on the primary node and kept down on the secondary node. Please note that the web interface on the secondary may not be consistent: it may show the interface as \"up\" even if it\'s down. This is a known limitation and will be addressed in a future release.
 
 ### Verify the configuration
 
@@ -179,7 +179,7 @@ Initial status might show `Last Sync Status: SSH Connection Failed`. After sync,
 
 ### Additional LAN interfaces
 
-It's possible to add additional LAN interfaces to the HA cluster after the initial setup. Before adding an interface, ensure that the interface is configured with a static IP address on the primary node and on the secondary node, much like the HA interface configured during the initial setup. Interfaces can be ethernets, bridges, VLANs, or bonds, but make sure the secondary node has the same interface with the same name and with the same device hierarchy (e.g., if the interface is a VLAN, the parent interface must also exist on the secondary node).
+It\'s possible to add additional LAN interfaces to the HA cluster after the initial setup. Before adding an interface, ensure that the interface is configured with a static IP address on the primary node and on the secondary node, much like the HA interface configured during the initial setup. Interfaces can be ethernets, bridges, VLANs, or bonds, but make sure the secondary node has the same interface with the same name and with the same device hierarchy (e.g., if the interface is a VLAN, the parent interface must also exist on the secondary node).
 
 You can use this command to add any non-WAN interface, like a second LAN, DMZ or GUEST interface to the HA cluster.
 
@@ -189,7 +189,7 @@ Add additional interfaces as needed:
 
 The following checks are performed:
 
-- virtual IP address must be in CIDR notation (e.g., <span class="title-ref">192.168.100.1/24</span>)
+- virtual IP address must be in CIDR notation (e.g., `192.168.100.1/24`)
 - make sure a device with given static IP address exists on the node
 - If DHCP server is running, the following
   - `3: router` DHCP option is set (should be the virtual IP).
@@ -233,7 +233,7 @@ Example: :
 
     ns-ha-config remove-interface guest
 
-This removes the interface from <span class="title-ref">keepalived</span>, so it will be excluded from the HA configuration. Also, the virtual IP address associated with the interface will be moved to the network interface of the primary node.
+This removes the interface from `keepalived`, so it will be excluded from the HA configuration. Also, the virtual IP address associated with the interface will be moved to the network interface of the primary node.
 
 Remove a virtual IP from HA configuration: :
 
@@ -247,11 +247,11 @@ Example: :
 
 Assuming:
 
-- Primary Node LAN IP: <span class="title-ref">192.168.100.238</span>
-- Secondary Node LAN IP: <span class="title-ref">192.168.100.239</span>
-- LAN Virtual IP: <span class="title-ref">192.168.100.240/24</span>
-- LAN Interface Name: <span class="title-ref">lan</span>
-- Secondary Node Root Password: <span class="title-ref">backup_root_password</span>
+- Primary Node LAN IP: `192.168.100.238`
+- Secondary Node LAN IP: `192.168.100.239`
+- LAN Virtual IP: `192.168.100.240/24`
+- LAN Interface Name: `lan`
+- Secondary Node Root Password: `backup_root_password`
 
 Execute the following commands on the **primary node**:
 

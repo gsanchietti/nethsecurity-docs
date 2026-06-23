@@ -3,13 +3,13 @@ title: "OpenVPN tunnels"
 sidebar_position: 2
 ---
 
-# OpenVPN tunnels
+# OpenVPN tunnels {#openvpn_tunnels-section}
 
 OpenVPN net-to-net tunnels establish secure connections between two separate networks, such as branch offices of a company, over the internet. These connections use SSL/TLS protocols for encryption and authentication, ensuring data confidentiality and integrity.
 
 The connection is handled by 2 NethSecurity firewalls, each one has a specific role. When creating an OpenVPN net2net connection a firewall will have the server role whereas the other NethSecurity will connect to it as a client. One NethSecurity can be the same time server and client for different tunnels, all tunnels use OpenVPN routed mode.
 
-The OpenVPN tunnels interface has been crafted for straightforward connection between two NethSecuirty devices. For this reason, it is deliberately limited and does not expose all the parameters that can be configured with OpenVPN to connect to any third-party device. To connect to a third-party device, it's recommended to use the IPsec protocol.
+The OpenVPN tunnels interface has been crafted for straightforward connection between two NethSecuirty devices. For this reason, it is deliberately limited and does not expose all the parameters that can be configured with OpenVPN to connect to any third-party device. To connect to a third-party device, it\'s recommended to use the IPsec protocol.
 
 ## Configuration
 
@@ -21,9 +21,9 @@ Access the OpenVPN tunnels page, move to `Server tunnel` tab and click on **Add 
 
 Insert all required fields, but please note:
 
-- `Public endpoints` it's a list of IP addresses or hostnames that clients can use to reach the OpenVPN tunnel server
-- `Local networks` it's a list of local networks that will be accessible from the remote server. If topology is set to p2p, the same list will be reported inside the client `Remote networks` field
-- `Remote networks`, it’s a list of networks behind the remote server which will be accessible from hosts in the local network
+- `Public endpoints` it\'s a list of IP addresses or hostnames that clients can use to reach the OpenVPN tunnel server
+- `Local networks` it\'s a list of local networks that will be accessible from the remote server. If topology is set to p2p, the same list will be reported inside the client `Remote networks` field
+- `Remote networks`, it's a list of networks behind the remote server which will be accessible from hosts in the local network
 - After the configuration is saved, click on the **Download** action and select `Client configuration`
 - Access the client firewall, OpenVPN tunnel, move to `Client tunnel` tab, click on **Import configuration**
 
@@ -67,20 +67,20 @@ These are default values from OpenVPN which are generally suitable for most netw
 
 VPN users may experience connectivity issues due to packet fragmentation. The LAN interface has an MTU of 1500 by default, but when packets are encrypted for VPN transmission, the size increases, leading to packet drops. To resolve this, the MTU and the MSS on the OpenVPN tunnel must be lowered. No changes are required on the client side.
 
-The values of MTU and MSS can be adjusted directly on the UI, when creating the tunnel for the first time or later when editing it using the <span class="title-ref">Edit</span> button, under the <span class="title-ref">Advanced options</span> section in the drawer. Alternatively, you can adjust the two configuration values using the command line interface on the firewall:
+The values of MTU and MSS can be adjusted directly on the UI, when creating the tunnel for the first time or later when editing it using the `Edit` button, under the `Advanced options` section in the drawer. Alternatively, you can adjust the two configuration values using the command line interface on the firewall:
 
     uci set openvpn.ns_<name>.tun_mtu='1300'
     uci set openvpn.ns_<name>.mssfix='1250'
     uci commit openvpn.ns_<name>
     /etc/init.d/openvpn restart ns_<name>
 
-The <span class="title-ref">tun_mtu</span> and <span class="title-ref">mssfix</span> values may need to be adjusted based on your specific network environment. A lower MTU ensures that packets fit within the limits of the OpenVPN tunnel without fragmentation. Depending on factors like network latency or overhead, you might find that slightly different values work better for your setup.
+The `tun_mtu` and `mssfix` values may need to be adjusted based on your specific network environment. A lower MTU ensures that packets fit within the limits of the OpenVPN tunnel without fragmentation. Depending on factors like network latency or overhead, you might find that slightly different values work better for your setup.
 
 For more specific information please see the [official OpenVPN documentation](https://openvpn.net/community-docs/community-articles/openvpn-2-6-manual.html).
 
 ## Managing certificate expiration
 
-As mentioned in the managing-openvpn-certificate-expiration section, OpenVPN tunnels are also based on certificates, and it is crucial to monitor their expiration dates to avoid connectivity issues.
+As mentioned in the [Managing certificate expiration](./openvpn_roadwarrior.md#managing-openvpn-certificate-expiration) section, OpenVPN tunnels are also based on certificates, and it is crucial to monitor their expiration dates to avoid connectivity issues.
 
 When a new OpenVPN tunnel is created, the system generates a new `PKI (Public Key Infrastructure)`, which is composed of the **CA**, **server**, and a **single client certificate** (unlike Road Warrior connections, which have one certificate per user).
 
@@ -138,13 +138,13 @@ These operations will create new server and client certificates without affectin
 
 ### Server certificate expired
 
-In this scenario, the server certificate must be renewed on the server side. Use the same **Regenerate certificates** action described in the previous scenario. You can continue using the existing client certificate (if it's still valid) and download/import the newly generated one later. The new client certificate will expire on the same day as the new server certificate.
+In this scenario, the server certificate must be renewed on the server side. Use the same **Regenerate certificates** action described in the previous scenario. You can continue using the existing client certificate (if it\'s still valid) and download/import the newly generated one later. The new client certificate will expire on the same day as the new server certificate.
 
-As for the Road Warrior server certificate renewal, the consideration about the client behavior is the same: if the certificate renewal is done while clients are connected, it's necessary for the client to disconnect and then reconnect to the server to restore the connection, while if the certificate renewal is done while **clients are disconnected (recommended way)**, the connection will be automatically restored when they will try to connect again.
+As for the Road Warrior server certificate renewal, the consideration about the client behavior is the same: if the certificate renewal is done while clients are connected, it\'s necessary for the client to disconnect and then reconnect to the server to restore the connection, while if the certificate renewal is done while **clients are disconnected (recommended way)**, the connection will be automatically restored when they will try to connect again.
 
 ### CA certificate expired
 
-In this scenario, you've to proceed with the generation of a completely new PKI.
+In this scenario, you\'ve to proceed with the generation of a completely new PKI.
 
 1.  Access the server firewall terminal.
 2.  Execute the following commands:

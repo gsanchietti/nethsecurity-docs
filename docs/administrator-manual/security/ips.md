@@ -3,7 +3,7 @@ title: "Intrusion Prevention System (Snort)"
 sidebar_position: 6
 ---
 
-# Intrusion Prevention System (Snort)
+# Intrusion Prevention System (Snort) {#intrusion_prevention_system-section}
 
 Snort 3 is an open-source network Intrusion Prevention System that is capable of performing real-time traffic analysis and packet logging on IP networks. It can perform protocol analysis, content searching/matching, and can be used to detect a variety of attacks and probes, such as buffer overflows, stealth port scans, CGI attacks, SMB probes, OS fingerprinting attempts, and much more.
 
@@ -11,7 +11,7 @@ Snort 3 is an open-source network Intrusion Prevention System that is capable of
 
 IPS is disabled by default, to enable it, navigate to the `IPS` page under the `Security` section. The interface will prompt that the service is disabled and will provide a quick link to browse directly to the `Settings` tab.
 
-Once toggled the **Status** switch, you'll be able to configure the service.
+Once toggled the **Status** switch, you\'ll be able to configure the service.
 
 ### Rule policy
 
@@ -76,9 +76,9 @@ Hyperscan is an optional performance enhancement feature. Enable it only if your
 
 :::
 
-## Access to Snort rules via Oinkcode
+## Access to Snort rules via Oinkcode {#oinkcode-section}
 
-NethSecurity supports the use of a Snort subscription to obtain `Registered` and `Subscriber` rules through the Oinkcode. The <span class="title-ref">Oinkcode</span> is a unique code assigned to registered users on Snort.org, this code is required to authenticate the download of Snort rules.
+NethSecurity supports the use of a Snort subscription to obtain `Registered` and `Subscriber` rules through the Oinkcode. The `Oinkcode` is a unique code assigned to registered users on Snort.org, this code is required to authenticate the download of Snort rules.
 
 ### Available rule categories
 
@@ -90,21 +90,21 @@ NethSecurity supports the use of a Snort subscription to obtain `Registered` and
 
 - Register on Snort.org
 - Retrieve your Oinkcode from the account profile section
-- On NethSecurity, paste your personal code into the <span class="title-ref">Oinkcode</span> field. You can verify if the code is valid by clicking on the **Test code** button
+- On NethSecurity, paste your personal code into the `Oinkcode` field. You can verify if the code is valid by clicking on the **Test code** button
 
 ## Today event list
 
 The IPS automatically checks traffic inside the network and generates alerts or blocks traffic based on the ruleset. A browsable list can be found under the `Today event list` tab. While browsing the list, you can see the rules that triggered the alert, the source and destination IP addresses, the protocol and the action taken by the system.
 
-This list can be filtered using the filter box at the top of the page. Additionally, for every record shown, it's possible to jump right to the rule documentation by clicking on the rule ID.
+This list can be filtered using the filter box at the top of the page. Additionally, for every record shown, it\'s possible to jump right to the rule documentation by clicking on the rule ID.
 
-By clicking on the menu icon on the right side of the record, it's possible to open a pre-filled form to suppress or disable the rule that generated the alert.
+By clicking on the menu icon on the right side of the record, it\'s possible to open a pre-filled form to suppress or disable the rule that generated the alert.
 
 ## Filter bypass
 
 All traffic that goes through the firewall is analyzed by the IPS. The system supports bypass rules for specific IPv4 and IPv6 addresses. Any IP address added to a bypass rule will be evaluated for both incoming and outgoing traffic.
 
-To do so, browse to the <span class="title-ref">Filter bypass</span> tab and press the **Add bypass** button. A form is provided to add a bypass rule for a specific IP address, the rule applies to traffic in both directions and includes the following fields:
+To do so, browse to the `Filter bypass` tab and press the **Add bypass** button. A form is provided to add a bypass rule for a specific IP address, the rule applies to traffic in both directions and includes the following fields:
 
 - `Address type`: if the ip provided is IPv4 or IPv6
 - `IP address`: the IP address or CIDR to bypass
@@ -114,9 +114,9 @@ To do so, browse to the <span class="title-ref">Filter bypass</span> tab and pre
 
 In some environments, rules can be too restrictive or generate too many false positives. To avoid this, it is possible to disable some rules. A disabled rule is a rule that is not included in the Snort ruleset.
 
-Browse to the <span class="title-ref">Disabled Rules</span> tab and press the **Disable rule** button. The system will prompt for the following fields:
+Browse to the `Disabled Rules` tab and press the **Disable rule** button. The system will prompt for the following fields:
 
-- `GID`: the rule GID, it is a number and usually is always <span class="title-ref">1</span>
+- `GID`: the rule GID, it is a number and usually is always `1`
 - `SID`: the rule SID, it is a number
 - `Description`: a description of the disabled rule, it is optional and can be omitted
 
@@ -124,9 +124,9 @@ Browse to the <span class="title-ref">Disabled Rules</span> tab and press the **
 
 A suppression rule is a rule that is ignored by Snort for a specific IP address or CIDR. The rule is still evaluated for all other IP addresses.
 
-To add a suppression rule, browse to the <span class="title-ref">Suppressed alerts</span> tab and press the **Suppress alert** button. Fill the fields with the following information:
+To add a suppression rule, browse to the `Suppressed alerts` tab and press the **Suppress alert** button. Fill the fields with the following information:
 
-- `GID`: the rule GID, it is a number and usually is always <span class="title-ref">1</span>
+- `GID`: the rule GID, it is a number and usually is always `1`
 - `SID`: the rule SID, it is a number
 - `Direction`: if the suppression is for the source or destination IP address
 - `IP address`: the IP address to suppress the alert for, can be a CIDR range

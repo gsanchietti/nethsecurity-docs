@@ -15,11 +15,11 @@ Since the test can be influenced by QoS settings, it is better to disable it bef
 
     /etc/init.d/qosify stop
 
-Speedtest automatically selects the best server based on the user's location. To run a speed test, simply type the following command in the terminal: :
+Speedtest automatically selects the best server based on the user\'s location. To run a speed test, simply type the following command in the terminal: :
 
     speedtest
 
-This command will perform a full test, including latency, download, and upload speed tests. The selection of the server is based on the user's location and the server's availability. Sometimes, the server selection may not be optimal, resulting in inaccurate speed test results.
+This command will perform a full test, including latency, download, and upload speed tests. The selection of the server is based on the user\'s location and the server\'s availability. Sometimes, the server selection may not be optimal, resulting in inaccurate speed test results.
 
 To overcome this issue, users can force the selection of the server by using the `--force-by-latency-test` option: :
 

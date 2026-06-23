@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # Remote access
 
-## Default credentials
+## Default credentials {#default_credentials-section}
 
 Default credentials are:
 
@@ -17,9 +17,9 @@ Such credentials can be used to log in to the web interface or using SSH:
 - Web user interface: **https://\<server_ip\>:9090**
 - SSH default port: **22**
 
-NethSecurity's default hostname is: `NethSec`
+NethSecurity\'s default hostname is: `NethSec`
 
-If your client has received an IP address from NethSecurity's DHCP, it will use NethSecurity as both gateway and DNS server. Under these conditions you can contact NethSecurity using its hostname **nethsec** instead of the **server_ip** e.g.
+If your client has received an IP address from NethSecurity\'s DHCP, it will use NethSecurity as both gateway and DNS server. Under these conditions you can contact NethSecurity using its hostname **nethsec** instead of the **server_ip** e.g.
 
 <https://nethsec:9090>
 
@@ -33,7 +33,7 @@ The default password for the root user is `Nethesis,1234`. It is recommended to 
 
 ### Reset root password
 
-The `root password` can be reset by entering in Failsafe mode. Once in this mode, you can change the password by executing the following commands. :
+The `root password` can be reset by entering in [Failsafe mode](../system/reset_recovery.md#failsafe-section). Once in this mode, you can change the password by executing the following commands. :
 
 ``` bash
 mount_root
@@ -46,7 +46,7 @@ Restart the firewall with the command :
 reboot
 ```
 
-## Web user interface
+## Web user interface {#web_user_interface-section}
 
 NethSecurity UI (User Interface), the NethSecurity official web interface, is available on port `9090` at the following URL: **https://\<server_ip\>:9090**.
 
@@ -60,19 +60,19 @@ By default, this interface is accessible on port 9090 from both your internal ne
 
 To mitigate this risk, you have two options (remove or restrict access):
 
-- remove the `Allow-UI-from-WAN` rule: go to the Firewall rules page, navigate to the `Input rules` tab, and locate the "Allow-UI-from-WAN" rule. Click the **Delete** button to remove it
+- remove the `Allow-UI-from-WAN` rule: go to the Firewall rules page, navigate to the `Input rules` tab, and locate the \"Allow-UI-from-WAN\" rule. Click the **Delete** button to remove it
 
-- restrict access from specific IPs or networks: in the Firewall rules page, locate the "Allow-UI-from-WAN" rule and click the **Edit** button. In the `Source address` field, enter the IP addresses or network CIDRs from which you want to allow access to the NethSecurity UI.
+- restrict access from specific IPs or networks: in the Firewall rules page, locate the \"Allow-UI-from-WAN\" rule and click the **Edit** button. In the `Source address` field, enter the IP addresses or network CIDRs from which you want to allow access to the NethSecurity UI.
 
   For example, to allow access only from your home network, you could enter the 192.168.1.0/24 network. Only allow access from trusted IP addresses or networks. Leaving this field blank will allow anyone on the internet to access the NethSecurity UI.
 
 Additional security measures:
 
 - use a strong password for the admin user
-- enable two-factor authentication (2FA) for the admin user
+- enable [two-factor authentication (2FA)](#2fa-section) for the admin user
 - keep your firewall up to date with the latest security patches
 
-### Change web user interface port
+### Change web user interface port {#change_ui_port-section}
 
 Users can change the NethSecurity UI port.
 
@@ -93,9 +93,9 @@ If you still need to forward port 9090 to another machine inside the LAN, you ca
 
 ### Disable web user interface on port 443
 
-While exposing port 443 (HTTPS) can be necessary for certain services, directly accessing the NethSecurity UI through this port may introduce a potential security risk. Here's how to safely maintain port 443 functionality while protecting your NethSecurity UI.
+While exposing port 443 (HTTPS) can be necessary for certain services, directly accessing the NethSecurity UI through this port may introduce a potential security risk. Here\'s how to safely maintain port 443 functionality while protecting your NethSecurity UI.
 
-If you don't require accessing the NethSecurity UI through port 443, disable it to minimize attack opportunities. Execute the following commands on your NethServer system: :
+If you don\'t require accessing the NethSecurity UI through port 443, disable it to minimize attack opportunities. Execute the following commands on your NethServer system: :
 
 ``` bash
 uci set ns-ui.config.nsui_enable=0
@@ -106,7 +106,7 @@ This option disables access to the NethSecurity UI through both the server IP ad
 
 If you need port 443 for other services, configure your firewall to redirect traffic destined for port 443 to a separate web server hosting those services. Ensure this separate server has strong security measures in place.
 
-### Privacy policy
+### Privacy policy {#privacy_policy-section}
 
 In some cases, it is necessary to display the privacy policy of a product before login. NethSecurity does not display any privacy policy by default, but it is possible to add a link to an external website that contains the privacy policy.
 
@@ -120,7 +120,7 @@ Substitute `https://mysite.org/privacy_policy` with the URL of your privacy poli
 
 The link to the privacy policy will be displayed inside the login page after next page refresh.
 
-### Legacy web user interface
+### Legacy web user interface {#luci-section}
 
 :::warning
 
@@ -166,9 +166,9 @@ reload_config
 
 This configuration only affects the NethSecurity UI. The reverse proxy has its own separate configuration.
 
-## NethSecurity UI 2FA
+## NethSecurity UI 2FA {#2fa-section}
 
-Protecting your NethSecurity administrator account is crucial, and Two-Factor Authentication (2FA) adds an extra layer of security beyond just a password. 2FA requires two verification steps when logging in. Instead of just a password, you'll also need a temporary code generated by a separate app on your smartphone or tablet. This significantly reduces the risk of unauthorized access even if your password is compromised.
+Protecting your NethSecurity administrator account is crucial, and Two-Factor Authentication (2FA) adds an extra layer of security beyond just a password. 2FA requires two verification steps when logging in. Instead of just a password, you\'ll also need a temporary code generated by a separate app on your smartphone or tablet. This significantly reduces the risk of unauthorized access even if your password is compromised.
 
 Enabling 2FA on NethSecurity UI:
 
@@ -200,7 +200,7 @@ After the confirmation the status badge changes to disabled and the next login w
 
 If an administrator has lost both the OTP device and the recovery codes and can no longer log in to the web interface, 2FA can be reset directly from the shell as `root` over SSH.
 
-Run the following commands, replacing <span class="title-ref">\<username\></span> with the administrator account name (use `root` for the default administrator): :
+Run the following commands, replacing `\<username\>` with the administrator account name (use `root` for the default administrator): :
 
 ``` bash
 SECRETS_DIR=/etc/ns-api-server
@@ -219,17 +219,17 @@ Only the `root` account has SSH access by default. Non-root administrators canno
 
 :::
 
-## NethSecurity UI administrators
+## NethSecurity UI administrators {#admin_users-section}
 
 The default user for accessing the user web interface is root, but it is possible to create other administrator users with access only to the web interface.
 
-To create a user in the local database, enter the <span class="title-ref">Username</span> and <span class="title-ref">Display name</span>. Ensure to set a password for the user; this is mandatory for administrator users. If the user needs administrative access to the web interface, enable the <span class="title-ref">Administrator user</span> option.
+To create a user in the local database, enter the `Username` and `Display name`. Ensure to set a password for the user; this is mandatory for administrator users. If the user needs administrative access to the web interface, enable the `Administrator user` option.
 
 It is possible to grant or remove administrative access only to users residing in the local database.
 
 ### Auditing user actions
 
-Every time an administrator logs in to the NethSecurity UI, the system logs the event, inside the <span class="title-ref">/var/log/messages</span> file. Example of login event for user \`goofy\`: :
+Every time an administrator logs in to the NethSecurity UI, the system logs the event, inside the `/var/log/messages` file. Example of login event for user \`goofy\`: :
 
 ``` bash
 Jun 21 09:43:19 NethSec nethsecurity-api[5376]: nethsecurity_api 2024/06/21 09:43:19 middleware.go:78: [INFO][AUTH] authentication success for user goofy
@@ -242,7 +242,7 @@ Example of logout event for user \`goofy\`: :
 Jun 21 09:46:13 NethSec nethsecurity-api[5376]: nethsecurity_api 2024/06/21 09:46:13 middleware.go:214: [INFO][AUTH] logout response success for user goofy
 ```
 
-Also every action performed by an administrator inside the NethSecurity UI is logged inside the <span class="title-ref">/var/log/messages</span> file. Example of action performed by user \`goofy\`: :
+Also every action performed by an administrator inside the NethSecurity UI is logged inside the `/var/log/messages` file. Example of action performed by user \`goofy\`: :
 
 ``` bash
 Jun 21 09:43:19 NethSec nethsecurity-api[5376]: nethsecurity_api 2024/06/21 09:43:19 middleware.go:170: [INFO][AUTH] authorization success for user goofy. POST /api/ubus/call {"path":"ns.dashboard","method":"service-status","payload":{"service":"internet"}}
@@ -250,7 +250,7 @@ Jun 21 09:43:19 NethSec nethsecurity-api[5376]: nethsecurity_api 2024/06/21 09:4
 
 ## SSH
 
-By default, the system accepts SSH connections on the standard port 22 from the internal network (LAN). Root access is enabled using the default password. To allow SSH access from the wider internet (WAN), a firewall input rule must be added for the server's listening port.
+By default, the system accepts SSH connections on the standard port 22 from the internal network (LAN). Root access is enabled using the default password. To allow SSH access from the wider internet (WAN), a firewall input rule must be added for the server\'s listening port.
 
 From a Linux machine, use the following command: :
 
@@ -285,7 +285,7 @@ ls -1 /usr/share/keymaps/ | cut -d'.' -f1
 
 ## Serial console
 
-If the machine has a serial port (RS-232, tipically available with DE-9 connector or RJ45/8P8C connector) it's possible to access the firewall directly through it using a null-modem cable and a terminal program. `PuTTY` (version 0.60 or higher) is a common choice if you are using Microsoft Windows, while Linux distros offer tools as `minicom`, `picocom`, or `screen`.
+If the machine has a serial port (RS-232, tipically available with DE-9 connector or RJ45/8P8C connector) it\'s possible to access the firewall directly through it using a null-modem cable and a terminal program. `PuTTY` (version 0.60 or higher) is a common choice if you are using Microsoft Windows, while Linux distros offer tools as `minicom`, `picocom`, or `screen`.
 
 Default acces parameters for NethSecurity 8 are:
 
@@ -333,6 +333,6 @@ kmod-usb-serial-pl2303 - 5.15.162-1 - Kernel support for Prolific PL2303 USB-to-
 
 :::note
 
-Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: restore_extra_packages-section.
+Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: [Restore extra packages](../system/updates.md#restore_extra_packages-section).
 
 :::

@@ -3,7 +3,7 @@ title: "SNMP Server"
 sidebar_position: 5
 ---
 
-# SNMP Server
+# SNMP Server {#snmp-server-configuration}
 
 Simple Network Management Protocol (SNMP) provides a standardized way to monitor and manage network devices like your firewall remotely. It allows authorized users to retrieve essential information like device status, performance metrics, and configuration settings.
 
@@ -11,16 +11,16 @@ The SNMP server is **disabled by default** on your firewall, allowing access fro
 
 :::note
 
-If the system has been updated from v1.4.1 or earlier, the SNMP server will be **enabled by default**. To disable it, follow the steps in the Disabling the SNMP Server section.
+If the system has been updated from v1.4.1 or earlier, the SNMP server will be **enabled by default**. To disable it, follow the steps in the [Disabling the SNMP Server](#snmp-server-disabling) section.
 
 :::
 
 ## Configuring the SNMP Server
 
-It's crucial to configure essential information that identifies your device. Here's how to do it through the command line:
+It\'s crucial to configure essential information that identifies your device. Here\'s how to do it through the command line:
 
 1.  Open a terminal window on your firewall.
-2.  Use the following commands to set the desired values for <span class="title-ref">sysLocation</span>, <span class="title-ref">sysContact</span>, and \`sysName\`:
+2.  Use the following commands to set the desired values for `sysLocation`, `sysContact`, and \`sysName\`:
 
 ``` bash
 uci set snmpd.general.enabled=1
@@ -29,7 +29,7 @@ uci set snmpd.@system[0].sysContact='<string>'
 uci set snmpd.@system[0].sysName='<string>'
 ```
 
-Replace <span class="title-ref">\<string\></span> with the relevant information. For example:
+Replace `\<string\>` with the relevant information. For example:
 
 ``` bash
 uci set snmpd.general.enabled=1
@@ -45,15 +45,15 @@ uci commit snmpd
 reload_config
 ```
 
-The SNMP server configuration is stored in the <span class="title-ref">/etc/config/snmpd</span> file.
+The SNMP server configuration is stored in the `/etc/config/snmpd` file.
 
-You can test the configuration by using an SNMP client like <span class="title-ref">snmpwalk</span> or <span class="title-ref">snmpget</span> from a remote machine. For example: :
+You can test the configuration by using an SNMP client like `snmpwalk` or `snmpget` from a remote machine. For example: :
 
     snmpwalk -v 2c -c public 127.0.0.1
 
-## Disabling the SNMP Server
+## Disabling the SNMP Server {#snmp-server-disabling}
 
-If you don't require remote access to the SNMP server, you can disable it for additional security. Follow these steps:
+If you don\'t require remote access to the SNMP server, you can disable it for additional security. Follow these steps:
 
 1.  Open a terminal window on your firewall.
 2.  Use the following commands to disable the server:
@@ -74,5 +74,5 @@ If you need to access the SNMP server from outside your LAN, create a firewall r
 
 Prioritize security before enabling remote access:
 
-- **Strong Community String:** Replace the default "public" community string with a complex and unique one.
+- **Strong Community String:** Replace the default \"public\" community string with a complex and unique one.
 - **Access Control:** Implement Access Control Lists (ACLs) to restrict access to authorized IP addresses only.

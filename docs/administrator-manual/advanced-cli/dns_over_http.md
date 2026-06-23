@@ -3,7 +3,7 @@ title: "DNS over HTTPS with filtering"
 sidebar_position: 3
 ---
 
-# DNS over HTTPS with filtering
+# DNS over HTTPS with filtering {#dns_over_http-section}
 
 DNS over HTTPS (DoH) is a protocol for encrypting DNS queries over HTTPS, enhancing privacy by preventing eavesdropping on DNS traffic. This feature allows you to configure upstream DNS servers that support the DoH protocol. The `https-dns-proxy` package provides a local DNS-to-HTTPS proxy that forwards DNS queries to a remote DoH provider.
 
@@ -95,7 +95,7 @@ dig google.com @127.0.0.1 -p 5053
 
 By default, all DNS queries to any server are forced through the local DoH proxy to ensure that all DNS traffic is encrypted, but this may cause issues with certain devices or applications.
 
-If you encounter a "Private DNS server cannot be accessed" error on your Android device, you can fix it by disabling DNS forcing in the `https-dns-proxy` configuration.
+If you encounter a \"Private DNS server cannot be accessed\" error on your Android device, you can fix it by disabling DNS forcing in the `https-dns-proxy` configuration.
 
 Run the following commands via SSH or terminal: :
 
@@ -115,5 +115,5 @@ However, NethSecurity treats `dnsmasq_config_update='-'` as the disabled state. 
 
 To block DoH requests from clients to any other server while allowing requests originating from the firewall, you have 2 options:
 
-1.  Enable the "public DoH-Providers" category inside Threat Shield IP and whitelist the upstream server you choose as your DoH provider
+1.  Enable the \"public DoH-Providers\" category inside Threat Shield IP and whitelist the upstream server you choose as your DoH provider
 2.  Use DPI (Deep Packet Inspection) to block DoH, which operates only on forwarded traffic, allowing the firewall to use DoH while blocking clients from using it directly

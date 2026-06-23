@@ -3,11 +3,11 @@ title: "IPsec tunnels"
 sidebar_position: 3
 ---
 
-# IPsec tunnels
+# IPsec tunnels {#ipsec_tunnels-section}
 
 IPsec tunnels, are a crucial component of modern network security. These tunnels provide a secure and encrypted communication pathway over the internet or any untrusted network, ensuring the confidentiality and integrity of data in transit.
 
-IPsec (IP Security) protocol is the ‘de facto’ standard in VPN tunnels, it’s typically used to create net to net tunnels and it’s supported from all manufacturers. You can use this protocol to create VPN tunnels between a NethSecurity and a device from another manufacturer as well as VPN tunnels between 2 NethSecurity.
+IPsec (IP Security) protocol is the 'de facto' standard in VPN tunnels, it's typically used to create net to net tunnels and it's supported from all manufacturers. You can use this protocol to create VPN tunnels between a NethSecurity and a device from another manufacturer as well as VPN tunnels between 2 NethSecurity.
 
 NethSecurity by default uses Route-Based VPNs, so each tunnel rely on a specific tun type device.
 
@@ -42,7 +42,7 @@ Once you completed the configuration a new tunnel will be shown in the IPSec pag
 
 :::note
 
-If an endpoint is behind a NAT, we suggest to set the values for Local and Remote identifier fields to custom unique names with an "email like" syntax, e.g. <nsec@site-a> and <otherdevice@site-b>.
+If an endpoint is behind a NAT, we suggest to set the values for Local and Remote identifier fields to custom unique names with an \"email like\" syntax, e.g. <nsec@site-a> and <otherdevice@site-b>.
 
 :::
 
@@ -54,7 +54,7 @@ By clicking on the magnifier icon in the IPsec tunnels list, you can see the det
 
 ## IPsec tunnel in a MultiWAN scenario
 
-In a multi-WAN scenario, it’s crucial to ensure that each tunnel's remote endpoint is reached through the same WAN interface configured for the IPsec tunnel.
+In a multi-WAN scenario, it's crucial to ensure that each tunnel\'s remote endpoint is reached through the same WAN interface configured for the IPsec tunnel.
 
 To enforce this behavior, a static route must be created so that traffic to the remote IP is directed through the gateway of the specific WAN interface assigned to the tunnel.
 

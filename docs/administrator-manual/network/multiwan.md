@@ -9,7 +9,7 @@ MultiWAN (Wide Area Network) configuration is a setup in which the firewall util
 
 MultiWAN configuration requires at least two network interfaces in the WAN zone of the system. This is the fundamental requirement for implementing a MultiWAN connection.
 
-The first time you access the configuration page, it is mandatory to create a default policy. This policy is essential and cannot be deleted. The default policy defines the basic behavior of the MultiWAN system. It's necessary to specify its behavior. There are two available main options:
+The first time you access the configuration page, it is mandatory to create a default policy. This policy is essential and cannot be deleted. The default policy defines the basic behavior of the MultiWAN system. It\'s necessary to specify its behavior. There are two available main options:
 
 - `Balanced`: In this mode, WAN connections are utilized simultaneously, and traffic is balanced based on the weight assigned to each WAN. The WAN weight can vary from 1 to 1000.
 - `Backup`: In backup mode, the secondary WAN connection comes into play only if the primary connection fails. This ensures a backup connectivity if the primary WAN fails.
@@ -33,7 +33,7 @@ Consider a scenario where the first two WAN interfaces are configured in balance
 
 Users can create outbound traffic rules based on specific criteria such as source IP, destination IP, source port(s), destination port(s), and IP protocol types. This policy-based routing feature enables users to customize which outbound connections use specific WAN interfaces, allowing for a fine-tuned network setup.
 
-Here's how you can create a custom rule:
+Here\'s how you can create a custom rule:
 
 1.  Create a new policy: to begin customizing traffic routing, start by creating a new policy. Click on the **Create policy** button to initiate the process.
 2.  Create a new rule: then click on the **Create rule** button. This step allows you to define specific conditions under which the traffic will be routed differently from the default policy.

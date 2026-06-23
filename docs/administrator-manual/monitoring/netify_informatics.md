@@ -3,7 +3,7 @@ title: "Netify Informatics"
 sidebar_position: 2
 ---
 
-# Netify Informatics
+# Netify Informatics {#netify_informatics-section}
 
 [Netify Informatics](https://www.netify.ai/products/netify-informatics) is a third-party cloud service that utilizes analytics and AI to convert local DPI metadata obtained from NethSecurity into high-level network intelligence. The solution provides insights into various aspects of network activity, including:
 
@@ -28,7 +28,7 @@ You can granularly manage different customers, different locations of the same c
 
 - **Organization** : an organization is essentially a customer where we have at least one NethSecurity firewall, multiple organizations are supported.
 - **Site**: the same organization (customer) might have an office in Rome, Florence, and Paris. A site is defined for each physical location to isolate the data, multiple sites are supported.
-- **Agent**: the agent represents your customer's NethSecurity unit. Netify supports multiple agents per site. If you have a simple network, one agent will likely see all traffic flows on a site's network.
+- **Agent**: the agent represents your customer\'s NethSecurity unit. Netify supports multiple agents per site. If you have a simple network, one agent will likely see all traffic flows on a site\'s network.
 
 ## Connect NethSecurity to Netify Informatics
 
@@ -39,19 +39,19 @@ Two steps are required to use the service:
 
 :::warning
 
-It's mandatory to configure data sending on NethSecurity **first** and then provision the agent on the platform.
+It\'s mandatory to configure data sending on NethSecurity **first** and then provision the agent on the platform.
 
 :::
 
-### 1. Enable metadata sending
+### 1. Enable metadata sending {#enable-metadata-sending}
 
 Access the `Netify Informatics` page under the `Monitoring` section in the NethSecurity web interface.
 
 Enable the `Send metadata to Netify Informatics` option and click on `Save`.
 
-Each NethSecurity is associated with a unique Agent UUID, something like this <span class="title-ref">B3-GV-WQ-SD</span>. The code will be visible on the same page after enabling the send metadata option.
+Each NethSecurity is associated with a unique Agent UUID, something like this `B3-GV-WQ-SD`. The code will be visible on the same page after enabling the send metadata option.
 
-### 2. Provision the agent
+### 2. Provision the agent {#provision-the-agent}
 
 Once you have a registered account and enabled the metadata sending on NethSecurity, you can provision the agent on the Netify Informatics platform:
 
@@ -75,7 +75,7 @@ The `Administrator` profile, typically reserved for colleagues within your compa
 
 The `Manager` profile is dedicated to individuals who belong to the same organization (the customer company). It grants them permission to view all sections inside Netify Informatics, see the deployment dashboard and edit the Identity manager section, but not to add other organizations or provision new agents.
 
-The `Viewer` profile, likely the most commonly used, is for someone (e.g., an IT technician from your customer’s organization) who can view all data within their organization but does not have the ability to modify any Netify configurations.
+The `Viewer` profile, likely the most commonly used, is for someone (e.g., an IT technician from your customer's organization) who can view all data within their organization but does not have the ability to modify any Netify configurations.
 
 To invite someone, simply click on `Manage Organization`, enter their email address, and choose the desired profile. The person will receive an invite from Netify by email and will be able to create their own account.
 

@@ -3,21 +3,21 @@ title: "Monitoring"
 sidebar_position: 1
 ---
 
-# Monitoring
+# Monitoring {#monitoring-section}
 
-NethSecurity provides comprehensive monitoring capabilities to help administrators track the performance and health of the firewall. Monitoring is essential for ensuring the firewall's optimal operation and identifying potential issues that may impact its functionality.
+NethSecurity provides comprehensive monitoring capabilities to help administrators track the performance and health of the firewall. Monitoring is essential for ensuring the firewall\'s optimal operation and identifying potential issues that may impact its functionality.
 
 NethSecurity offers 3 monitoring views:
 
-- **Real-time monitoring**: it leverages Telegraf, Netifyd and logs to provide immediate insights into the firewall's performance and status, with detailed charts and alerts. It also uses Netify agent and logs to provide immediate insights into the firewall's traffic, VPN connections and security events.
+- **Real-time monitoring**: it leverages Telegraf, Netifyd and logs to provide immediate insights into the firewall\'s performance and status, with detailed charts and alerts. It also uses Netify agent and logs to provide immediate insights into the firewall\'s traffic, VPN connections and security events.
 - **Historical monitoring**: Telegraf writes its data inside VictoriaMetrics, which saves the metrics inside a local persistent storage, when available. Local historical monitoring is available starting from NethSecurity 8.8 and does not require a subscription.
 - **Remote monitoring**: when the firewall is connected to a controller, metrics are also stored remotely using Prometheus. This allows metrics to be preserved for a longer time and enables centralized monitoring. Please note that the controller will store metrics only if both the firewall and the controller itself have a valid subscription.
 
-## Real-time monitoring
+## Real-time monitoring {#real_time_monitoring-section}
 
 Real-time monitoring is an essential feature in modern firewall systems, allowing administrators to have instant visibility into network traffic, VPN connections, and security threats. In NethSecurity, real-time monitoring provides live data, ensuring that issues such as network congestion, unauthorized access, and security breaches are identified and mitigated promptly. Real-time monitoring stores data in RAM and resets at every machine reboot.
 
-The `Real-time monitor` page provides a comprehensive overview of the firewall's performance and status, with detailed insights into network traffic. It's divided into four main sections: `Traffic`, `Live Flows`, `Top Talkers`, `WAN uplinks`, `VPN` and `Security`.
+The `Real-time monitor` page provides a comprehensive overview of the firewall\'s performance and status, with detailed insights into network traffic. It\'s divided into four main sections: `Traffic`, `Live Flows`, `Top Talkers`, `WAN uplinks`, `VPN` and `Security`.
 
 ### Daily Traffic
 
@@ -30,7 +30,7 @@ The below charts reads data from [dpireport](https://dev.nethsecurity.org/packag
 - `Remote Hosts`: this chart lists the external (remote) hosts that have exchanged the most data with the network. By analyzing this data, administrators can track interactions with specific external entities, helping to detect malicious external sources or unusual outbound traffic patterns.
 - `Protocol`: this chart shows the breakdown of daily traffic by protocol (e.g., HTTP, HTTPS, FTP). It is useful for identifying which protocols are consuming the most bandwidth and ensuring that network resources are being used appropriately. High usage of unfamiliar protocols may indicate unauthorized activities.
 
-It's possible to narrow the search for a specific host, application, or protocol by clicking on the respective label in the table below the chart.
+It\'s possible to narrow the search for a specific host, application, or protocol by clicking on the respective label in the table below the chart.
 
 ### Live Flows
 
@@ -58,9 +58,9 @@ The Live Flows section also includes configuration options to manage the behavio
 
 ### Top Talkers
 
-The main purpose of the Top Talkers section is to provide an initial overview of bandwidth usage, quickly identifying the primary “contributors” to network traffic. This information can serve as a starting point for deeper analysis, troubleshooting, or general network efficiency monitoring.
+The main purpose of the Top Talkers section is to provide an initial overview of bandwidth usage, quickly identifying the primary "contributors" to network traffic. This information can serve as a starting point for deeper analysis, troubleshooting, or general network efficiency monitoring.
 
-The Top Talkers section displays traffic data updated every 30 seconds, providing a quick and up-to-date overview of which entities are generating the most network traffic, it's is divided into three categories:
+The Top Talkers section displays traffic data updated every 30 seconds, providing a quick and up-to-date overview of which entities are generating the most network traffic, it\'s is divided into three categories:
 
 - `Local Hosts`: lists all detected local hosts and their current traffic status, ordered by traffic volume. This allows you to quickly identify which devices are using the most bandwidth, without distinguishing connection type or protocol.
 - `Applications`: shows all detected applications and their current traffic, ordered by volume. This view helps to understand which services or applications are consuming the most network resources, regardless of the device running them.
@@ -75,8 +75,8 @@ This page shows the following information:
 - `WANs`: list of the WAN connections with their current status (UP/DOWN) and public IP address. The status information helps ensure that critical network connections are online, and any downtime are immediately addressed. Data are sourced from the firewall mwan3 status.
 - `WAN events`: this section lists recent WAN connection and disconnection events from the last 24 hours, providing insight into network stability and outages. It helps administrators understand the frequency and duration of network disruptions, aiding in troubleshooting and capacity planning. Data are retrieved from the logs for the past 24 hours. If the logs do not cover the full 24-hour period, the data may be incomplete. The results are cached for 5 minutes.
 - `WAN interface traffic`: this histogram shows the traffic data for each WAN connection over the past 60 minutes. It helps track real-time performance and diagnose issues such as uneven load balancing or WAN link saturation.
-- `Latency to <address>`: this section provides real-time latency data for a specific IP address configured inside the ping_latency-section module. The cart helps to monitor network performance and identify potential connectivity issues.
-- `Packet delivery rate to <address>`: this section provides real-time packet delivery rate data for a specific IP address configured inside the ping_latency-section module. If the rate is below 100% it could indicate network congestion or connectivity issues.
+- `Latency to <address>`: this section provides real-time latency data for a specific IP address configured inside the [Ping latency monitoring](#ping_latency-section) module. The cart helps to monitor network performance and identify potential connectivity issues.
+- `Packet delivery rate to <address>`: this section provides real-time packet delivery rate data for a specific IP address configured inside the [Ping latency monitoring](#ping_latency-section) module. If the rate is below 100% it could indicate network congestion or connectivity issues.
 
 ### VPN
 
@@ -99,11 +99,11 @@ The Site-to-Site VPN section provides insights into OpenVPN and IPsec tunnels:
 
 ### Security
 
-The security section provides insights into malware detection and attack monitoring, helping administrators identify and mitigate security threats. To enable this section, the threat_shield_ip-section module must be enabled. Data are sourced from logs covering the past 24 hours. If the logs do not span the entire 24-hour period, the data may be incomplete. Results are cached for 5 minutes to improve performance.
+The security section provides insights into malware detection and attack monitoring, helping administrators identify and mitigate security threats. To enable this section, the [Threat shield IP](../security/threat_shield_ip.md) module must be enabled. Data are sourced from logs covering the past 24 hours. If the logs do not span the entire 24-hour period, the data may be incomplete. Results are cached for 5 minutes to improve performance.
 
 The `Blocklist` section provides an overview of blocked packets based on enabled blocklists. Available charts are:
 
-- `Blocked threats`: this counter shows the total number of packets blocked by the firewall due to malware detection for the current day. It provides a clear overview of the volume of threats intercepted, giving administrators a measure of the firewall’s effectiveness.
+- `Blocked threats`: this counter shows the total number of packets blocked by the firewall due to malware detection for the current day. It provides a clear overview of the volume of threats intercepted, giving administrators a measure of the firewall's effectiveness.
 - `Blocked threats by hour`: this chart tracks the number of packets blocked each hour. It helps identify the times of day when the network is most vulnerable to attacks, aiding in preventive measures.
 - `Threats by direction`: a chart that shows the distribution of blocked malware by firewall chain. Depending on what logging option is enabled, the firewall can log packets from the following chains:
   - *inp-wan*: packets coming from the WAN interface and destined to the firewall
@@ -120,7 +120,7 @@ The `Brute force attacks` section provides insights into the number of blocked I
 - `Blocked IP addresses by hour`: this graph tracks the number of blocked IP addresses over time, helping to identify periods of increased attack activity.
 - `Most frequently blocked IP address`: this char shows the IP addresses that have been blocked most frequently. It is useful for identifying persistent threats or attack sources that should be investigated or blacklisted.
 
-## Historical monitoring
+## Historical monitoring {#historical_monitoring-section}
 
 Starting from NethSecurity 8.8, the Monitoring page includes a new `Metrics` view powered by VictoriaMetrics, Telegraf and vmalert. Telegraf reads the metrics and writes them to VictoriaMetrics, while vmalert evaluates the alert rules. VictoriaMetrics stores the data in RAM by default, but it automatically switches to persistent storage when available. If the local storage is removed, the system switches back to RAM storage.
 
@@ -147,13 +147,13 @@ The `Charts` tab shows the following charts:
 - `Network packets`
 - `Connections (conntrack)`
 - `Latency`: one chart for each configured ping host
-- `Packet delivery`: one chart for each configured ping host, configured inside the ping_latency-section section
+- `Packet delivery`: one chart for each configured ping host, configured inside the [Ping latency monitoring](#ping_latency-section) section
 
 The chart time range can be changed between 5 minutes, 30 minutes, 1 hour, 12 hours, 24 hours and 7 days.
 
-#### Ping latency monitoring
+#### Ping latency monitoring {#ping_latency-section}
 
-Configure the monitoring tool to evaluate round-trip time and packet loss by transmitting ping messages to network hosts. This tool is employed to monitor the quality of network connectivity. You have the option to include one or more hosts for monitoring, and it's also feasible to add IP addresses within a VPN for assessing tunnel quality.
+Configure the monitoring tool to evaluate round-trip time and packet loss by transmitting ping messages to network hosts. This tool is employed to monitor the quality of network connectivity. You have the option to include one or more hosts for monitoring, and it\'s also feasible to add IP addresses within a VPN for assessing tunnel quality.
 
 To monitor a new host or IP address, click on the **Add host** button and enter the required information, finally click on the **Save** button to confirm the changes.
 
@@ -161,9 +161,9 @@ Changes are applied immediately. To remove a host from the list, click on the de
 
 You can see the latency and packet delivery charts in the `Metrics` page after configuring the hosts.
 
-### Alerts
+### Alerts {#alert-section}
 
-The alert system prioritizes only those alerts that have the potential to disrupt or compromise the firewall's functionality. By focusing on critical indicators, administrators can efficiently address issues that pose a genuine threat to the security and operation of the firewall.
+The alert system prioritizes only those alerts that have the potential to disrupt or compromise the firewall\'s functionality. By focusing on critical indicators, administrators can efficiently address issues that pose a genuine threat to the security and operation of the firewall.
 
 The `Alerts` tab reads current pending and firing alerts from vmalert. Those alerts are shown locally in the `Metrics` page and in the notification drawer opened from the bell icon in the top-right corner.
 
@@ -183,7 +183,7 @@ Available alerts:
 
 #### Remote alert notifications
 
-If the server has a valid subscription-section, alert notifications are seamlessly sent to remote servers for centralized monitoring and management. Both `my.nethesis.it` and `my.nethserver.com` serve as central hubs for receiving alerts, allowing administrators to stay informed about the firewall's status and promptly respond to any critical situations.
+If the server has a valid [Subscription](../system/subscription.md), alert notifications are seamlessly sent to remote servers for centralized monitoring and management. Both `my.nethesis.it` and `my.nethserver.com` serve as central hubs for receiving alerts, allowing administrators to stay informed about the firewall\'s status and promptly respond to any critical situations.
 
 Currently, only the following alerts are forwarded to the remote monitoring servers:
 
@@ -192,11 +192,11 @@ Currently, only the following alerts are forwarded to the remote monitoring serv
 
 Other alerts, such as CPU and memory usage, are not forwarded to the remote monitoring servers at this time.
 
-## Remote monitoring
+## Remote monitoring {#remote_monitoring-section}
 
 :::note
 
-**Subscription required**
+Subscription required
 
 This feature is available only if the firewall and the controller have a valid subscription.
 
@@ -212,7 +212,7 @@ To enable it, follow these steps:
 2.  Ensure that the NethServer 8 where the controller is installed has a valid subscription.
 3.  Reconnect the unit to the controller.
 
-See the controller metrics for more information.
+See the [controller metrics](../system/controller.md#controller_metrics-section) for more information.
 
 :::note
 
@@ -220,7 +220,7 @@ If the unit was connected to the controller before the subscription was activate
 
 :::
 
-### Legacy Netdata
+### Legacy Netdata {#legacy_netdata-section}
 
 :::warning
 
@@ -232,9 +232,9 @@ NethSecurity 8.7.2 and older uses [Netdata](https://www.netdata.cloud/) as Real-
 
 Netdata is enabled by default on NethSecurity 8.7.2 and older and it is accessible from the LAN network. To access it, go to the `Monitoring` page and click **Open report** button from the `Real-time report` tab.
 
-Netdata metrics are saved in RAM and will be reset at every machine reboot. If the firewall is connected to the remote controller, metrics will be stored to the controller itself and preserved across reboots.
+Netdata metrics are saved in RAM and will be reset at every machine reboot. If the firewall is connected to the [remote controller](../system/controller.md), metrics will be stored to the controller itself and preserved across reboots.
 
-### Install Netdata on NethSecurity 8.8
+### Install Netdata on NethSecurity 8.8 {#install-netdata-on-nethsecurity-8.8}
 
 If you have configured custom Grafana dashboards that rely on Netdata metrics on the Controller, they will break after upgrading to NethSecurity 8.8 since Netdata has been removed.
 

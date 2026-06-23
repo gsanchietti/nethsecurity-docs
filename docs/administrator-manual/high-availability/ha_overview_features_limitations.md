@@ -3,7 +3,7 @@ title: "Overview, Features, Limitations"
 sidebar_position: 1
 ---
 
-# Overview, Features, Limitations
+# Overview, Features, Limitations {#ha_overview_features_limitations-section}
 
 NethSecurity High Availability (HA) ensures continuous network operation by providing redundancy through a cluster of two firewalls. If the primary firewall fails due to hardware issues, software problems, or maintenance, a backup firewall automatically takes over all network services and traffic handling, minimizing downtime.
 
@@ -32,10 +32,10 @@ All other relevant configurations, such as firewall rules, VPN settings, or Thre
 
 This is how the HA system works:
 
-- **Heartbeat**: The primary and secondary firewalls continuously check each other's status using the VRRP protocol. If the primary fails, the secondary takes over. The VRRP protocol is carried over a dedicated LAN interface called the **HA interface**, additional information will be provided in a later section.
+- **Heartbeat**: The primary and secondary firewalls continuously check each other\'s status using the VRRP protocol. If the primary fails, the secondary takes over. The VRRP protocol is carried over a dedicated LAN interface called the **HA interface**, additional information will be provided in a later section.
 - **Settings synchronization**: The primary firewall securely sends its settings, including details about active connections like VPNs and network routes, to the secondary firewall.
-- The system automatically adjusts what each firewall does based on whether it's the active (primary) or standby (secondary) unit:
-  - **Secondary receives configuration updates**: When the secondary firewall gets new settings, it saves them but keeps related services (like VPNs) turned off. The secondary firewall holds a complete copy of the primary's configuration but keeps most background tasks inactive. This includes things like checking for software updates, performing remote backups, or sending reports. This ensures only the active primary firewall handles these tasks, preventing conflicts.
+- The system automatically adjusts what each firewall does based on whether it\'s the active (primary) or standby (secondary) unit:
+  - **Secondary receives configuration updates**: When the secondary firewall gets new settings, it saves them but keeps related services (like VPNs) turned off. The secondary firewall holds a complete copy of the primary\'s configuration but keeps most background tasks inactive. This includes things like checking for software updates, performing remote backups, or sending reports. This ensures only the active primary firewall handles these tasks, preventing conflicts.
   - **Firewall becomes active**: When a firewall takes over as the primary (either starting up normally or during a failover), it activates all necessary services and connections.
   - **Firewall becomes standby**: When a firewall is in backup mode (either at startup or when the primary comes back online), it deactivates most services and connections.
 
@@ -87,7 +87,7 @@ The HA cluster supports synchronization for a wide range of features, including:
 
 - Extra packages not included inside the image are not supported (eg. NUT, etherwake, etc.)
 - Syslog daemon (rsyslog) configuration is not synced: if you need to send logs to a remote server, you must use the controller.
-- After the first synchronization, the secondary node will have the same hostname as the primary node. The web user interface will show the hostname of the primary node, but the dashboard will indicate the node's role (primary or secondary). Also, when accessing the SSH console, the prompt will change to indicate the node's role. See the troubleshooting_ha-section section for more details.
+- After the first synchronization, the secondary node will have the same hostname as the primary node. The web user interface will show the hostname of the primary node, but the dashboard will indicate the node\'s role (primary or secondary). Also, when accessing the SSH console, the prompt will change to indicate the node\'s role. See the [Troubleshooting](./ha_maintenance_troubleshooting.md#troubleshooting_ha-section) section for more details.
 
 ### Synchronization and log retention
 

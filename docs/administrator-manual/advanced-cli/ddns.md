@@ -3,9 +3,9 @@ title: "Dynamic DNS"
 sidebar_position: 2
 ---
 
-# Dynamic DNS
+# Dynamic DNS {#ddns-section}
 
-Dynamic DNS (DDNS) automatically updates your domain name's DNS record with your current IP address, even if it changes dynamically. This allows you to access your firewall remotely using a consistent domain name instead of remembering a potentially changing IP address.
+Dynamic DNS (DDNS) automatically updates your domain name\'s DNS record with your current IP address, even if it changes dynamically. This allows you to access your firewall remotely using a consistent domain name instead of remembering a potentially changing IP address.
 
 ## Supported Providers
 
@@ -43,17 +43,17 @@ Prerequisites:
 
 3.  Enter your DDNS configuration details, including your provider credentials in the designated fields. These may include:
 
-    - The DDNS provider's service name, from the above list: use the `service_name` field.
+    - The DDNS provider\'s service name, from the above list: use the `service_name` field.
     - Username or client ID: use the `username` field.
     - Password or API key: use the `password` field.
     - Domain name to be associated with your dynamic IP address: use the `domain` field, you can also use the `lookup_host` field.
-    - Interface to monitor for IP address changes (e.g., "wan"): use the `interface` field.
+    - Interface to monitor for IP address changes (e.g., \"wan\"): use the `interface` field.
 
-While the general steps remain consistent, specific configuration details may vary slightly depending on your chosen provider. It's recommended to consult your provider's documentation for detailed instructions and any additional settings required.
+While the general steps remain consistent, specific configuration details may vary slightly depending on your chosen provider. It\'s recommended to consult your provider\'s documentation for detailed instructions and any additional settings required.
 
-Due to the variety of supported providers, including their unique interfaces and authentication methods, it's not possible to provide specific configuration steps for each provider within this guide.
+Due to the variety of supported providers, including their unique interfaces and authentication methods, it\'s not possible to provide specific configuration steps for each provider within this guide.
 
-If your provider is not listed, you may still be able to configure it using a custom configuration.
+If your provider is not listed, you may still be able to configure it using a [custom configuration](#custom-ddns-section).
 
 ## Using the UCI command line
 
@@ -82,9 +82,9 @@ Additional notes:
 - Consider enabling logging for the DDNS service to monitor updates and troubleshoot any issues.
 - Some providers may offer advanced features like wildcards and subdomain updates. Explore these options based on your specific needs.
 
-### Example: afraid.org (FreeDNS)
+### Example: afraid.org (FreeDNS) {#example-afraid.org-freedns}
 
-Configure a domain with FreeDNS (afraid.org) using the UCI command line. The domain is named "sanchio.crabdance.com" and the username and password are "myuser" and "mypass", respectively. :
+Configure a domain with FreeDNS (afraid.org) using the UCI command line. The domain is named \"sanchio.crabdance.com\" and the username and password are \"myuser\" and \"mypass\", respectively. :
 
     uci set ddns.afraid=service
     uci set ddns.afraid.service_name='afraid.org-v2-basic'
@@ -104,9 +104,9 @@ Configure a domain with FreeDNS (afraid.org) using the UCI command line. The dom
     uci commit ddns
     /etc/init.d/ddns restart
 
-### Custom example: dyndns.it (DynDNS)
+### Custom example: dyndns.it (DynDNS) {#custom-ddns-section}
 
-You can also configure some custom DDNS providers using the UCI command line. Configure a domain with DynDNS using the UCI command line. The domain is named "nstest1.freeddns.it" and the username and password are "nstest1" and "nstest", respectively. :
+You can also configure some custom DDNS providers using the UCI command line. Configure a domain with DynDNS using the UCI command line. The domain is named \"nstest1.freeddns.it\" and the username and password are \"nstest1\" and \"nstest\", respectively. :
 
     uci set ddns.dyndns_it=service
     uci set ddns.dyndns_it.enabled='1'
@@ -127,4 +127,4 @@ You can also configure some custom DDNS providers using the UCI command line. Co
 
 ## Using Luci
 
-The Luci web interface offers a simplified way to configure DDNS on NethSecurity. Refer to the [official documentation](https://openwrt.org/docs/guide-user/services/ddns/client#web_interface_instructions) for detailed instructions on using Luci to configure DDNS.
+The [Luci](../installation/remote_access.md#luci-section) web interface offers a simplified way to configure DDNS on NethSecurity. Refer to the [official documentation](https://openwrt.org/docs/guide-user/services/ddns/client#web_interface_instructions) for detailed instructions on using Luci to configure DDNS.

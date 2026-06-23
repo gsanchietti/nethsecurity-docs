@@ -29,7 +29,7 @@ If you are running NethSecurity 8.7.2 or older, use:
 
 :::note
 
-Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: restore_extra_packages-section.
+Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: [Restore extra packages](../system/updates.md#restore_extra_packages-section).
 
 :::
 

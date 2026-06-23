@@ -3,7 +3,7 @@ title: "UCI (Unified Configuration Interface)"
 sidebar_position: 13
 ---
 
-# UCI (Unified Configuration Interface)
+# UCI (Unified Configuration Interface) {#uci-section}
 
 UCI (Unified Configuration Interface) is a centralized configuration management system used in NethSecurity. It provides a unified approach to system configuration through a command-line interface and standardized configuration files.
 

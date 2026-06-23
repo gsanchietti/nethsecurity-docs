@@ -3,7 +3,7 @@ title: "Connections"
 sidebar_position: 4
 ---
 
-# Connections
+# Connections {#connections-section}
 
 The connection tracking (Conntrack) is a network feature used in firewalls and routers to monitor and manage the state of active network connections. It tracks the state of each connection, such as new, established, related, or expired, and maintains this information in a connection tracking table. This allows for stateful packet inspection, where packets are inspected based on their connection context, enabling more precise and secure filtering rules. Conntrack also supports Network Address Translation (NAT) by tracking internal to external IP mappings and optimizes performance by quickly dropping packets from invalid or expired connections.
 
@@ -23,7 +23,7 @@ The administrator can delete a single connection or flush the whole connection t
 When to terminate a connection:
 
 - the connection has expired or been idle for an extended period
-- there's evidence of malicious activity associated with the session
+- there\'s evidence of malicious activity associated with the session
 - the connection appears to be stale or hanging, preventing new connections
 - termination is necessary for network troubleshooting or diagnostics
 

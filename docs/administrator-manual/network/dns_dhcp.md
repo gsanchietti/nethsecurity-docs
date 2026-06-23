@@ -3,7 +3,7 @@ title: "DNS & DHCP"
 sidebar_position: 2
 ---
 
-# DNS & DHCP
+# DNS & DHCP {#dns_dhcp-section}
 
 NethSecurity can provide DNS and DHCP services to every local network. This section is divided in 5 tabs:
 
@@ -14,7 +14,7 @@ NethSecurity can provide DNS and DHCP services to every local network. This sect
 - DNS records
 - Scan network
 
-## DHCP and MAC binding
+## DHCP and MAC binding {#dhcp_and_mac_binding-section}
 
 This section allows you to enable and manage a DHCP server for every local network configured in your NethSecurity. Every local interface is provided with a card where you can enable the service clicking on button **Edit**.
 
@@ -22,7 +22,7 @@ Available fields:
 
 - `Mac binding`:
   - `Status`: enable/disable the MAC-IP binding feature for this interface
-  - `Type`: it's possible to choose between two types of MAC-IP binding:
+  - `Type`: it\'s possible to choose between two types of MAC-IP binding:
     - `Soft binding`: allows hosts without a reservation, blocks mismatched IP/MAC
 
       **Example**: An office network where employees frequently bring their own devices (BYOD). In this case Soft binding allows devices without a reservation to access the network, but ensures that any device with a mismatched IP/MAC address is blocked. This provides flexibility for employees while maintaining a level of security.
@@ -40,7 +40,7 @@ Available fields:
 
 `Force DHCP server start`
 
-Upon startup, the DHCP server checks if there are other DHCP servers on the network. With this option disabled, the DHCP server won't be activated if another one is detected on the network. If the force option is enabled, the DHCP server will be started even if there are other DHCP servers within the network.
+Upon startup, the DHCP server checks if there are other DHCP servers on the network. With this option disabled, the DHCP server won\'t be activated if another one is detected on the network. If the force option is enabled, the DHCP server will be started even if there are other DHCP servers within the network.
 
 `DHCP option`
 
@@ -51,13 +51,13 @@ Example to override the DNS passed to clients with 2 servers:
 - selected option: `dns-server`
 - value: `1.1.1.1,8.8.8.8`
 
-See also dns_dhcp_custom-section for more information on non-standard options.
+See also [Non-standard custom options](#dns_dhcp_custom-section) for more information on non-standard options.
 
-## Static Leases
+## Static Leases {#static_leases-section}
 
 Static leases assigns stable IP addresses and symbolic hostnames to DHCP clients. The host is identified by its MAC address, assigned a fixed IP address, and provided with a symbolic hostname for easy recognition.
 
-Click the button **Add reservation** to add a new device's reservation.
+Click the button **Add reservation** to add a new device\'s reservation.
 
 Available fields:
 
@@ -66,13 +66,13 @@ Available fields:
 - `MAC address` : MAC address of the device where you want to make the reservation
 - `Reservation name` : Optional, freely configurable filed
 
-## Dynamic leases
+## Dynamic leases {#dynamic_leases-section}
 
 Dynamic leases represents IP addresses that are currently in use and have been allocated to devices on the network. This tab shows all currently active leases.
 
 :::note
 
-When storage-section is configured, dnsmasq stores the lease file in `/mnt/data/dnsmasq/dhcp.leases`, so dynamic leases survive reboots. Otherwise it keeps using `/tmp/dhcp.leases`.
+When [Storage](../system/storage.md) is configured, dnsmasq stores the lease file in `/mnt/data/dnsmasq/dhcp.leases`, so dynamic leases survive reboots. Otherwise it keeps using `/tmp/dhcp.leases`.
 
 :::
 
@@ -88,7 +88,7 @@ uci commit dhcp
 reload_config
 ```
 
-### Non-standard custom options
+### Non-standard custom options {#dns_dhcp_custom-section}
 
 In addition to the standard DHCP options, NethSecurity allows you to configure non-standard custom options, such as option 82 (DHCP Relay Agent Information). These options can be useful for advanced configurations or specific network requirements.
 
@@ -104,7 +104,7 @@ Custom options configured via the command line are preserved even when changes a
 
 However, users should avoid modifying these custom options directly from the UI to prevent unexpected behavior.
 
-## DNS
+## DNS {#dns-section}
 
 The system employs [Dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) a as a downstream caching DNS server. Dnsmasq functions as a local caching nameserver, which by default forwards DNS queries to the upstream DNS servers provided by the DHCP server of the WAN interfaces. However, this behavior can be customized using the following configuration options:
 
@@ -112,16 +112,16 @@ The system employs [Dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) a as a 
 - `DNS Domain` : Insert the the local DNS domain, ensuring that queries for this domain are always resolved locally.
 - `Log DNS queries`: enable it if you want all the DNS queries to be logged by the system.
 
-### Forwarding servers
+### Forwarding servers {#forwarding_servers-section}
 
-You only need to configure forwarders if your WAN interfaces are set up with static IP addresses. If your WAN interfaces are configured via DHCP, typically provided by your ISP, the system will automatically use the DNS servers supplied by the WAN interfaces. Automatically configured upstream DNS servers can be found in the <span class="title-ref">/tmp/resolv.conf.d/resolv.conf.auto</span> file.
+You only need to configure forwarders if your WAN interfaces are set up with static IP addresses. If your WAN interfaces are configured via DHCP, typically provided by your ISP, the system will automatically use the DNS servers supplied by the WAN interfaces. Automatically configured upstream DNS servers can be found in the `/tmp/resolv.conf.d/resolv.conf.auto` file.
 
 You can configure the following:
 
 - **Specify a single upstream DNS server:** enter the IP address of the desired DNS server in the designated field.
 - **Set up domain-specific DNS servers:** this allows you to route queries for specific domains to different servers.
 
-For privacy-focused DNS configuration using encrypted connections, see dns_over_http-section for DNS over HTTPS (DoH) setup.
+For privacy-focused DNS configuration using encrypted connections, see [DNS over HTTPS with filtering](../advanced-cli/dns_over_http.md) for DNS over HTTPS (DoH) setup.
 
 #### Domain-specific DNS servers
 
@@ -132,7 +132,7 @@ To use a custom DNS server for a specific domain, use the following syntax:
 where:
 
 - IP_ADDRESS: specify the IP address of the desired server
-- PORT: append the desired port (after the IP address using <span class="title-ref">\#</span> character).
+- PORT: append the desired port (after the IP address using `\#` character).
 
 The `PORT` value is optional so usually the configuration appears just like:
 
@@ -141,14 +141,14 @@ The `PORT` value is optional so usually the configuration appears just like:
 These are the main supported options:
 
 - Empty domain (`//`): matches unqualified names (without dots).
-- Specific domain (`/google.com/`): matches the exact domain and all its subdomains (e.g., google.com, www.google.com, drive.google.com...).
-- Wildcard domain (`*google.com/`): matches any domain **containing** "google.com" (e.g., google.com, www.google.com, supergoogle.com).
+- Specific domain (`/google.com/`): matches the exact domain and all its subdomains (e.g., google.com, www.google.com, drive.google.com\...).
+- Wildcard domain (`*google.com/`): matches any domain **containing** \"google.com\" (e.g., google.com, www.google.com, supergoogle.com).
 
 Examples:
 
-- Send all queries for "google.com" and its subdomains to 1.2.3.4: `/google.com/1.2.3.4`
-- Send all unqualified names (e.g., "localhost") to 10.0.0.1 and everything else to standard servers: `//10.0.0.1`
-- Send queries for domain "ad.nethserver.org" and its subdomains to 192.168.1.1 and everything else to standard servers: `/ad.nethserver.org/192.168.1.1`
+- Send all queries for \"google.com\" and its subdomains to 1.2.3.4: `/google.com/1.2.3.4`
+- Send all unqualified names (e.g., \"localhost\") to 10.0.0.1 and everything else to standard servers: `//10.0.0.1`
+- Send queries for domain \"ad.nethserver.org\" and its subdomains to 192.168.1.1 and everything else to standard servers: `/ad.nethserver.org/192.168.1.1`
 
 More specific domains take precedence over less specific domains, so for a configuration like this:
 
@@ -159,7 +159,7 @@ NethSecurity will send queries for google.com and gmail.google.com to 1.2.3.4, b
 
 This is true also for wildcards: if both specific and wildcard domains are defined for the same pattern, the specific one takes precedence (e.g., having `/google.com/` and `/*google.com/` : the first will handle google.com and www.google.com, the wildcard will handle supergoogle.com.
 
-### Maximum concurrent DNS queries
+### Maximum concurrent DNS queries {#dns_forward_max-section}
 
 By default, dnsmasq has a limit of 150 concurrent DNS queries to prevent DoS attacks. If this limit is reached, dnsmasq will log an error and stop processing new DNS queries until some of the existing ones are completed.
 
@@ -179,9 +179,9 @@ reload_config
 
 This option is not exposed in the UI, but the change will persist across updates and will not be overridden by the UI.
 
-### Domain set refresh timing
+### Domain set refresh timing {#dns_dhcp_domain_set_refresh-section}
 
-Domain set entries are refreshed when dnsmasq performs a new lookup for the domain. When responses are served from the local cache instead of performing a new lookup, the IP addresses are not re-added to the set. This can cause intermittent gaps if the ipset expires before the DNS TTL expires, or if the cache prevents dnsmasq from performing fresh lookups. Note that Adblock may alter dnsmasq behavior and affect domain set refreshing.
+[Domain set](../users-objects/objects.md#domain_sets-section) entries are refreshed when dnsmasq performs a new lookup for the domain. When responses are served from the local cache instead of performing a new lookup, the IP addresses are not re-added to the set. This can cause intermittent gaps if the ipset expires before the DNS TTL expires, or if the cache prevents dnsmasq from performing fresh lookups. Note that Adblock may alter dnsmasq behavior and affect domain set refreshing.
 
 A cron job runs every 10 minutes to refresh all domain sets, but it also depends on dnsmasq performing actual lookups rather than serving cached results.
 
@@ -194,7 +194,7 @@ uci commit dhcp
 reload_config
 ```
 
-These settings ensure that cached entries expire promptly, allowing dnsmasq to perform fresh lookups and properly update domain sets. Please note that setting will override the default TTL provided by upstream DNS servers. Such a low TTL may increase the number of queries sent to upstream DNS servers, which can lead to increased network traffic and potential performance issues if the upstream servers have rate limits or if there are many clients making frequent DNS requests. Use this configuration with caution and monitor the system's performance after applying it.
+These settings ensure that cached entries expire promptly, allowing dnsmasq to perform fresh lookups and properly update domain sets. Please note that setting will override the default TTL provided by upstream DNS servers. Such a low TTL may increase the number of queries sent to upstream DNS servers, which can lead to increased network traffic and potential performance issues if the upstream servers have rate limits or if there are many clients making frequent DNS requests. Use this configuration with caution and monitor the system\'s performance after applying it.
 
 ### DNS Rebind Protection
 
@@ -252,7 +252,7 @@ uci commit dhcp
 /etc/init.d/dnsmasq restart
 ```
 
-## DNS records
+## DNS records {#dns_records-section}
 
 The system can handle local DNS records. When the server performs a DNS lookup, first it will search inside local DNS records. If no local record is found, an external DNS query will be done.
 
@@ -269,9 +269,9 @@ Available fields:
 - `Hostname` : DNS hostname
 - `IP address` : IP address associated to hostname
 - `Name` : optional field
-- `Wildcard DNS record`: enable it if you want this answer for any subdomain you haven't already defined
+- `Wildcard DNS record`: enable it if you want this answer for any subdomain you haven\'t already defined
 
-## Scan network
+## Scan network {#scan network-section}
 
 This section describes the local network scanning feature. The page allows scanning all available local networks, excluding WAN networks. The page displays a list of detected local networks, each network includes a Scan network button, selecting this button starts a full scan of the chosen network.
 
@@ -294,11 +294,11 @@ The system supports scanning only on networks with a maximum netmask of 255.255.
 
 ## DHCP Relay
 
-The DHCP relay allows the firewall to forward DHCP requests from clients to an external DHCP server, DHCP relay is not available from the UI, but it's possible to configure it from the terminal using <span class="title-ref">uci</span>.
+The DHCP relay allows the firewall to forward DHCP requests from clients to an external DHCP server, DHCP relay is not available from the UI, but it\'s possible to configure it from the terminal using `uci`.
 
-- Replace <span class="title-ref">\<INTERFACE_NAME\></span> with the name of the interface where the DHCP relay should listen.
-- Replace <span class="title-ref">\<LOCAL_ADDR\></span> with the IP address of the firewall on that interface.
-- Replace <span class="title-ref">\<SERVER_ADDR\></span> with the IP address of the upstream DHCP server.
+- Replace `\<INTERFACE_NAME\>` with the name of the interface where the DHCP relay should listen.
+- Replace `\<LOCAL_ADDR\>` with the IP address of the firewall on that interface.
+- Replace `\<SERVER_ADDR\>` with the IP address of the upstream DHCP server.
 
 1.Create a new DHCP relay entry :
 

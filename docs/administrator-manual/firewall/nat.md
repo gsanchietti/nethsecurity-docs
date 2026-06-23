@@ -3,28 +3,28 @@ title: "NAT"
 sidebar_position: 2
 ---
 
-# NAT
+# NAT {#nat-section}
 
-Network Address Translation (NAT) is used to modify network address information in packet headers while in transit. NAT primarily enables the translation of private IP addresses used within a local network to a public IP address, allowing multiple devices within the local network to share a single public IP when accessing the internet. As default, all hosts within the local network access the WAN using the firewall are using masquerade. Masquerade is a form of NAT that automatically assigns the source IP address of outgoing packets to the WAN IP address of the firewall. This ensures that internal hosts accessing the internet appear to external servers as if they are originating from the firewall's public IP address.
+Network Address Translation (NAT) is used to modify network address information in packet headers while in transit. NAT primarily enables the translation of private IP addresses used within a local network to a public IP address, allowing multiple devices within the local network to share a single public IP when accessing the internet. As default, all hosts within the local network access the WAN using the firewall are using masquerade. Masquerade is a form of NAT that automatically assigns the source IP address of outgoing packets to the WAN IP address of the firewall. This ensures that internal hosts accessing the internet appear to external servers as if they are originating from the firewall\'s public IP address.
 
 Access the `NAT` page under the `Firewall` section, this page is organized in two tabs: `Rules and NETMAP` and `NAT helpers`.
 
 `Rules and NETMAP` tab allows to configure the following types of NAT rules:
 
-- Source NAT
-- Masquerade
-- Accept (disable NAT)
-- Netmap
+- [Source NAT](#snat-section)
+- [Masquerade](#masquerade-section)
+- [Accept (disable NAT)](#disable_nat-section)
+- [Netmap](#netmap-section)
 
 Please note that these NAT rules are applied to all network protocols.
 
-You can configure also destination NAT rules (DNAT), usually namedport forward or port redirects, from the port forward page.
+You can configure also destination NAT rules (DNAT), usually namedport forward or port redirects, from the [port forward](./port_forward.md) page.
 
 `NAT helpers` tab allows to enable or disable NAT helpers:
 
-- NAT helpers
+- [NAT helpers](#helpers-section)
 
-## SNAT
+## SNAT {#snat-section}
 
 Source NAT, often referred to as SNAT, modifies the source IP address of outgoing packets. It is commonly used in networks where private IP addresses are translated into a single public IP address when communicating with external networks. SNAT ensures that responses from external servers are routed back to the correct internal device by modifying the source IP address of outgoing packets to the public IP address. This allows multiple internal devices to access the internet using a shared public IP address, enhancing security and scalability.
 
@@ -40,21 +40,21 @@ Source NAT, often referred to as SNAT, modifies the source IP address of outgoin
 
 If you have multiple WANs and your SNAT rule rewrites to one of the public WAN IPs, you need to create a MultiWAN rule in addition to the SNAT rule. This rule will route traffic from the source IP address through the right WAN with the public IP address.
 
-If you haven't set this up yet, add a custom policy that includes only the relevant WAN. Then, create a rule to apply this custom policy for traffic originating from the internal IP address (source address) to any destination and protocol.
+If you haven\'t set this up yet, add a custom policy that includes only the relevant WAN. Then, create a rule to apply this custom policy for traffic originating from the internal IP address (source address) to any destination and protocol.
 
-## MASQUERADE
+## MASQUERADE {#masquerade-section}
 
-The masquerade rule masks all outgoing traffic with the IP address of the firewall's outbound interface. Traffic from internal hosts to the Internet are automatically masqueraded by the firewall. Masquerade can also be used to mask traffic originating from a remote network (e.g., VPN) with the firewall's IP to avoid any routing issues.
+The masquerade rule masks all outgoing traffic with the IP address of the firewall\'s outbound interface. Traffic from internal hosts to the Internet are automatically masqueraded by the firewall. Masquerade can also be used to mask traffic originating from a remote network (e.g., VPN) with the firewall\'s IP to avoid any routing issues.
 
-**Example** You need to reach a host on the local network (routed) from the VPN network (e.g. 192.168.7.0/24), but the host doesn't have a configured gateway or has a different gateway than the firewall.
+**Example** You need to reach a host on the local network (routed) from the VPN network (e.g. 192.168.7.0/24), but the host doesn\'t have a configured gateway or has a different gateway than the firewall.
 
 **Problem** The host cannot reach the local device due to the lack of a gateway.
 
-**Solution** Create a NAT rule with masquerade action for the traffic coming from the VPN Network. This masks the traffic from the VPN network (192.168.7.0/24) to the local network with the firewall's IP of the destination interface. The rule should contain the VPN network (192.168.7.0/24) as the source and the internal host network (192.168.1.0/24) as the destination address, outbound zone can be left empty; select MASQUERADE as action.
+**Solution** Create a NAT rule with masquerade action for the traffic coming from the VPN Network. This masks the traffic from the VPN network (192.168.7.0/24) to the local network with the firewall\'s IP of the destination interface. The rule should contain the VPN network (192.168.7.0/24) as the source and the internal host network (192.168.1.0/24) as the destination address, outbound zone can be left empty; select MASQUERADE as action.
 
 **Result** The host can reach the local device (e.g. 192.168.1.78) as if it originated from the firewall.
 
-## ACCEPT (disable NAT)
+## ACCEPT (disable NAT) {#disable_nat-section}
 
 An ACCEPT rule disables the NAT (no-NAT) and allows you to bypass the NAT process for specific traffic. This is particularly useful when it comes to avoiding WAN masquerading for specific destinations.
 
@@ -64,13 +64,13 @@ An ACCEPT rule disables the NAT (no-NAT) and allows you to bypass the NAT proces
 
 **Solution**: Create a NAT (Network Address Translation) rule with ACCEPT in your firewall. This rule avoid masquerading for all the traffic towards the CDN network, keeping the local source IP address unchanged. The rule should contain the internal network (192.168.1.0./24) as the source and the CDN network (192.168.50.0/24) as the destination address.
 
-## Netmap
+## Netmap {#netmap-section}
 
 Netmap is a NAT technique that offers 1:1 network-wide translation without changing the individual host addresses. This means it could map an entire private network (e.g., 192.168.1.0/24) to a another network (e.g., 10.5.6.0/24) at once, eliminating the need to manually configure individual NAT rules for each device.
 
 **Example** 2 firewalls, FW-A and FW-B holding a VPN tunnel between networks A and B, local and remote networks are overlapping (192.168.1.0/24), so this makes it impossible to route traffic between them. Translate A and B networks onto two alternative networks can solve the problem so that there are no overlapping networks.
 
-Let's use this translation scheme.
+Let\'s use this translation scheme.
 
 - Network A: 192.168.1.0/24 -\> is translated to -\> Network ALT_A: 10.1.1.0/24
 - Network B: 192.168.1.0/24 -\> is translated to -\> Network ALT_B: 10.2.2.0/24
@@ -96,7 +96,7 @@ If you need to allow requests starting from network B toward network A you must 
 
 ### Source netmap
 
-The "source netmap" allows us to determine how the source should change when traffic is directed towards a specific destination. E.g., destination network 10.2.2.0/24, source network: 192.168.0.0/24, natted source network: 10.1.1.0/24.
+The \"source netmap\" allows us to determine how the source should change when traffic is directed towards a specific destination. E.g., destination network 10.2.2.0/24, source network: 192.168.0.0/24, natted source network: 10.1.1.0/24.
 
 You can create a source netmap rule from the web interface inside the `NAT` page. On the lower part of the page, click on the **Add source NETMAP** button to create a new rule. Inside the drawer, fill the fields as follows:
 
@@ -109,7 +109,7 @@ Under the `Advanced settings` section, you can specify the input and output devi
 
 ### Destination Netmap
 
-The "destination netmap" allows us to determine how the destination IP should change when traffic comes from a specific network. E.g., source network 10.2.2.0/24, destination network: 10.1.1.0/24, natted destination network: 192.168.0.0/24.
+The \"destination netmap\" allows us to determine how the destination IP should change when traffic comes from a specific network. E.g., source network 10.2.2.0/24, destination network: 10.1.1.0/24, natted destination network: 192.168.0.0/24.
 
 You can create a destination netmap rule from the web interface inside the `NAT` page. On the lower part of the page, click on the **Add destination NETMAP** button to create a new rule. Inside the drawer, fill the fields as follows:
 
@@ -159,7 +159,7 @@ Then commit and apply:
     ns-netmap
     /etc/init.d/firewall reload
 
-## NAT helpers
+## NAT helpers {#helpers-section}
 
 NAT helpers are mechanisms designed to facilitate communication for certain protocols that may encounter issues when used with basic NAT. Some common protocols, such as FTP, SIP, or H.323, embed IP addresses or port numbers within the data payload, which can create problems with standard NAT.
 

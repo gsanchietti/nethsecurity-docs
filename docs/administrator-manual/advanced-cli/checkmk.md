@@ -3,7 +3,7 @@ title: "Checkmk"
 sidebar_position: 11
 ---
 
-# Checkmk
+# Checkmk {#checkmk-section}
 
 Checkmk is a monitoring platform used to supervise servers, network devices, and appliances. The firewall can be monitored with [Checkmk](https://checkmk.com/) by installing the NethSecurity extra packages described in this chapter.
 
@@ -30,7 +30,7 @@ If you are running NethSecurity 8.7.2 or older, use:
     opkg update
     opkg install ns-checkmk-utils
 
-After installation, the agent service is managed by `/etc/init.d/check_mk_agent` and it's started and enabled on boot by default.
+After installation, the agent service is managed by `/etc/init.d/check_mk_agent` and it\'s started and enabled on boot by default.
 
 Use the following command to check the status:
 
@@ -44,7 +44,7 @@ Verify the output locally with:
 
 The agent listens on TCP port `6556`. By default, traffic from the LAN is allowed, but if you have a more restrictive firewall configuration, you may need to allow access to this port from the Checkmk monitoring server.
 
-You can add a firewall rule to allow access directly from web user interface, see firewall_rules-section, or use the command line interface to add a rule.
+You can add a firewall rule to allow access directly from web user interface, see [Rules](../firewall/firewall_rules.md), or use the command line interface to add a rule.
 
 For example, to allow access from a monitoring host in the LAN:
 

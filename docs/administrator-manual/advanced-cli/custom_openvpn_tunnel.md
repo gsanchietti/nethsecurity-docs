@@ -3,13 +3,13 @@ title: "Custom OpenVPN tunnel"
 sidebar_position: 6
 ---
 
-# Custom OpenVPN tunnel
+# Custom OpenVPN tunnel {#custom_openvpn_tunnel-section}
 
 This guide explains how to configure an OpenVPN client on NethSecurity using a configuration file (`myvpn.ovpn`) provided by a VPN service provider. The configuration ensures the VPN starts automatically when the firewall boots.
 
 ## Prerequisites
 
-- A valid OpenVPN configuration file (<span class="title-ref">myvpn.ovpn</span>) from your VPN provider.
+- A valid OpenVPN configuration file (`myvpn.ovpn`) from your VPN provider.
 - Access to the NethSecurity terminal via SSH.
 - Basic familiarity with the UCI (Unified Configuration Interface) system in OpenWrt/NethSecurity.
 
@@ -23,7 +23,7 @@ For these reasons, caution and attention to detail are strongly advised when per
 
 ## Configure the VPN
 
-### 1. Place the configuration file in the correct directory
+### 1. Place the configuration file in the correct directory {#place-the-configuration-file-in-the-correct-directory}
 
 1.  Copy the `myvpn.ovpn` file to the directory `/etc/openvpn/`. Use SCP or a similar tool to transfer the file: :
 
@@ -34,7 +34,7 @@ For these reasons, caution and attention to detail are strongly advised when per
         chmod 644 /etc/openvpn/myvpn.ovpn
         chown root:root /etc/openvpn/myvpn.ovpn
 
-### 2. Create a new OpenVPN client configuration in UCI
+### 2. Create a new OpenVPN client configuration in UCI {#create-a-new-openvpn-client-configuration-in-uci}
 
 1.  Add a new OpenVPN section in the UCI database called `myvpn`, link the configuration file to this section and enable the VPN :
 
@@ -47,7 +47,7 @@ For these reasons, caution and attention to detail are strongly advised when per
 
         uci commit openvpn
 
-### 3. Start the VPN client immediately
+### 3. Start the VPN client immediately {#start-the-vpn-client-immediately}
 
 To start the VPN client without rebooting the system, run: :
 
@@ -55,7 +55,7 @@ To start the VPN client without rebooting the system, run: :
 
 This will restart all configured OpenVPN tunnels.
 
-### 4. Verify the VPN is running
+### 4. Verify the VPN is running {#verify-the-vpn-is-running}
 
 To ensure OpenVPN is using the correct configuration file and is running as expected, check the active processes: :
 
@@ -73,18 +73,12 @@ Check the OpenVPN logs to confirm the connection: :
 
 You should see log entries indicating a successful connection.
 
-<div class="note">
+:::note
 
-<div class="title">
-
-Note
-
-</div>
-
-- **File name consistency:** The configuration name `myvpn` must match the OpenVPN section name in UCI and the configuration file's location. If you change the name, ensure all references to `myvpn` in commands and filenames are updated.
+- **File name consistency:** The configuration name `myvpn` must match the OpenVPN section name in UCI and the configuration file\'s location. If you change the name, ensure all references to `myvpn` in commands and filenames are updated.
 - **Automatic startup:** By setting `enabled='1'`, the VPN client will automatically start whenever the firewall boots.
 
-</div>
+:::
 
 ## Configure authentication credentials (optional)
 
@@ -110,7 +104,7 @@ If the VPN requires a username and password, create an authentication file.
 
 :::note
 
-Authentication file: when using an authentication file, ensure it has strict permissions (<span class="title-ref">600</span>) to protect sensitive information.
+Authentication file: when using an authentication file, ensure it has strict permissions (`600`) to protect sensitive information.
 
 :::
 
@@ -118,7 +112,7 @@ Authentication file: when using an authentication file, ensure it has strict per
 
 To enable traffic through the VPN, it is necessary to configure the firewall on NethSecurity. The best practice is to assign a fixed device name to the VPN, create a dedicated zone for the custom VPN, and associate the VPN device with that zone.
 
-### 1. Fix the VPN device name
+### 1. Fix the VPN device name {#fix-the-vpn-device-name}
 
 To ensure the VPN device name remains consistent and avoids automatic assignment, it is crucial to fix the name in the OpenVPN configuration file. Edit the file (`/etc/openvpn/myvpn.ovpn`) to change `dev tun` to `dev tunmyvpn` and add the following line (this example is made with a *routed* vpn): :
 
@@ -130,11 +124,11 @@ Please remember that the interface name (referred to as `tunmyvpn` in the exampl
 
 :::
 
-### 2. Create a firewall zone
+### 2. Create a firewall zone {#create-a-firewall-zone}
 
 From the NethSecurity UI, create a new firewall zone named `myzone`. Configure this zone to allow access to the required resources.
 
-### 3. Associate the VPN device with the zone
+### 3. Associate the VPN device with the zone {#associate-the-vpn-device-with-the-zone}
 
 To associate the VPN device with the `myzone` firewall zone, perform the following steps in the command line:
 

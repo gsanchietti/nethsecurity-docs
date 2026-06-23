@@ -3,14 +3,14 @@ title: "Updates"
 sidebar_position: 4
 ---
 
-# Updates
+# Updates {#updates-section}
 
 NethSecurity allows two types of updates, both available from the `Update` section under the `System` menu:
 
 - normal updates for bugfixes and security patches
 - system upgrades to switch to a different version
 
-## Bug & security fixes
+## Bug & security fixes {#bug-security-fixes}
 
 These updates are intended for minor updates and bugfixes.
 
@@ -18,7 +18,7 @@ Typically they could be performed automatically, but at any time it is possible 
 
 When using this method, the version of the image shown inside the dashboard does not change, but the system is updated with the latest fixes.
 
-## System upgrades
+## System upgrades {#system_upgrades-section}
 
 This types of upgrages involve the transition to a new version of the firmware that introduces new features, improvements and wider hardware support.
 
@@ -36,7 +36,7 @@ You can also perform a `System update` from the command line. To do this, simply
 
 The `sysupgrade` command flashes the new image file to the device.
 
-### Restore extra packages
+### Restore extra packages {#restore_extra_packages-section}
 
 Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. Please note that the reinstall procedure requires access to Internet. If one or more packages cannot be installed because the network is not yet ready or a transient error occurs, the restore service stays enabled and retries automatically on the next boot until all packages are restored. Restored packages are reported inside the log. For example, a mixed restore may log:
 

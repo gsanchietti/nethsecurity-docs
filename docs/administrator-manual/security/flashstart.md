@@ -3,7 +3,7 @@ title: "FlashStart DNS filter"
 sidebar_position: 5
 ---
 
-# FlashStart DNS filter
+# FlashStart DNS filter {#flashstart-section}
 
 DNS filtering integrates with third-party DNS-based content filtering software, default supported content filter is the one provided from [FlashStart](https://www.flashstart.com).
 
@@ -18,7 +18,7 @@ It basically links 2 components : filter configuration and network configuration
 
 :::note
 
-**Subscription required**
+Subscription required
 
 This feature is available only if the firewall has a valid subscription.
 
@@ -26,7 +26,7 @@ This feature is available only if the firewall has a valid subscription.
 
 :::note
 
-Before configuring NethSecurity you need to create an account on FlashStart and configure the service. FlashStart is a payed service that allows you to use trial licenses. Please refer to the supplier's documentation [doc](https://cloud.flashstart.com/customerarea/support/docs).
+Before configuring NethSecurity you need to create an account on FlashStart and configure the service. FlashStart is a payed service that allows you to use trial licenses. Please refer to the supplier\'s documentation [doc](https://cloud.flashstart.com/customerarea/support/docs).
 
 :::
 
@@ -43,14 +43,14 @@ Once the account has been created and the service configured, NethSecurity can b
 Before enabling the FlashStart DNS filter, please consider the following important recommendations:
 
 1.  **DNS Redirection Behavior** When content filtering is enabled, all DNS traffic from the clients will be automatically redirected to the external FlashStart filtering service, regardless of their configuration. **Do not make changes to the DNS servers configured in NethSecurity or in network clients.**
-2.  **Block Alternative DNS Protocols** To preserve the effectiveness of the content filter, it is strongly recommended to block alternative DNS protocols such as DoT and DoH. The most effective approach is to use the Threat Shield IP blocklist “public DoH-Provider” to block known DoH providers, and to reject all outbound TCP connections on port 853 in order to block DoT traffic.
+2.  **Block Alternative DNS Protocols** To preserve the effectiveness of the content filter, it is strongly recommended to block alternative DNS protocols such as DoT and DoH. The most effective approach is to use the Threat Shield IP blocklist "public DoH-Provider" to block known DoH providers, and to reject all outbound TCP connections on port 853 in order to block DoT traffic.
 3.  **Avoid Conflicts with Threat Shield DNS** Use FlashStart only if you are **not already using the Threat Shield DNS service**, as using both simultaneously may lead to conflicts.
 
 ## Configuration
 
 ### FlashStart platform configuration
 
-Before configuring FlashStart on your firewall, you must first purchase and configure the **Pro** or **Pro Plus** service on the FlashStart platform. Once the service has been purchased, you’ll need to configure the networks on the FlashStart portal.
+Before configuring FlashStart on your firewall, you must first purchase and configure the **Pro** or **Pro Plus** service on the FlashStart platform. Once the service has been purchased, you'll need to configure the networks on the FlashStart portal.
 
 During the configuration process, the system will guide you through the setup, follow the prompts and select the following options:
 
@@ -78,7 +78,7 @@ Once the FlashStart service has been configured on the firewall, all further con
 
 ### DNS Server Configuration
 
-The DNS servers used by FlashStart are automatically configured by NethSecurity when the service is enabled. It's possible to customize a few options:
+The DNS servers used by FlashStart are automatically configured by NethSecurity when the service is enabled. It\'s possible to customize a few options:
 
 - **Query logging**: You can enable query logging by running the following command:
 
@@ -88,11 +88,11 @@ The DNS servers used by FlashStart are automatically configured by NethSecurity 
   reload_config
   ```
 
-  This will log DNS queries to the firewall's system log, which can be useful for tracking and troubleshooting purposes.
+  This will log DNS queries to the firewall\'s system log, which can be useful for tracking and troubleshooting purposes.
 
 - **DNS Rebind protection**
 
-DNS Rebind protection is disabled by default for FlashStart clients in order to prevent unwanted blocks when internal DNS servers resolve private or internal domains that could otherwise be flagged by the firewall’s DNS Rebind protection mechanism. If required, this protection can be manually enabled using the following configuration:
+DNS Rebind protection is disabled by default for FlashStart clients in order to prevent unwanted blocks when internal DNS servers resolve private or internal domains that could otherwise be flagged by the firewall's DNS Rebind protection mechanism. If required, this protection can be manually enabled using the following configuration:
 
 ``` 
 uci set flashstart.global.rebind_protection='1'
@@ -106,12 +106,12 @@ If an AD controller is present, user-based profiling can be enabled. To do this,
 
 ### DNS Management in the Network
 
-All clients on the network must route their DNS requests through NethSecurity instead of directly querying the AD controller, this prevents the clients from inheriting the AD controller’s profiling policy.
+All clients on the network must route their DNS requests through NethSecurity instead of directly querying the AD controller, this prevents the clients from inheriting the AD controller's profiling policy.
 
 #### Configuration Details
 
 - The AD controller uses an external DNS resolver.
-- In the FlashStart DNS UI on NethSecurity, add the local domain of the AD controller for resolution, specifying the IP address of the AD controller for resolving these local names (e.g., <span class="title-ref">/ad.mydomain.local/192.168.55.1</span>).
+- In the FlashStart DNS UI on NethSecurity, add the local domain of the AD controller for resolution, specifying the IP address of the AD controller for resolving these local names (e.g., `/ad.mydomain.local/192.168.55.1`).
 - Configure clients to use either an external DNS server or the firewall itself as their DNS resolver.
 
 #### Important Notes
@@ -184,34 +184,34 @@ Although no known bugs have been reported at this time, the Pro Plus feature is 
 
 ## Troubleshooting
 
-### 1. My public IP is not listed in the FlashStart networks
+### 1. My public IP is not listed in the FlashStart networks {#my-public-ip-is-not-listed-in-the-flashstart-networks}
 
 If your public IP address does not appear in the FlashStart dashboard under registered networks, please allow up to 15 minutes. This delay may be caused by protection mechanisms on the FlashStart platform designed to mitigate repeated or automated registration attempts.
 
-### 2. DNS filtering does not seem to be working
+### 2. DNS filtering does not seem to be working {#dns-filtering-does-not-seem-to-be-working}
 
 If the filtering is not effective immediately after configuration:
 
 - Be aware that FlashStart may require a few minutes to propagate the applied settings across its infrastructure.
 - Also consider the impact of browser DNS cache, which may delay visible effects.
 
-To verify whether filtering is actually in place and working, you can perform a manual DNS query **in your local client** using the <span class="title-ref">dig</span> command:
+To verify whether filtering is actually in place and working, you can perform a manual DNS query **in your local client** using the `dig` command:
 
 ``` bash
 dig @8.8.8.8 www.mydomain.com
 ```
 
-Replace <span class="title-ref">www.mydomain.com</span> with the actual domain you're testing.
+Replace `www.mydomain.com` with the actual domain you\'re testing.
 
 If the domain is still being resolved and should be blocked, double-check the active profile and block settings on the FlashStart dashboard.
 
 :::note
 
-This `dig` test must always be performed from the **client** and **never from the firewall**. The firewall is **never** filtered by FlashStart's DNS servers, as this could potentially conflict with some of the services it provides.
+This `dig` test must always be performed from the **client** and **never from the firewall**. The firewall is **never** filtered by FlashStart\'s DNS servers, as this could potentially conflict with some of the services it provides.
 
 :::
 
-### 3. Testing DNS Filtering with dig directly from the firewall
+### 3. Testing DNS Filtering with dig directly from the firewall {#testing-dns-filtering-with-dig-directly-from-the-firewall}
 
 If you want to perform tests using `dig` directly from the firewall, you can do so by specifying the port. Each port corresponds to a different filtering profile.
 
@@ -248,7 +248,7 @@ dhcp.ns_56e6071cbd.max_cache_ttl='60'
 dhcp.ns_56e6071cbd.server='185.236.104.124' '185.236.105.125'
 ```
 
-In this example, the profile **"Guests"** is associated with port **5301**, so you would run:
+In this example, the profile **\"Guests\"** is associated with port **5301**, so you would run:
 
 ``` bash
 dig @127.0.0.1 -p 5301 mydomain.com

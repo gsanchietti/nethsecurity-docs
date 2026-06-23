@@ -3,7 +3,7 @@ title: "Controller"
 sidebar_position: 7
 ---
 
-# Controller
+# Controller {#controller-section}
 
 The NethSecurity controller is an application that can run on [NethServer 8](https://docs.nethserver.org/projects/ns8/en/latest/nethsecurity_controller.html) (NS8). The controller allows remote control of multiple NethSecurity installations, called units.
 
@@ -15,20 +15,20 @@ Key features:
 
 - **Centralized Management**: Manage multiple firewalls from a single server.
 - **Secure Communication**: Establish a secure [OpenVPN](https://openvpn.net/) connection between the server and the firewalls.
-- **Easy Configuration**: Configure firewalls directly from the controller's user interface.
+- **Easy Configuration**: Configure firewalls directly from the controller\'s user interface.
 - **Monitoring and Logging**: Collect and analyze logs from the firewalls inside [Loki](https://grafana.com/oss/loki/) for troubleshooting and monitoring purposes.
 - **Metrics Visualization**: Visualize metrics from the firewalls using the built-in [Grafana](https://grafana.com/) dashboard. Metrics are collected using [Prometheus](https://prometheus.io/) and [TimescaleDB](https://www.timescale.com/).
 - **Web-based SSH**: Access the firewall command-line interface using a web-based SSH client.
 
 ## Installation and configuration
 
-The controller can be installed on a NethServer 8 system from the Software Center. The module is named <span class="title-ref">NethSecurity Controller</span>.
+The controller can be installed on a NethServer 8 system from the Software Center. The module is named `NethSecurity Controller`.
 
 After the installation, the controller must be configured. The configuration can be done using the NethServer 8 web interface. The following parameters need to be set:
 
 - \`Controller hostname\`: The fully qualified domain name for the controller, like: `mycontroller.nethsecurity.org`. Ensure the hostname is resolvable and reachable from the units.
-- \`Let's Encrypt certificate\`: Enable or disable Let's Encrypt certificate for the controller web interface. It's recommended to enable it.
-- <span class="title-ref">VPN network</span> and \`VPN netmask\`: The OpenVPN network and netmask. When choosing the network, make sure it does not overlap with the existing networks inside all the units that will be connected to the controller. Use only class C networks like `192.168.7.0` with netmask `255.255.255.0`.
+- \`Let\'s Encrypt certificate\`: Enable or disable Let\'s Encrypt certificate for the controller web interface. It\'s recommended to enable it.
+- `VPN network` and \`VPN netmask\`: The OpenVPN network and netmask. When choosing the network, make sure it does not overlap with the existing networks inside all the units that will be connected to the controller. Use only class C networks like `192.168.7.0` with netmask `255.255.255.0`.
 - \`Administrator user\`: The controller administrator user name. The administrator user is the only user that can create and manage other users inside the controller. The same user name is used to access the Grafana interface.
 - \`Administrator password\`: Choose a strong password for the administrator user. Note that the default password is displayed only once, please store it in a safe place. The same password is used to access the Grafana interface. For security reasons, you should change the password after the first login both for the controller and the Grafana interface.
 
@@ -37,7 +37,7 @@ The following parameters are optional:
 - \`Controller name\`: The name of the controller, used to create the VPN certification authority. You can leave it unchanged unless you have a specific requirement.
 - \`Log retention\`: The log retention period in days, default is 180 days. It applies to the logs stored in Loki.
 - \`Metrics retention\`: The metrics retention period in days, default 15 days. It applies to the metrics stored in Prometheus and Timescale.
-- \`MaxMind license key\`: The controller can geolocate the IP addresses of the connected VPN clients and attackers. A map with the location of the clients and attackers will be displayed inside Grafana. The license key is required to enable the feature and download the MaxMind GeoIP2 database. To obtain a free license key, signup on the [MaxMind website](https://www.maxmind.com/en/geolite2/signup), then access the <span class="title-ref">Manage License Keys</span> page inside the account section. Generate a new license, copy the license key and paste it in the field.
+- \`MaxMind license key\`: The controller can geolocate the IP addresses of the connected VPN clients and attackers. A map with the location of the clients and attackers will be displayed inside Grafana. The license key is required to enable the feature and download the MaxMind GeoIP2 database. To obtain a free license key, signup on the [MaxMind website](https://www.maxmind.com/en/geolite2/signup), then access the `Manage License Keys` page inside the account section. Generate a new license, copy the license key and paste it in the field.
 - \`Allowed IPs\`: The list of IP addresses or CIDR ranges that are allowed to access the controller web interface. By default, the list is empty, meaning that access is allowed from all IP addresses. You can restrict access to specific IPs or networks for security reasons. When enabled, only the registration endpoint (eg. `https://controller.nethserver.org/api/register`) will be accessible from the units, allowing them to register with the controller. All other traffic between the controller and the units will be routed through the VPN connection. This feature requires unit version 8.6 or later.
 
 After completing the configuration, the controller is ready to be used and can be accessed using a web browser at the configured hostname, like `https://mycontroller.nethsecurity.org`.
@@ -58,7 +58,7 @@ The actual `UDP port` number can be found in the Controller module status page u
 The controller has two types of users:
 
 - **Administrator users**: The administrator users are the only ones who can create and manage users inside the controller. Administrator users can also access all units.
-- **Standard user**: Standard users can manage units and firewall configurations. These users must be associated with a group of units: they will be able to access only the units associated with their group. If a user is not associated with any group, they will have no access to any unit. See controller_unit_groups-section for more information about unit groups.
+- **Standard user**: Standard users can manage units and firewall configurations. These users must be associated with a group of units: they will be able to access only the units associated with their group. If a user is not associated with any group, they will have no access to any unit. See [Unit groups](#controller_unit_groups-section) for more information about unit groups.
 
 An administrator user is created during the controller configuration from NethServer 8 web interface. The administrator user can create and manage other users from the controller web interface. A user can be associated to a unit group from the controller web interface, inside the user management page.
 
@@ -74,13 +74,13 @@ After logging in, each user should change their password and generate an SSH key
 
 ### Two Factor Authentication (2FA)
 
-Each controller user can enable Two Factor Authentication (2FA) to increase the security of the account. To enable 2FA, follow the same steps documented inside the firewall web interface: 2fa-section.
+Each controller user can enable Two Factor Authentication (2FA) to increase the security of the account. To enable 2FA, follow the same steps documented inside the firewall web interface: [NethSecurity UI 2FA](../installation/remote_access.md#2fa-section).
 
 The administrator can see the 2FA status of each user inside the user list.
 
-#### 2FA reset
+#### 2FA reset {#fa-reset}
 
-If a controller administrator has lost access to their OTP device and cannot log in, 2FA can be reset from the NethServer 8 node by wiping the `otp_secret` and `otp_recovery_codes` fields directly in the controller's database.
+If a controller administrator has lost access to their OTP device and cannot log in, 2FA can be reset from the NethServer 8 node by wiping the `otp_secret` and `otp_recovery_codes` fields directly in the controller\'s database.
 
 Run the following commands on the NethServer 8 node, replacing `nethsecurity-controller1` with the actual controller module instance name and `admin` with the affected username: :
 
@@ -105,13 +105,13 @@ A join code will be generated and displayed on the screen. The join code must be
 
 Access the `Controller` page inside the unit web interface and enter the join code in the `Join code` field. When joining the controller, the unit will download the VPN configuration and establish a secure connection with the controller. If the connection is successful, the unit will be displayed in the controller web interface with the status `Connected`.
 
-Please note that if the controller does not have a valid Let's Encrypt certificate, you will need to disable the `Verify TLS certificate` option in the unit configuration.
+Please note that if the controller does not have a valid Let\'s Encrypt certificate, you will need to disable the `Verify TLS certificate` option in the unit configuration.
 
 When the unit is connected, the user can access the unit web interface by clicking on the **Open unit** link without needing to enter the unit credentials.
 
 :::note
 
-The unit user interface must listen on port 9090 to allow the controller to access it. The controller will access the unit web interface through the VPN connection. The port 9090 does not need to be open from the WAN side, but it must be open from the VPN side to allow the controller to access it.
+The unit user interface [must listen on port 9090](../installation/remote_access.md#change_ui_port-section) to allow the controller to access it. The controller will access the unit web interface through the VPN connection. The port 9090 does not need to be open from the WAN side, but it must be open from the VPN side to allow the controller to access it.
 
 :::
 
@@ -121,7 +121,7 @@ Units can be disconnected from the controller by clicking on the **Remove unit**
 
 After removing the unit from the controller web interface, access the unit web interface and click **Disconnect unit** on the `Controller` page: the unit will destroy the VPN configuration.
 
-## Unit groups
+## Unit groups {#controller_unit_groups-section}
 
 Unit groups are a way to organize units inside the controller. Each user can be associated with one or more unit groups. When a user is associated with a unit group, they can access only the units that belong to that group. Unit groups are useful to restrict access to specific units for specific users.
 
@@ -141,12 +141,12 @@ When upgrading from a controller version prior to 2.0.0, a new `Migrated` unit g
 
 The group can be safely removed once it is no longer needed.
 
-## Logs management
+## Logs management {#controller_logs-section}
 
-When a unit is connected, rsyslog is reconfigured to send logs using the syslog protocol (RFC 5424). It may take a few minutes before rsyslog starts sending the data. The logs are labeled using the unit's hostname: to ensure that the user interface links work properly, make sure that:
+When a unit is connected, rsyslog is reconfigured to send logs using the syslog protocol (RFC 5424). It may take a few minutes before rsyslog starts sending the data. The logs are labeled using the unit\'s hostname: to ensure that the user interface links work properly, make sure that:
 
 - the unit FQDN is unique within the cluster
-- the unit's name is the same as its hostname
+- the unit\'s name is the same as its hostname
 
 Logs can be viewed by clicking on the **Open logs** link for each unit. The logs are displayed in a specific Grafana dashboard that also allows for searching and filtering.
 
@@ -156,7 +156,7 @@ Logs retention period must be configured from the NS8 web interface.
 
 :::
 
-## Metrics
+## Metrics {#controller_metrics-section}
 
 Each unit exports two types of metrics:
 
@@ -175,11 +175,11 @@ By default, only the admin user can access the metrics dashboard. If you want to
 
 Starting from NethSecurity 8.8, Netdata is not installed by default on units. If you have configured custom dashboards that rely on Netdata metrics, you can reinstall it manually on the unit.
 
-See legacy Netdata section for more information on how to resinstall it.
+See [legacy Netdata section](../monitoring/monitoring.md#legacy_netdata-section) for more information on how to resinstall it.
 
 :::
 
-### Grafana
+### Grafana {#grafana-section}
 
 Grafana is an open-source platform used for monitoring and visualizing time-series data. It helps users create customizable dashboards with graphs, charts, and tables to analyze system metrics, logs, and other data from various sources.
 
@@ -196,7 +196,7 @@ Prometheus metrics are collected using Telegraf by default. When Netdata is inst
 Metrics exported for each unit includes the following labels:
 
 - `instance` the VPN IP of the connected machine with the Netdata port (eg. `172.19.64.3:19999`)
-- `job` fixed to <span class="title-ref">node</span>
+- `job` fixed to `node`
 - `node` the VPN IP of the connected machine
 - `unit` the unit unique name of the connected machine
 
@@ -206,13 +206,13 @@ Such metrics are visible inside the `Operating system` dashboard.
 
 :::note
 
-**Subscription required**
+Subscription required
 
 This feature is available only if the firewall and the controller have a valid subscription.
 
 :::
 
-The Timescale database stores the same metrics of the real_time_monitoring-section but as a timeseries saved in a PostgreSQL database. Each unit sends data to the controller every 15 minutes. The controller aggregates the data every 15 minutes, this means that data are available inside dashboards at best with a 15 minutes delay and at worst with a 30 minutes delay.
+The Timescale database stores the same metrics of the [Real-time monitoring](../monitoring/monitoring.md#real_time_monitoring-section) but as a timeseries saved in a PostgreSQL database. Each unit sends data to the controller every 15 minutes. The controller aggregates the data every 15 minutes, this means that data are available inside dashboards at best with a 15 minutes delay and at worst with a 30 minutes delay.
 
 The controller can do extra processing on the data to provide more insights. For example, the controller can geolocate the IP addresses of the connected clients and of the attackers.
 
@@ -230,12 +230,12 @@ Metrics retention period must be configured from the NS8 web interface and is ap
 
 :::
 
-## Unit updates
+## Unit updates {#controller_updating-section}
 
-The controller allows you to update the units directly from the interface, similar to the process in the unit web interface. Two types of updates are available:
+The controller allows you to update the units directly from the interface, similar to the process in [the unit web interface](./updates.md). Two types of updates are available:
 
-- **Package updates**: Update the packages installed on the unit. List and install available updates by clicking on **Check packages updates** in the unit menu. A modal will display the list of available updates. If updates are available, apply them by clicking on the **Update** button in the modal. This is the first thing to try if version awareness blocks you from accessing the unit.
-- **System update**: Update the unit's system. If an image update is available, a badge will appear in the unit list. Schedule an update by clicking on the **System update** button in the unit menu. You can schedule the update or update the unit immediately. This operation is also available as a mass operation for multiple units under **Actions** -\> **Update systems**. Units with a scheduled image update will have a dedicated badge in the unit list. You can abort the scheduled update by clicking on the **Cancel scheduled image update** button in the unit menu.
+- **Package updates**: Update the packages installed on the unit. List and install available updates by clicking on **Check packages updates** in the unit menu. A modal will display the list of available updates. If updates are available, apply them by clicking on the **Update** button in the modal. This is the first thing to try if [version awareness](#version-awareness-section) blocks you from accessing the unit.
+- **System update**: Update the unit\'s system. If an image update is available, a badge will appear in the unit list. Schedule an update by clicking on the **System update** button in the unit menu. You can schedule the update or update the unit immediately. This operation is also available as a mass operation for multiple units under **Actions** -\> **Update systems**. Units with a scheduled image update will have a dedicated badge in the unit list. You can abort the scheduled update by clicking on the **Cancel scheduled image update** button in the unit menu.
 
 :::note
 
@@ -243,11 +243,11 @@ Please be aware that units might not send updated information when undergoing up
 
 :::
 
-## SSH access
+## SSH access {#controller_ssh-section}
 
 SSH, or Secure Shell, is a cryptographic network protocol for operating network services securely over an unsecured network. SSH provides a secure channel over an unsecured network in a client-server architecture, connecting an SSH client application to an SSH server.
 
-It is possible to connect to the unit by clicking on the **Open SSH terminal** link. The connection is made through a web-based SSH client that allows access to the unit's shell.
+It is possible to connect to the unit by clicking on the **Open SSH terminal** link. The connection is made through a web-based SSH client that allows access to the unit\'s shell.
 
 You can connect to units using a username and password pair or an SSH key.
 
@@ -258,7 +258,7 @@ Once connected, the SSH session will be started inside a new browser tab. Some b
 The user can connect using a username and password pair of the unit in the following scenarios:
 
 - The logged-in user has not generated an SSH key
-- The public SSH key of the logged-in user hasn't been copied inside the SSH authorized keys file of the unit
+- The public SSH key of the logged-in user hasn\'t been copied inside the SSH authorized keys file of the unit
 
 The user interface will display a form to enter the username and password. After entering the credentials, the user can click on the **Open terminal** button to start the SSH session.
 
@@ -275,7 +275,7 @@ This method of authentication is more secure than using a password, as it provid
 
 To use an SSH key, generate a new key pair by accessing the `Account settings` page and and clicking on the **Generate SSH key pair** button. Enter a passphrase to protect the private key and click on the **Generate SSH key** button. The user interface will display the public key, while the private key is preserved safely inside the controller.
 
-Before connecting to the unit, you must copy the public key and paste it into the unit's SSH authorized keys file. You can do it from the `Unit manager` page, by clicking on the **Actions** button and selecting **Send SSH public key**. Choose the units you want to send the key to and click on the **Send SSH key** button.
+Before connecting to the unit, you must copy the public key and paste it into the unit\'s SSH authorized keys file. You can do it from the `Unit manager` page, by clicking on the **Actions** button and selecting **Send SSH public key**. Choose the units you want to send the key to and click on the **Send SSH key** button.
 
 From now on, you can connect to the unit using the SSH key pair. The user interface will display a form to enter the passphrase when clicking on the **Open terminal** button.
 
@@ -294,14 +294,14 @@ Example of NS8 log: :
     Mar 26 11:08:23 controller.nethserver.net api[64323]: nethsecurity_controller 2024/03/26 11:08:23 middleware.go:85: [INFO][AUTH] authentication success for user admin
     Mar 26 11:08:23 controller.nethserver.net api[64323]: nethsecurity_controller 2024/03/26 11:08:23 middleware.go:186: [INFO][AUTH] login response success for user admin
 
-Each unit has an rpcd user specific to the controller, which is used for management operations. When a user accesses the unit's web interface from the controller, all operations performed are logged in the unit's log, identified by the rpcd user. For example: :
+Each unit has an rpcd user specific to the controller, which is used for management operations. When a user accesses the unit\'s web interface from the controller, all operations performed are logged in the unit\'s log, identified by the rpcd user. For example: :
 
     Mar 26 11:28:52 NethSec nethsecurity-api[4535]: nethsecurity_api 2024/03/26 11:28:52 middleware.go:166: [INFO][AUTH] authorization success for user 0a891388811ff8dc0ec2fbed. POST /api/ubus/call {"path":"ns.dashboard","method":"interface-traffic","payload":{"interface":"eth1"}}
     Mar 26 11:28:52 NethSec (none) nginx: 172.19.64.1 - - [26/Mar/2024:11:28:52 +0000] "POST /api/ubus/call HTTP/1.1" 200 1490 "https://controller.gs.nethserver.net/" "Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0"
 
 To determine who performed a specific operation, it is necessary to check the log of the unit identified by the rpcd user and correlate it with the login action performed on the controller.
 
-When a user connects to the unit via SSH, the login is logged in the unit's log, identified by the SSH user. Usually, the SSH user is root. For example: :
+When a user connects to the unit via SSH, the login is logged in the unit\'s log, identified by the SSH user. Usually, the SSH user is root. For example: :
 
     Mar 26 11:55:03 NethSec dropbear[22798]: Password auth succeeded for 'root' from 172.19.64.1:46460
 
@@ -314,7 +314,7 @@ If the user uses an SSH key for authentication, the log will contain the fingerp
 
 :::note
 
-**Subscription required**
+Subscription required
 
 Some restrictions can only be overcame if the firewall has a valid subscription.
 
@@ -334,52 +334,52 @@ Controller with a valid subscription:
 - Only firewalls with a valid subscription can register with the controller.
 - Units with a valid subscription send metrics to the controller.
 
-## Version awareness
+## Version awareness {#version-awareness-section}
 
 Version awareness is a mechanism that prevents the user from performing operations not supported by the unit version. To do so, when connecting to the UI of a unit the controller will check the API version during the connection process. There are three possible scenarios:
 
-1.  If the versions are compatible, the connection proceeds as normal.
-2.  If the firewall (unit) is significantly older than the controller, you'll see a popup that prevents the connection. This is to protect against potential errors.
-3.  If the controller is slightly older than the firewall, you'll see a warning about the mismatch. However, you'll still be able to connect if you choose to proceed.
+a.  If the versions are compatible, the connection proceeds as normal.
+b.  If the firewall (unit) is significantly older than the controller, you\'ll see a popup that prevents the connection. This is to protect against potential errors.
+c.  If the controller is slightly older than the firewall, you\'ll see a warning about the mismatch. However, you\'ll still be able to connect if you choose to proceed.
 
-As an administrator, you don't need to take any specific actions to enable Version awareness. It works automatically in the background. However, you should:
+As an administrator, you don\'t need to take any specific actions to enable Version awareness. It works automatically in the background. However, you should:
 
 1.  Pay attention to warnings: if you see a version mismatch warning, consider updating your system when convenient.
 2.  Keep your system updated: regularly check for and apply updates to both your controller and firewall units to ensure the best compatibility and access to new features.
-3.  Report issues: if you encounter any unusual behavior or errors, especially after seeing a version warning, follow the troubleshooting procedure.
+3.  Report issues: if you encounter any unusual behavior or errors, especially after seeing a version warning, follow the [troubleshooting](../best-practices/troubleshooting.md) procedure.
 
-Version awareness is a behind-the-scenes feature that helps keep your NethSecurity system running smoothly. By automatically checking compatibility between the controller and units, it prevents many potential issues before they can affect your network. While it doesn't require any action from you, being aware of this feature can help you better understand and manage your system.
+Version awareness is a behind-the-scenes feature that helps keep your NethSecurity system running smoothly. By automatically checking compatibility between the controller and units, it prevents many potential issues before they can affect your network. While it doesn\'t require any action from you, being aware of this feature can help you better understand and manage your system.
 
 **Bypass version awareness**
 
 While version awareness is a useful feature, knowing the risks and potential issues, you may want to bypass it in some cases. To do so, the procedure is as follows:
 
 1.  On the controller, go to the unit manager page and click on **More Info** of the unit you want to connect to.
-2.  Copy the <span class="title-ref">Unit ID</span> value.
+2.  Copy the `Unit ID` value.
 3.  Click on **Open SSH terminal**
 4.  When the modal opens, you can safely close it. This was only needed to exchange some credentials with the unit.
-5.  Open a new tab, and go to this URL: <span class="title-ref">https://\<controller-fqdn\>/#/controller/manage/\<unit-id\>/dashboard</span>. Example: <span class="title-ref">https://controller.nethsecurity.org/#/controller/manage/000000000-0000-0000-0000-000000000000/dashboard</span>.
-6.  You will be able to access the unit's UI without the version check.
+5.  Open a new tab, and go to this URL: `https://\<controller-fqdn\>/#/controller/manage/\<unit-id\>/dashboard`. Example: `https://controller.nethsecurity.org/#/controller/manage/000000000-0000-0000-0000-000000000000/dashboard`.
+6.  You will be able to access the unit\'s UI without the version check.
 
 **Update unit with SSH**
 
-You can update the unit without connecting to it using the SSH terminal. Follow the steps to connect to the unit using SSH Access.
+You can update the unit without connecting to it using the SSH terminal. Follow the steps to connect to the unit using [SSH Access](#controller_ssh-section).
 
 Once connected, you can check for updates depending on what you want to update.
 
-1.  Install package updates on the unit:
+a.  Install package updates on the unit:
     1.  To check for updates for packages use the following command:
 
         ``` bash
         /usr/libexec/rpcd/ns.update call check-package-updates
         ```
 
-    2.  If you're ok with the installation of the packages you can run the following command:
+    2.  If you\'re ok with the installation of the packages you can run the following command:
 
         ``` bash
         /usr/libexec/rpcd/ns.update call install-package-updates
         ```
-2.  To update the image, you can simply schedule the installation, remember this is an operation that restarts the firewall (causing a downtime)
+b.  To update the image, you can simply schedule the installation, remember this is an operation that restarts the firewall (causing a downtime)
     1.  Check if there is an updated image available:
 
         ``` bash

@@ -49,7 +49,7 @@ If you are running NethSecurity 8.7.2 or older, use:
 
 :::note
 
-Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: restore_extra_packages-section.
+Starting from version 8.7.2, extra packages are automatically reinstalled after system upgrade. For earlier versions and for additional information, refer to this documentation: [Restore extra packages](../system/updates.md#restore_extra_packages-section).
 
 :::
 
@@ -139,7 +139,7 @@ A good log for upsmon:
 
     Nov 29 09:23:11 NethSec upsmon[7189]: Communications with UPS eaton5e@localhost established
 
-If an error is displayed, please see troubleshooting_ups-section.
+If an error is displayed, please see [Troubleshooting](#troubleshooting_ups-section).
 
 If everything is working, the UPS should be monitored and the system should shut down when the battery is in a critical state, usually below 20%.
 
@@ -194,7 +194,7 @@ This is the case where a secondary firewall is connected to the same UPS and the
         opkg update
         opkg install nut-upsc nut-upsmon
 
-    These packages are not preserved during a system upgrade. For more info see restore_extra_packages-section.
+    These packages are not preserved during a system upgrade. For more info see [Restore extra packages](../system/updates.md#restore_extra_packages-section).
 
 2.  Then, configure the client to connect to the remote server:
 
@@ -234,7 +234,7 @@ Some UPS models have additional settings that can be configured using the `upscm
 
         upscmd -u upsuser -p password eaton5e beeper.disable
 
-## Troubleshooting
+## Troubleshooting {#troubleshooting_ups-section}
 
 A common error is the permission denied when accessing the UPS device, for example you may see this error inside `/var/log/messages`:
 
@@ -249,7 +249,7 @@ Usually, this happens when nut-server connects to the UPS device before the devi
 
     reboot
 
-If you can't reboot the firewall, you can try to stop the nut-server: :
+If you can\'t reboot the firewall, you can try to stop the nut-server: :
 
     /etc/init.d/nut-server stop
 

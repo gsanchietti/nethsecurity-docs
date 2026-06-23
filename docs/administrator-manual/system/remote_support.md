@@ -3,17 +3,17 @@ title: "Remote support"
 sidebar_position: 2
 ---
 
-# Remote support
+# Remote support {#remote_support-section}
 
 :::note
 
-**Enterprise subscription required**
+Enterprise subscription required
 
 This feature is available only if the firewall has a valid Enterprise subscription.
 
 :::
 
-The Enterprise subscription allows you to access the Nethesis remote support.
+The [Enterprise subscription](./subscription.md) allows you to access the Nethesis remote support.
 
 The remote support session will connect the firewall to a [WindMill instance](https://github.com/nethesis/windmill) hosted by Nethesis at `sos.nethesis.it`. The firewall must be able to connect to the above host on port `1194` UDP. If port `1194` is closed, the system will try to fallback on port `443` TCP.
 

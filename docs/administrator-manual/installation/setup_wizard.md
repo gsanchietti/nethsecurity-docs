@@ -3,7 +3,7 @@ title: "Setup wizard"
 sidebar_position: 5
 ---
 
-# Setup wizard
+# Setup wizard {#setup_wizard-section}
 
 The first time the web user interface is accessed, a setup wizard is launched. This guided process can assist you in establishing a secure initial configuration for the firewall and ensures that the unit is ready for deployment in a production environment.
 
@@ -13,11 +13,11 @@ For optimal security and to ensure a controlled configuration environment, it is
 
 :::
 
-## Welcome to the setup wizard
+## Welcome to the setup wizard {#welcome-section}
 
 On the first page of the setup wizard, you can click **Start setup** to initiate the guided setup process. Alternatively, you can click **Skip wizard** to bypass the wizard and access the web user interface directly. However, it is highly recommended to complete the setup wizard to ensure a secure and functional configuration.
 
-## Step 1: Change root password
+## Step 1: Change root password {#change_password-section}
 
 You are required to define a new, secure password for the root account. This measure significantly reduces the risk of compromise by eliminating reliance on publicly known default credentials.
 
@@ -27,7 +27,7 @@ You are required to define a new, secure password for the root account. This mea
 
 :::
 
-## Step 2: SSH Access
+## Step 2: SSH Access {#ssh-section}
 
 You can customize SSH access to suit your security and operational requirements.
 
@@ -43,11 +43,11 @@ You can customize SSH access to suit your security and operational requirements.
 
 :::note
 
-If password-based login for the root user is disabled, it is essential to upload the root user's SSH public key to the device to ensure continued remote access.
+If password-based login for the root user is disabled, it is essential to upload the root user\'s SSH public key to the device to ensure continued remote access.
 
 :::
 
-## Step 3: Web interface access on TCP port 9090
+## Step 3: Web interface access on TCP port 9090 {#port_9090-section}
 
 Configure access parameters for the web user interface, which operates on port 9090.
 
@@ -68,14 +68,14 @@ You can choose from the following access options for WAN connectivity:
 
 If you choose the **Limited** option, the IP addresses you configured will appear at the end of the wizard under **Firewall \> Rules \> Input rules**.
 
-## Step 4: Web interface and WAN access on TCP port 443
+## Step 4: Web interface and WAN access on TCP port 443 {#port_443-section}
 
 Set up access controls for the web interface and WAN connections on port 443.
 
 - **Web interface service on TCP port 443**: by default, the web user interface is available on TCP port 9090. Enabling this option also makes it accessible on TCP port 443. It is recommended to keep this additional access disabled and always use TCP port 9090 to access the web UI.
 - **WAN access on TCP port 443**: this option controls if WAN access on port 443 is disabled (recommended) or enabled. Beware, by leaving this option disabled, reverse proxies will not function.
 
-## Step 5: Summary
+## Step 5: Summary {#summary-section}
 
 The summary page provides an opportunity to review the unit configuration before applying changes.
 
@@ -85,4 +85,4 @@ WAN access to the web interface may be restricted by your current settings. Appl
 
 :::
 
-Use the 'Previous' button to go back and make adjustments if needed. Click 'Finish setup' to apply the changes and complete the setup wizard.
+Use the \'Previous\' button to go back and make adjustments if needed. Click \'Finish setup\' to apply the changes and complete the setup wizard.

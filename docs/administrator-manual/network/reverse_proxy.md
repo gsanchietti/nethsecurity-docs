@@ -23,7 +23,7 @@ This page allows users to configure proxy pass settings, specifying whether the 
 
 To configure a new proxy pass, click on the **Add reverse proxy** and customize the following options:
 
-- `Type`: choose between Domain or Path. If type is `Path`, enter the resource path starting with a '/' for matching rules (e.g., `/resource-path`). If type is `Domain`, enter the fully qualified domain name for website matching rules. Select also an associated certificate.
+- `Type`: choose between Domain or Path. If type is `Path`, enter the resource path starting with a \'/\' for matching rules (e.g., `/resource-path`). If type is `Domain`, enter the fully qualified domain name for website matching rules. Select also an associated [certificate](#certificates-section).
 - `Destination URL`: specify the forwarding location for incoming requests (e.g., `http://destination-server:port/path`).
 - `Allowed networks`: define allowed IPv4/IPv6 networks in CIDR format. By default, accessible from anywhere.
 - `Description`: optionally, add a description for clarity.
@@ -34,7 +34,7 @@ Additional information:
 - Certificate validation: if the destination uses HTTPS, the certificate is not validated to avoid errors on misconfigured servers.
 - WebSocket support: all reverse proxies automatically support WebSockets.
 
-### Proxy on port 80 (HTTP)
+### Proxy on port 80 (HTTP) {#reverse_proxy-http-section}
 
 NethSecurity 8 only listens on HTTPS (port 443) for reverse proxy rules. This differs from NethSecurity 7, where the reverse proxy listened on both HTTP (port 80).
 
@@ -56,7 +56,7 @@ uci commit nginx
 
 After enabling the redirect, access the firewall rules page and make sure the port 80 is open on the WAN side to allow incoming connections.
 
-### Hide web server version
+### Hide web server version {#reverse_proxy-hide-version-section}
 
 By default, the nginx reverse proxy includes its version number in HTTP response headers. Many vulnerability assessments rely on software version identification, which can produce false positives when fixes are backported without modifying the reported version. While hiding version information does not improve security by itself, it can help limit the exposure of known version-specific vulnerabilities to automated scanning tools.
 
@@ -96,23 +96,23 @@ uci commit nginx
 reload_config
 ```
 
-## Certificates
+## Certificates {#certificates-section}
 
-The `Certificates` page centralizes certificate management functionalities, facilitating the handling of certificates on the firewall. At the firewall's initial startup, a self-signed certificate is automatically generated. This certificate serves as a default secure option.
+The `Certificates` page centralizes certificate management functionalities, facilitating the handling of certificates on the firewall. At the firewall\'s initial startup, a self-signed certificate is automatically generated. This certificate serves as a default secure option.
 
-The certificate management page allows users to upload custom certificates, request certificates from Let's Encrypt, and manage existing certificates.
+The certificate management page allows users to upload custom certificates, request certificates from Let\'s Encrypt, and manage existing certificates.
 
-The page lists all certificates, highlighting the default certificate. To set a certificate as the default certificate, click on the **Set as default** button. The default certificate is the one automatically served when accessing the web user interface, both on port 443, 9090 or custom port.
+The page lists all certificates, highlighting the default certificate. To set a certificate as the default certificate, click on the **Set as default** button. The default certificate is the one automatically served when accessing the [web user interface](../installation/remote_access.md#web_user_interface-section), both on port 443, [9090 or custom port](../installation/remote_access.md#change_ui_port-section).
 
-### Let's Encrypt
+### Let\'s Encrypt
 
-Let's Encrypt is a free, automated, and open Certificate Authority (CA) that provides SSL/TLS certificates for securing websites. These certificates ensure encrypted communication between web servers and users' browsers, enhancing security and privacy on the internet. Unlike traditional CAs, Let's Encrypt offers SSL certificates through an automated system, making it accessible to website owners and administrators without significant costs or technical expertise.
+Let\'s Encrypt is a free, automated, and open Certificate Authority (CA) that provides SSL/TLS certificates for securing websites. These certificates ensure encrypted communication between web servers and users\' browsers, enhancing security and privacy on the internet. Unlike traditional CAs, Let\'s Encrypt offers SSL certificates through an automated system, making it accessible to website owners and administrators without significant costs or technical expertise.
 
-The certificate page allows users to request certificates from Let's Encrypt. The process is straightforward and requires minimal configuration. Users can specify a meaningful name for the certificate and one or more domains. The certificate is automatically renewed every 60 days.
+The certificate page allows users to request certificates from Let\'s Encrypt. The process is straightforward and requires minimal configuration. Users can specify a meaningful name for the certificate and one or more domains. The certificate is automatically renewed every 60 days.
 
-The Let's Encrypt certificate request process involves the following steps:
+The Let\'s Encrypt certificate request process involves the following steps:
 
-- click on the **Add Let's Encrypt certificate** button;
+- click on the **Add Let\'s Encrypt certificate** button;
 - specify a meaningful name for the certificate;
 - specify one or more domains for the certificate;
 - click on the **Save** button.
@@ -120,7 +120,7 @@ The Let's Encrypt certificate request process involves the following steps:
 The validation process can be performed in two ways:
 
 - Standalone mode (HTTP validation): the Standalone mode involves temporarily stopping the web server to allow the ACME client tool to bind to the required ports directly. It serves the authentication challenges to prove domain ownership, obtaining and installing the certificate.
-- DNS validation: DNS validation requires adding a specific DNS TXT record to the domain's DNS configuration. ACME client checks for this record to verify domain ownership. This method is useful in situations where modifying web server configurations is challenging or not desired.
+- DNS validation: DNS validation requires adding a specific DNS TXT record to the domain\'s DNS configuration. ACME client checks for this record to verify domain ownership. This method is useful in situations where modifying web server configurations is challenging or not desired.
 
 When standalone mode is selected, make sure the following requirements are met:
 
@@ -137,9 +137,9 @@ Select DNS validation if your DNS provider supports API access. Choose the DNS p
 
 The certificate generation process can take a few minutes. During this time, the certificate status is `Pending`.
 
-#### Debug Let's Encrypt
+#### Debug Let\'s Encrypt
 
-If the Let's Encrypt certificate request fails, the user can debug the process by entering the following commands in the terminal: :
+If the Let\'s Encrypt certificate request fails, the user can debug the process by entering the following commands in the terminal: :
 
 ``` bash
 uci set acme.@acme[0].debug=1

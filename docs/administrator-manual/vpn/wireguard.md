@@ -21,24 +21,24 @@ Features:
 
 ## Server Configuration
 
-It's possible to create multiple WireGuard server instances, each with its own isolated network zone. NethSecurity will automatically open the necessary firewall ports to allow incoming connections to the WireGuard server and create a VPN zone to allow management of how the traffic is routed between zones.
+It\'s possible to create multiple WireGuard server instances, each with its own isolated network zone. NethSecurity will automatically open the necessary firewall ports to allow incoming connections to the WireGuard server and create a VPN zone to allow management of how the traffic is routed between zones.
 
-On the contrary of the OpenVPN server, there's no ties to the users database, accounts (peers) are created and managed directly inside the WireGuard interface.
+On the contrary of the OpenVPN server, there\'s no ties to the users database, accounts (peers) are created and managed directly inside the WireGuard interface.
 
 To create a WireGuard server, click on **Add server**, then fill the form with the desired configuration. The fields are the following:
 
 - \`Status\`: enable or disable the WireGuard server instance
-- \`Name\`: the name of the WireGuard server instance, this is not the name of the network interface, it will be automatically created as <span class="title-ref">wgX</span>, where <span class="title-ref">X</span> is a number
+- \`Name\`: the name of the WireGuard server instance, this is not the name of the network interface, it will be automatically created as `wgX`, where `X` is a number
 - \`VPN network\`: the network CIDR that will be used by the WireGuard server, the server will automatically get the first IP of the network. Make sure this network does not overlap with any existing one
 - \`UDP port\`: the port on which the WireGuard server listens for incoming connections
 - \`Public endpoint\`: the public IP address or FQDN of the server
 
-Under advanced settings, it's possible to configure additional options:
+Under advanced settings, it\'s possible to configure additional options:
 
 - \`MTU\`: to manually set the MTU of the WireGuard interface
 - \`DNS servers\`: to set custom DNS servers that will be pushed to the clients, useful to avoid DNS leaks
 
-After creating the server, it's possible to add new clients (peers) directly from the WireGuard interface, click **Add peer** and fill the form as the following:
+After creating the server, it\'s possible to add new clients (peers) directly from the WireGuard interface, click **Add peer** and fill the form as the following:
 
 - \`Status\`: enable or disable the peer
 - \`Name\`: the name of the peer
@@ -50,11 +50,11 @@ After creating the server, it's possible to add new clients (peers) directly fro
 
 :::note
 
-It's possible to create a client-to-site (Road Warrior) connection by leaving empty the <span class="title-ref">Peer networks</span> entries. This will allow the client to access the server networks.
+It\'s possible to create a client-to-site (Road Warrior) connection by leaving empty the `Peer networks` entries. This will allow the client to access the server networks.
 
 :::
 
-Once the peer is saved, it's possible to download the configuration file in text format or as a QR code using the menu on the right side of the peer entry.
+Once the peer is saved, it\'s possible to download the configuration file in text format or as a QR code using the menu on the right side of the peer entry.
 
 The server and peers configuration can be edited by the context menu on the right side of each entry.
 
@@ -66,12 +66,12 @@ After modifying the WireGuard server or peers, remember that such changes needs 
 
 ## Tunnel Configuration
 
-Nethsecurity can be configured as a WireGuard client (peer) to connect to another WireGuard server. On the **Peer tunnels** tab, it's possible to add manually a new tunnel by clicking on **Add peer tunnel** or import a generic wireguard configuration file using **Import peer tunnel**.
+Nethsecurity can be configured as a WireGuard client (peer) to connect to another WireGuard server. On the **Peer tunnels** tab, it\'s possible to add manually a new tunnel by clicking on **Add peer tunnel** or import a generic wireguard configuration file using **Import peer tunnel**.
 
 When manually adding a new tunnel, the following fields are available:
 
 - \`Status\`: enable or disable the tunnel
-- \`Name\`: the name of the tunnel, this is not the name of the network interface, it will be automatically created as <span class="title-ref">wgX</span>, where <span class="title-ref">X</span> is a number
+- \`Name\`: the name of the tunnel, this is not the name of the network interface, it will be automatically created as `wgX`, where `X` is a number
 - \`Reserved IP\`: the static IP address that the tunnel will use
 - \`Server public key\`: the public key of the WireGuard server
 - \`Peer private key\`: the private key of the tunnel
@@ -84,7 +84,7 @@ When manually adding a new tunnel, the following fields are available:
 
 ## Debug
 
-By default, WireGuard does not log anything. To enable logging on <span class="title-ref">/var/log/messages</span>, use the following commands:
+By default, WireGuard does not log anything. To enable logging on `/var/log/messages`, use the following commands:
 
 ``` bash
 echo module wireguard +p > /sys/kernel/debug/dynamic_debug/control

@@ -27,7 +27,7 @@ A hotspot manager section running on a cloud server, a dedicated WebUI allows yo
 - choose what type of login to use
 - see session and users logged
 
-A client part running on NethSecurity (in nethspot terminology this client is called "unit") .
+A client part running on NethSecurity (in nethspot terminology this client is called \"unit\") .
 
 - It has to be physically connected to the Access Points network
 - It assigns IP addresses to devices
@@ -35,7 +35,7 @@ A client part running on NethSecurity (in nethspot terminology this client is ca
 
 :::note
 
-This manual only cover the client part. If you're interested on the hotspot manager section please refer to [Icaro project](https://nethesis.github.io/icaro) if you want to create your own instance of Icaro or contact <info@nethesis.it> if you want to use SaaS provided by Nethesis and located at [my.nethspot.com](https://my.nethspot.com).
+This manual only cover the client part. If you\'re interested on the hotspot manager section please refer to [Icaro project](https://nethesis.github.io/icaro) if you want to create your own instance of Icaro or contact <info@nethesis.it> if you want to use SaaS provided by Nethesis and located at [my.nethspot.com](https://my.nethspot.com).
 
 :::
 
@@ -65,7 +65,7 @@ Once you have logged in you can continue to fill in the following fields. This l
 
 `Parent Hotspot` : choose which instance you want to connect your unit to
 
-`Unit name` : your NethSecurity's name
+`Unit name` : your NethSecurity\'s name
 
 `Unit description` : insert a brief description so that you can identify your unit more easily
 
