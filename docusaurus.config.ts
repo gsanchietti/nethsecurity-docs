@@ -30,15 +30,14 @@ const config: Config = {
     v4: false,
   },
 
-  // Production: https://docs.nethsecurity.org with root baseUrl.
-  // Fork testing (GitHub Pages project site): gsanchietti.github.io/nethsecurity-docs/.
-  // Override both with env vars in CI when deploying to the production domain.
-  url: process.env.SITE_URL ?? 'https://gsanchietti.github.io',
-  baseUrl: process.env.BASE_URL ?? '/nethsecurity-docs/',
+  // Served from a custom domain at the root (production:
+  // https://docs.nethsecurity.org, fork testing: https://docs.gs.nethserver.net),
+  // so baseUrl is '/'. Override the url via SITE_URL in CI if needed.
+  url: process.env.SITE_URL ?? 'https://docs.nethsecurity.org',
+  baseUrl: process.env.BASE_URL ?? '/',
 
   organizationName: process.env.GH_ORG ?? 'gsanchietti',
   projectName: 'nethsecurity-docs',
-  deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
   onBrokenLinks: 'warn',
