@@ -43,27 +43,27 @@ Sono necessari due step per utilizzare il servizio:
 
 :::
 
-### 1. Abilitare l'invio dei metadati {#enable-metadata-sending}
+### 1. Abilita l'invio di metadati {#enable-metadata-sending}
 
-Accedere alla pagina `Netify Informatics` nella sezione `Monitoring` dell'interfaccia web di NethSecurity.
+Accedi alla pagina `Netify Informatics` nella sezione `Monitoring` nell'interfaccia web di NethSecurity.
 
-Abilitare l'opzione `Send metadata to Netify Informatics` e fare clic su `Save`.
+Abilita l'opzione `Send metadata to Netify Informatics` e fai clic su `Save`.
 
-Ogni NethSecurity è associato a un Agent UUID univoco, qualcosa come `B3-GV-WQ-SD`. Il codice sarà visibile sulla stessa pagina dopo aver abilitato l'opzione di invio dei metadati.
+Ogni NethSecurity è associato a un UUID Agente univoco, come questo `B3-GV-WQ-SD`. Il codice sarà visibile sulla stessa pagina dopo l'abilitazione dell'opzione di invio dei metadati.
 
-### 2. Effettuare il provisioning dell'agente {#provision-the-agent}
+### 2. Provisioning dell'agente {#provision-the-agent}
 
-Una volta che avete un account registrato e abilitato l'invio dei metadati su NethSecurity, potete effettuare il provisioning dell'agente sulla piattaforma Netify Informatics:
+Una volta che hai un account registrato e hai abilitato l'invio di metadati su NethSecurity, puoi eseguire il provisioning dell'agente sulla piattaforma Netify Informatics:
 
-1.  Copiate il codice ottenuto nel passaggio precedente e accedete al sito web di Netify Informatics.
-2.  Accedete al `Provision Agent Wizard` nella sezione `Deployment`.
-3.  Seguire le istruzioni per creare l'organizzazione (il cliente) e incollare l'Agent UUID nel campo appropriato per abilitare l'agente utilizzando il codice ottenuto su NethSecurity.
+1.  Copia il codice ottenuto nel passaggio precedente e accedi al sito web di Netify Informatics.
+2.  Accedi alla `Provision Agent Wizard` nella sezione `Deployment`.
+3.  Segui le istruzioni per creare l'organizzazione (il cliente) e incolla l'UUID dell'agente nel campo appropriato per abilitare l'agente utilizzando il codice ottenuto su NethSecurity.
 
-Da questo momento, Netify Informatics inizierà a mostrare i dati. Potete quindi collegare altri firewall dello stesso cliente (stessa organizzazione, stesso sito o uno diverso) o creare una nuova organizzazione per un cliente diverso.
+Da questo momento, Netify Informatics inizierà a mostrare i dati. Puoi quindi connettere altri firewall dello stesso cliente (stessa organizzazione, stesso sito o uno diverso) o creare una nuova organizzazione per un cliente diverso.
 
 ## Deployment Manager
 
-La sezione `Deployment` all'interno di Netify Informatics consente di gestire Agenti, Siti e Organizzazioni. Mentre la gestione degli Agenti e dei Siti è relativamente semplice, la sezione `Organization Access` consente di aggiungere ulteriori membri alla vostra organizzazione. Questa funzionalità consente ad altri di accedere al pannello di Netify e visualizzare tutti i dati rilevanti.
+La sezione `Deployment` all'interno di Netify Informatics ti consente di gestire Agenti, Siti e Organizzazioni. Mentre la gestione di Agenti e Siti è relativamente semplice, la sezione `Organization Access` ti consente di aggiungere altri membri alla tua organizzazione. Questa funzione consente agli altri di accedere al pannello Netify e visualizzare tutti i dati rilevanti.
 
 Sono disponibili tre profili:
 
@@ -71,16 +71,16 @@ Sono disponibili tre profili:
 - Manager
 - Viewer
 
-Il profilo `Administrator`, generalmente riservato ai colleghi della vostra azienda, concede il massimo livello di autorizzazioni, consentendo loro di visualizzare, creare e modificare le configurazioni all'interno di Netify Informatics.
+Il profilo `Administrator`, tipicamente riservato ai colleghi all'interno della tua azienda, concede il massimo livello di autorizzazioni, consentendo loro di visualizzare, creare e modificare le configurazioni all'interno di Netify Informatics.
 
-Il profilo `Manager` è dedicato a persone che appartengono alla stessa organizzazione (l'azienda cliente). Concede loro il permesso di visualizzare tutte le sezioni all'interno di Netify Informatics, vedere il dashboard di distribuzione e modificare la sezione Identity manager, ma non di aggiungere altre organizzazioni o effettuare il provisioning di nuovi agenti.
+Il profilo `Manager` è dedicato agli individui che appartengono alla stessa organizzazione (l'azienda cliente). Concede loro il permesso di visualizzare tutte le sezioni all'interno di Netify Informatics, visualizzare la dashboard di deployment e modificare la sezione Identity manager, ma non di aggiungere altre organizzazioni o di eseguire il provisioning di nuovi agenti.
 
-Il profilo `Viewer`, probabilmente il più comunemente utilizzato, è per qualcuno (ad esempio, un tecnico IT dell'organizzazione del vostro cliente) che può visualizzare tutti i dati all'interno della propria organizzazione ma non ha la possibilità di modificare alcuna configurazione di Netify.
+Il profilo `Viewer`, probabilmente il più comunemente utilizzato, è per qualcuno (ad esempio, un tecnico IT dell'organizzazione del tuo cliente) che può visualizzare tutti i dati all'interno della loro organizzazione ma non ha la capacità di modificare alcuna configurazione di Netify.
 
-Per invitare qualcuno, è sufficiente fare clic su `Manage Organization`, inserire il suo indirizzo email e scegliere il profilo desiderato. La persona riceverà un invito da Netify via email e sarà in grado di creare il proprio account.
+Per invitare qualcuno, semplicemente fai clic su `Manage Organization`, inserisci il suo indirizzo email e scegli il profilo desiderato. La persona riceverà un invito da Netify via email e sarà in grado di creare il proprio account.
 
 :::note
 
-Il tipo di profilo può essere modificato in qualsiasi momento da un amministratore, consentendovi di cambiare una persona da Manager a Viewer, ad esempio.
+Il tipo di profilo può essere modificato in qualsiasi momento da un amministratore, consentendoti di passare una persona da Manager a Viewer, ad esempio.
 
 :::

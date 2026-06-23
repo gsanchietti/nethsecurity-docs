@@ -7,15 +7,15 @@ sidebar_position: 2
 
 :::note
 
-È richiesto l'abbonamento Enterprise
+Abbonamento Enterprise necessario
 
-Questa funzione è disponibile solo se il firewall dispone di un abbonamento Enterprise valido.
+Questa funzionalità è disponibile solo se il firewall dispone di un abbonamento Enterprise valido.
 
 :::
 
-L'[abbonamento Enterprise](./subscription.md) ti permette di accedere al supporto remoto di Nethesis.
+L'[abbonamento Enterprise](./subscription.md) consente di accedere al supporto remoto di Nethesis.
 
-La sessione di supporto remoto connette il firewall a un'[istanza WindMill](https://github.com/nethesis/windmill) ospitata da Nethesis su `sos.nethesis.it`. Il firewall deve essere in grado di connettersi all'host suddetto sulla porta `1194` UDP. Se la porta `1194` è chiusa, il sistema tenterà un fallback sulla porta `443` TCP.
+La sessione di supporto remoto collegherà il firewall a un'[istanza di WindMill](https://github.com/nethesis/windmill) ospitata da Nethesis su `sos.nethesis.it`. Il firewall deve essere in grado di connettersi all'host sopra indicato sulla porta `1194` UDP. Se la porta `1194` è chiusa, il sistema tenterà di ripiegare sulla porta `443` TCP.
 
 ## Gestione della sessione
 
@@ -25,18 +25,18 @@ Il supporto remoto deve essere avviato e interrotto dall'amministratore del fire
 
 Per avviare una sessione:
 
-- accedi alla pagina `Subscription` e vai alla sezione `Remote support`
-- fai clic sul pulsante **Start session**
-- copia l'`ID sessione` e condividilo con il team di supporto
+- accedere alla pagina `Abbonamento` e andare alla sezione `Supporto remoto`
+- fare clic sul pulsante **Avvia sessione**
+- copiare l'`ID sessione` e condividerlo con il team di supporto
 - la sessione sarà attiva per 24 ore per impostazione predefinita
 
 Il sistema visualizzerà:
 
-- Lo stato corrente della sessione (attiva/inattiva)
-- L'ora di scadenza della sessione
+- Lo stato della sessione corrente (attiva/inattiva)
+- Il tempo di scadenza della sessione
 - Il tempo rimanente fino alla scadenza
 
-Puoi visualizzare queste informazioni in qualsiasi momento nella sezione `Remote support` della pagina `Subscription`.
+È possibile visualizzare queste informazioni in qualsiasi momento nella sezione `Supporto remoto` della pagina `Abbonamento`.
 
 ### Scadenza della sessione
 
@@ -47,7 +47,7 @@ Le sessioni di supporto remoto hanno il seguente comportamento di scadenza:
 
 Il sistema monitora continuamente la scadenza della sessione:
 
-- un cron job viene eseguito ogni 10 minuti per verificare le sessioni scadute
+- un processo cron viene eseguito ogni 10 minuti per verificare la presenza di sessioni scadute
 - quando una sessione scade, viene automaticamente interrotta
 - gli eventi di scadenza della sessione vengono registrati nel log di sistema
 
@@ -55,13 +55,13 @@ Il sistema monitora continuamente la scadenza della sessione:
 
 Per interrompere manualmente una sessione attiva prima della scadenza:
 
-- accedi alla pagina `Subscription` e vai alla sezione `Remote support`
-- fai clic sul pulsante **End session**
-- la connessione di supporto remoto verrà immediatamente chiusa
+- accedere alla pagina `Abbonamento` e andare alla sezione `Supporto remoto`
+- fare clic sul pulsante **Termina sessione**
+- la connessione di supporto remoto verrà chiusa immediatamente
 
-## Interfaccia della riga di comando
+## Interfaccia a riga di comando
 
-Il comando `don` richiede i privilegi di root e registra tutte le operazioni nel log di sistema.
+Il comando `don` richiede privilegi di root e registra tutte le operazioni nel log di sistema.
 
 Avvia una sessione:
 
@@ -73,10 +73,10 @@ Controlla lo stato della sessione:
 
     don status
 
-Questo visualizza le informazioni sulla sessione corrente incluse:
+Questo visualizza le informazioni della sessione corrente tra cui:
 
-- ID Server
-- ID Sessione
+- ID server
+- ID sessione
 - Tempo rimanente fino alla scadenza
 
 Estendi una sessione attiva:
@@ -85,15 +85,15 @@ Estendi una sessione attiva:
 
 :::info
 
-L'estensione della sessione è disponibile solo tramite riga di comando. Questa funzione estende la sessione dalle 24 ore predefinite a 7 giorni a partire dall'ora corrente.
+L'estensione della sessione è disponibile solo tramite riga di comando. Questa funzionalità estende la sessione dalle 24 ore predefinite a 7 giorni a partire dall'ora corrente.
 
 :::
 
-Interrompi una sessione:
+Arresta una sessione:
 
     don stop
 
-Questo interrompe immediatamente la sessione di supporto remoto e pulisce tutte le risorse.
+Questo termina immediatamente la sessione di supporto remoto e libera tutte le risorse.
 
 Controlla le sessioni scadute:
 

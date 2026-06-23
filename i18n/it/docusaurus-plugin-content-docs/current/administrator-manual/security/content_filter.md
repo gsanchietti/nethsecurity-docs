@@ -1,119 +1,119 @@
 ---
-title: "Filtraggio dei Contenuti"
+title: "Filtrage dei contenuti"
 sidebar_position: 1
 ---
 
-# Filtraggio dei Contenuti
+# Filtrage dei contenuti
 
-Il filtraggio dei contenuti è un aspetto cruciale della sicurezza di rete, con due scopi primari:
+Il filtrage dei contenuti è un aspetto cruciale della sicurezza di rete e serve a due scopi principali:
 
-1.  Bloccare il malware e prevenire attacchi dannosi
-2.  Filtrare siti indesiderati, come quelli contenenti contenuti per adulti
+1.  Bloccare il malware e prevenire gli attacchi dannosi
+2.  Filtrare i siti indesiderati, come quelli contenenti contenuti per adulti
 
-NethSecurity offre quattro distinti meccanismi di filtraggio per affrontare queste esigenze:
+NethSecurity offre quattro meccanismi di filtrage distinti per affrontare queste esigenze:
 
-- **Threat Shield IP**: Sistema di blocco basato su IP per contrastare minacce malware
-- **Threat Shield DNS**: Sistema di blocco basato su DNS per malware e filtraggio contenuti di base
-- **Filtro Deep Packet Inspection (DPI)**: Filtraggio specifico per applicazioni e protocolli mediante netifyd
-- **Filtro DNS FlashStart**: Soluzione commerciale di filtraggio basata su DNS con funzionalità complete di controllo dei contenuti
+- **Threat Shield IP**: Sistema di blocco basato su IP per colpire minacce di malware
+- **Threat Shield DNS**: Sistema di blocco basato su DNS per malware e filtrage base dei contenuti
+- **Deep Packet Inspection (DPI) filter**: Filtrage specifico per applicazioni e protocolli utilizzando netifyd
+- **FlashStart DNS filter**: Soluzione commerciale di filtrage basato su DNS con funzioni di controllo dei contenuti complete
 
 ## Threat Shield IP
 
-Threat Shield IP è un sistema di blocco basato su IP progettato specificamente per combattere le minacce malware. Funziona bloccando le connessioni verso o da indirizzi IP noti come dannosi.
+Threat Shield IP è un sistema di blocco basato su IP progettato specificamente per combattere le minacce di malware. Funziona bloccando le connessioni verso o da indirizzi IP noti come dannosi.
 
-**Ambito**: Targets malware e fornisce funzionalità limitate di privacy e rimozione della pubblicità (ads)
+**Ambito**: Colpisce i malware e fornisce funzioni limitate di rimozione della privacy e della pubblicità
 
-**Liste**:
+**Elenchi**:
 
-- Liste della comunità, gratuite, che mirano al malware generale, ads e tracker
-- Liste aziendali, a pagamento, focalizzate sulla protezione malware di alto valore
+- Elenchi comunitari, gratuiti, rivolti a malware generali, annunci e tracker
+- Elenchi aziendali, a pagamento, incentrati sulla protezione da malware ad alto valore
 
 Vantaggi:
 
-- Elaborazione veloce poiché opera a livello di IP
-- Efficace contro intere reti dannose
+- Elaborazione veloce poiché funziona a livello di IP
+- Efficace contro interi network dannosi
 
 Limitazioni:
 
-- Non è possibile filtrare in base al tipo di contenuto
+- Non può filtrare in base al tipo di contenuto
 - Potrebbe occasionalmente bloccare servizi legittimi che condividono un IP con quelli dannosi
 
 Per configurare Threat Shield IP, vedere [Threat shield IP](./threat_shield_ip.md).
 
 ## Threat Shield DNS
 
-Threat Shield DNS fornisce il blocco basato su DNS, offrendo protezione contro malware e capacità di filtraggio dei contenuti di base.
+Threat Shield DNS fornisce il blocco basato su DNS, offrendo protezione contro i malware e capacità di filtrage base dei contenuti.
 
-**Ambito**: Copre malware e categorie di contenuti limitate (ad es. contenuti per adulti, gioco d'azzardo)
+**Ambito**: Copre malware e categorie di contenuti limitate (ad es., contenuti per adulti, gioco d'azzardo)
 
-**Liste**:
+**Elenchi**:
 
-- Liste della comunità, gratuite, focalizzate sul malware generale e sul filtraggio dei contenuti semplice
-- Liste aziendali, a pagamento, focalizzate sulla protezione malware di alto valore
+- Elenchi comunitari, gratuiti, incentrati su malware generali e filtrage semplice dei contenuti
+- Elenchi aziendali, a pagamento, incentrati sulla protezione da malware ad alto valore
 
 Vantaggi:
 
 - Può bloccare domini specifici indipendentemente dall'indirizzo IP
-- Offre categorizzazione dei contenuti di base (ad es. adulti, gioco d'azzardo)
+- Offre categorizzazione base dei contenuti (ad es., adulti, gioco d'azzardo)
 
 Limitazioni:
 
-- Potrebbe essere bypassato utilizzando server DNS alternativi, ma può essere mitigato con filtraggio DPI e abilitando categorie di blocco speciali
-- Meno granulare del filtraggio completo degli URL
+- Potrebbe essere aggirato utilizzando server DNS alternativi, ma può essere mitigato con il filtrage DPI e abilitando categorie di blocco speciali
+- Meno granulare del filtrage URL completo
 
 Per configurare Threat Shield DNS, vedere [Threat shield DNS](./threat_shield_dns.md).
 
-## Filtro DNS FlashStart
+## FlashStart DNS filter
 
-FlashStart è una soluzione commerciale di filtraggio basata su DNS che offre funzionalità complete di controllo dei contenuti e reporting.
+FlashStart è una soluzione commerciale di filtrage basato su DNS che offre funzioni complete di controllo dei contenuti e reporting.
 
-**Ambito**: Filtraggio completo dei contenuti oltre a malware e contenuti per adulti
+**Ambito**: Filtrage completo dei contenuti oltre al solo malware e contenuti per adulti
 
-**Liste**: Liste commerciali gestite da FlashStart
+**Elenchi**: Elenchi commerciali mantenuti da FlashStart
 
 Vantaggi:
 
 - Elenchi di blocco di alta qualità
-- Rapporti personalizzabili
-- Configurazione basata su cloud, non è richiesto l'accesso diretto al firewall
+- Report personalizzabili
+- Configurazione basata su cloud, nessun accesso diretto al firewall richiesto
 - Categorie di contenuti estese
 - Facile da gestire
 - Scalabile per organizzazioni di varie dimensioni
 
-Per configurare il filtraggio DNS FlashStart, vedere [Filtro DNS FlashStart](./flashstart.md).
+Per configurare il filtrage DNS FlashStart, vedere [FlashStart DNS filter](./flashstart.md).
 
-## Filtro Deep Packet Inspection (DPI)
+## Deep Packet Inspection (DPI) filter
 
-NethSecurity impiega tecniche DPI (Deep Packet Inspection) per filtrare il traffico di rete utilizzando l'Agente Netify.
+NethSecurity utilizza tecniche di Deep Packet Inspection (DPI) per il filtrage del traffico di rete utilizzando Netify Agent.
 
-**Ambito**: Filtraggio specifico per applicazioni e protocolli
+**Ambito**: Filtrage specifico per applicazioni e protocolli
 
-**Liste**:
+**Elenchi**:
 
-- Firme della comunità, gratuite ma limitate in numero e frequenza di aggiornamento
-- Firme aziendali, incluse in qualsiasi abbonamento, offrendo una copertura più completa
+- Firme della comunità, gratuite ma limitate nel numero e nella frequenza degli aggiornamenti
+- Firme aziendali, incluse in qualsiasi abbonamento, che offrono una copertura più completa
 
 Vantaggi:
 
-- Fornisce controllo granulare sul traffico di rete
-- Può identificare e filtrare in base ad applicazioni o protocolli specifici
-- Consente la gestione del traffico dinamica in base all'analisi in tempo reale
+- Fornisce un controllo granulare sul traffico di rete
+- Può identificare e filtrare in base a applicazioni o protocolli specifici
+- Consente la gestione dinamica del traffico basata su analisi in tempo reale
 
 Considerazioni:
 
-- Potrebbe richiedere più potenza di elaborazione rispetto al filtraggio basato su IP o DNS
-- Richiede una configurazione attenta per bilanciare sicurezza e prestazioni
+- Potrebbe richiedere più potenza di elaborazione rispetto al filtrage basato su IP o DNS
+- Richiede una configurazione attenta per bilanciare la sicurezza e le prestazioni
 - L'amministratore deve creare regole DPI per ogni interfaccia
 
-Per configurare il filtraggio DPI, vedere [Filtro Deep Packet Inspection (DPI)](./dpi_filter.md).
+Per configurare il filtrage DPI, vedere [Deep Packet Inspection (DPI) filter](./dpi_filter.md).
 
-## Confronto delle opzioni di filtraggio
+## Confronto delle opzioni di filtrage
 
-| Funzionalità | Threat Shield IP | Threat Shield DNS | Filtraggio DNS Flashstart | Filtro DPI |
+| Funzione | Threat Shield IP | Threat Shield DNS | Flashstart DNS Filtering | DPI Filter |
 |----|----|----|----|----|
 | Metodo di blocco | Basato su IP | Basato su DNS | Basato su DNS | Ispezione dei pacchetti |
-| Enfasi principale | Malware | Malware + contenuti di base | Contenuti completi | Specifico per applicazione/protocollo |
-| Tipi di liste | Comunità, Aziendali | Comunità, Aziendali | Commerciale | N/A (analisi in tempo reale) |
+| Obiettivo principale | Malware | Malware + contenuti base | Contenuti completi | Specifico per applicazioni/protocolli |
+| Tipi di elenco | Comunità, Aziendali | Comunità, Aziendali | Commerciali | N/A (analisi in tempo reale) |
 | Configurazione | Firewall | Firewall | Cloud | Firewall (per interfaccia) |
 | Reporting | Nessuno | Nessuno | Avanzato, personalizzabile | Limitato |
 
@@ -121,10 +121,10 @@ Per configurare il filtraggio DPI, vedere [Filtro Deep Packet Inspection (DPI)](
 
 Per una sicurezza ottimale, considera un approccio a strati:
 
-1.  Utilizza Threat Shield IP come prima linea di difesa contro reti dannose note.
-2.  Implementa un filtro DNS, utilizza una delle seguenti opzioni:
-    - Threat Shield DNS per catturare minacce basate su dominio e fornire filtraggio dei contenuti di base, oppure
-    - Filtraggio DNS Flashstart per un controllo completo dei contenuti, soprattutto in ambienti che richiedono una gestione delle policy dettagliata e reporting.
-3.  Utilizza il filtraggio DPI per un controllo granulare su applicazioni e protocolli specifici, e per gestire il traffico in base all'analisi in tempo reale.
+1.  Utilizza Threat Shield IP come prima linea di difesa contro i network dannosi noti.
+2.  Implementa un filtro DNS, scegli una delle seguenti opzioni:
+    - Threat Shield DNS per catturare minacce basate su dominio e fornire filtrage base dei contenuti oppure
+    - Flashstart DNS Filtering per il controllo completo dei contenuti, specialmente in ambienti che richiedono una gestione politica dettagliata e reporting.
+3.  Utilizza il filtrage DPI per un controllo granulare su applicazioni e protocolli specifici, e per gestire il traffico basato su analisi in tempo reale.
 
-Questa combinazione fornisce una difesa a più strati, affrontando vari vettori di minaccia e esigenze di filtraggio dei contenuti.
+Questa combinazione fornisce una difesa in profondità, affrontando vari vettori di minaccia e esigenze di filtrage dei contenuti.

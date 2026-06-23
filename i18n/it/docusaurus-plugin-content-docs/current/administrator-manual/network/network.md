@@ -5,52 +5,52 @@ sidebar_position: 1
 
 # Interfacce di rete {#network-section}
 
-La pagina `Interfacce e dispositivi` configura il modo in cui il server è collegato alla rete locale (LAN) e/o ad altre reti (ad es. Internet).
+La pagina `Interfacce e dispositivi` configura come il server è connesso alla rete locale (LAN) e/o ad altre reti (cioè Internet).
 
 NethSecurity supporta un numero illimitato di interfacce di rete. Qualsiasi rete gestita dal sistema deve seguire queste regole:
 
 - le reti devono essere logicamente separate: ogni rete deve avere indirizzi diversi
-- le reti private, come le LAN, devono seguire le convenzioni degli indirizzi dal documento [RFC1918](#RFC1918-section)
+- le reti private, come le LAN, devono seguire le convenzioni di indirizzamento del documento [RFC1918](#RFC1918-section)
 - le reti dovrebbero essere fisicamente separate utilizzando switch diversi o logicamente separate utilizzando VLAN (Virtual Local Area Network)
 
-Ogni interfaccia di rete ha una zona specifica che determina il suo comportamento. Una configurazione di rete di base per un router include tipicamente un minimo di due interfacce, ovvero LAN (Local Area Network) e WAN (Wide Area Network):
+Ogni interfaccia di rete ha una zona specifica che determina il suo comportamento. Una configurazione di rete di base per un router include tipicamente un minimo di due interfacce: LAN (Local Area Network) e WAN (Wide Area Network):
 
 - *lan*: rete locale, gli host su questa rete possono accedere a qualsiasi altra rete configurata
 - *wan*: rete pubblica, gli host su questa rete possono accedere solo al server stesso
 
-Tutte le interfacce di rete configurate sono elencate nella parte superiore della pagina. Ogni interfaccia viene visualizzata con il suo nome e la zona firewall assegnata. Questa sezione offre una panoramica immediata delle configurazioni attuali, consentendo agli utenti di vedere rapidamente quali reti sono già configurate e associate a zone di sicurezza specifiche.
+Tutte le interfacce di rete configurate sono elencate nella parte superiore della pagina. Ogni interfaccia è visualizzata con il suo nome e la zona firewall assegnata. Questa sezione offre una panoramica immediata delle configurazioni correnti, consentendo agli utenti di vedere rapidamente quali reti sono già configurate e associate a zone di sicurezza specifiche.
 
-Nella sezione inferiore della pagina sono elencati i dispositivi di rete disponibili ma non configurati. Per configurare un dispositivo, l'utente fa clic sul pulsante **Configura** corrispondente al dispositivo desiderato. I nuovi [dispositivi VLAN](#vlan-section) creati sono visibili in questa sezione.
+Nella sezione inferiore della pagina, sono elencati i dispositivi di rete disponibili ma non configurati. Per configurare un dispositivo, l'utente fa clic sul pulsante **Configura** corrispondente al dispositivo desiderato. I nuovi [dispositivi VLAN](#vlan-section) sono visibili in questa sezione.
 
 <a id="RFC1918-section"></a>
 
 **Indirizzi IPv4 per reti private (RFC1918)**
 
-Le reti private TCP/IP non direttamente connesse a Internet devono utilizzare indirizzi speciali selezionati dall'Internet Assigned Numbers Authority (IANA).
+Le reti private TCP/IP non direttamente connesse a Internet devono utilizzare indirizzi speciali selezionati da Internet Assigned Numbers Authority (IANA).
 
-| Rete privata | Maschera di rete | Intervallo indirizzi IP                |
-|--------------|------------------|----------------------------------------|
-| 10.0.0.0     | 255.0.0.0        | 10.0.0.1 - 10.255.255.254              |
-| 172.16.0.0   | 255.240.0.0      | 172.16.0.1 - 172.31.255.254            |
-| 192.168.0.0  | 255.255.0.0      | 192.168.0.1 - 192.168.255.254          |
+| Rete privata | Maschera di sottorete | Intervallo indirizzi IP       |
+|-----------------|-------------|-------------------------------|
+| 10.0.0.0        | 255.0.0.0   | 10.0.0.1 - 10.255.255.254     |
+| 172.16.0.0      | 255.240.0.0 | 172.16.0.1 - 172.31.255.254   |
+| 192.168.0.0     | 255.255.0.0 | 192.168.0.1 - 192.168.255.254 |
 
 ## Interfacce logiche {#logical_interfaces-section}
 
-Le interfacce di rete logiche sono interfacce di rete virtuali che consentono una maggiore flessibilità e funzionalità nelle configurazioni di rete. A differenza delle interfacce di rete fisiche, che corrispondono a porte hardware effettive, le interfacce di rete logiche sono basate su software e possono essere configurate e gestite per soddisfare requisiti di rete specifici.
+Le interfacce di rete logiche sono interfacce di rete virtuali che consentono ulteriore flessibilità e funzionalità nelle configurazioni di rete. A differenza delle interfacce di rete fisiche, che corrispondono a porte hardware effettive, le interfacce di rete logiche sono basate su software e possono essere configurate e gestite per soddisfare requisiti di rete specifici.
 
-Fai clic sul pulsante **Aggiungi interfaccia logica** per creare un nuovo dispositivo di rete virtuale. Il dispositivo può essere un
+Fare clic sul pulsante **Aggiungi interfaccia logica** per creare un nuovo dispositivo di rete virtuale. Il dispositivo può essere un
 
-- *bridge*: è un'interfaccia di rete logica che collega due o più segmenti di rete diversi, consentendo la comunicazione tra i dispositivi in questi segmenti. Un bridge estende efficacemente la rete locale, consentendo ai dispositivi di comunicare come se fossero sulla stessa rete fisica.
-- *bond*: anche noto come network bonding o NIC bonding, è un metodo per combinare due o più interfacce di rete fisica in un'unica interfaccia logica. Fornisce due vantaggi principali: maggiore larghezza di banda e tolleranza ai guasti.
+- *bridge*: è un'interfaccia di rete logica che connette due o più segmenti di rete diversi, consentendo la comunicazione tra i dispositivi in questi segmenti. Un bridge estende effettivamente la rete locale, consentendo ai dispositivi di comunicare come se fossero sulla stessa rete fisica.
+- *bond*: noto anche come network bonding o NIC bonding, è un metodo di combinazione di due o più interfacce di rete fisica in un'unica interfaccia logica. Fornisce due vantaggi principali: larghezza di banda aumentata e tolleranza ai guasti.
 
-I bond possono essere configurati in più modalità.
+I bond possono essere configurati in modalità multiple.
 
 Modalità che forniscono bilanciamento del carico e tolleranza ai guasti:
 
 - Balance Round Robin (consigliato)
 - Balance XOR
-- 802.3ad (LACP): richiede supporto a livello di driver e uno switch con modalità IEEE 802.3ad Dynamic link aggregation abilitata
-- Balance TLB: richiede supporto a livello di driver
+- 802.3ad (LACP): richiede il supporto a livello di driver e uno switch con modalità IEEE 802.3ad Dynamic link aggregation abilitata
+- Balance TLB: richiede il supporto a livello di driver
 - Balance ALB
 
 Modalità che forniscono solo tolleranza ai guasti:
@@ -58,24 +58,24 @@ Modalità che forniscono solo tolleranza ai guasti:
 - Active backup (consigliato)
 - Broadcast policy
 
-Durante la creazione di un bond, l'interfaccia utente visualizzerà un indirizzo IP di gestione nella rete privata 127.x.x.1/32. Questo indirizzo IP viene utilizzato esclusivamente per la gestione del bond e non è coinvolto nell'inoltro del traffico. Una volta creato il dispositivo bond, è possibile assegnargli un indirizzo IP e una zona firewall. Tieni presente che la configurazione del bond non è modificabile dopo la creazione. Se è necessario modificare l'indirizzo IP o la zona del bond, dovrai rimuovere la sua configurazione e riconfigurarlo di nuovo. Se è necessario modificare i dispositivi bond, la modalità bond o l'IP di gestione, dovrai rimuovere la configurazione del bond e il dispositivo bond e ricrearlo da zero
+Quando si crea un bond, l'interfaccia utente visualizzerà un indirizzo IP di gestione nella rete privata 127.x.x.1/32. Questo indirizzo IP viene utilizzato esclusivamente per la gestione del bond e non è coinvolto nell'inoltro del traffico. Una volta creato il dispositivo bond, è possibile assegnare un indirizzo IP e una zona firewall. Si noti che la configurazione del bond non è modificabile dopo la creazione. Se è necessario modificare l'indirizzo IP o la zona del bond, sarà necessario rimuovere la configurazione e riconfigurarlo. Se è necessario modificare i dispositivi bond, la modalità bond o l'IP di gestione, sarà necessario rimuovere la configurazione e il dispositivo bond e ricrearlo da zero.
 
 ## VLAN {#vlan-section}
 
-Una VLAN, o Virtual Local Area Network, è una tecnologia di rete che consente agli amministratori di rete di creare reti logicamente segmentate all'interno di un'infrastruttura di rete fisica. Le VLAN consentono la creazione di più domini di broadcast in una rete, anche se sono fisicamente connessi allo stesso switch di rete.
+Una VLAN, o Virtual Local Area Network, è una tecnologia di rete che consente agli amministratori di rete di creare reti logicamente segmentate all'interno di un'infrastruttura di rete fisica. Le VLAN consentono la creazione di più domini di broadcast in una rete, anche se sono fisicamente connesse allo stesso switch di rete.
 
 È possibile creare un nuovo dispositivo VLAN facendo clic sul pulsante **Crea dispositivo VLAN**. Selezionare il tipo di dispositivo VLAN:
 
-- VLAN 802.1q viene utilizzato principalmente per implementazioni VLAN standard all'interno delle organizzazioni
-- 802.1ad (QinQ) viene utilizzato nelle reti dei provider di servizi in cui più clienti richiedono segmentazione VLAN e queste VLAN segmentate devono essere trasportate attraverso la rete del provider
+- VLAN 802.1q è utilizzata principalmente per implementazioni VLAN standard all'interno delle organizzazioni
+- 802.1ad (QinQ) è utilizzata nelle reti dei provider di servizi dove più clienti richiedono la segmentazione VLAN e queste VLAN segmentate devono essere trasportate attraverso la rete del provider
 
-Assicurati di scegliere anche l'ID VLAN corretto. Tieni presente che devi configurare lo stesso ID VLAN all'interno dello switch di rete.
+Assicurati anche di scegliere l'ID VLAN corretto. Ricorda che devi configurare lo stesso ID VLAN all'interno dello switch di rete.
 
 ## IP aliasing {#IP_aliasing-section}
 
 Utilizza IP aliasing per assegnare più indirizzi IP alla stessa interfaccia di rete.
 
-L'uso più comune è con un'interfaccia wan: quando l'ISP fornisce un pool di indirizzi IP pubblici (all'interno della stessa subnet), è possibile aggiungere alcuni (o tutti) di essi alla stessa interfaccia wan e gestirli individualmente (ad es. nella configurazione del port forward).
+L'uso più comune è con un'interfaccia wan: quando l'ISP fornisce un pool di indirizzi IP pubblici (all'interno della stessa subnet), è possibile aggiungere alcuni (o tutti) di essi alla stessa interfaccia wan e gestirli singolarmente (ad esempio nella configurazione del port forward).
 
 Per aggiungere un alias, fai clic sul menu a tre punti **⋮** nell'angolo destro dell'interfaccia di rete esistente, quindi seleziona l'elemento **Crea interfaccia alias**.
 
@@ -87,32 +87,32 @@ Nella finestra dell'interfaccia di rete, scegli la zona wan, quindi seleziona il
 
 ### PPPoE con DHCPv6-PD
 
-DHCPv6 Prefix Delegation (DHCPv6-DP) automatizza l'assegnazione dei prefissi IPv6 dal tuo provider di servizi Internet (ISP). Elimina la necessità di configurazione manuale o Network Address Translation (NAT), semplificando la distribuzione di IPv6.
+DHCPv6 Prefix Delegation (DHCPv6-DP) automatizza l'assegnazione dei prefissi IPv6 dal tuo provider di servizi Internet (ISP). Elimina la necessità di configurazione manuale o Network Address Translation (NAT), semplificando la distribuzione IPv6.
 
-Prima, assicurati che il tuo ISP supporti DHCPv6-PD, quindi segui questi passaggi:
+Per prima cosa, assicurati che il tuo ISP supporti DHCPv6-PD, quindi segui questi passaggi:
 
-- Configura interfaccia WAN: imposta la modalità dell'interfaccia WAN su PPPoE e abilita l'opzione `Abilita IPv6`
-- Configura interfaccia LAN: abilita l'opzione \"Abilita IPv6\" e lascia il campo dell'indirizzo IPv6 vuoto
+- Configura interfaccia WAN: imposta la modalità interfaccia WAN su PPPoE e abilita l'opzione `Abilita IPv6`
+- Configura interfaccia LAN: abilita l'opzione "Abilita IPv6" e lascia vuoto il campo dell'indirizzo IPv6
 
-Abilitando IPv6 per entrambe le interfacce WAN e LAN senza specificare un indirizzo per la LAN, il tuo router richiederà e riceverà automaticamente un prefisso IPv6 (solitamente un /64) dal tuo ISP tramite DHCPv6-PD. Questo prefisso verrà quindi utilizzato per assegnare indirizzi IPv6 individuali ai dispositivi sulla tua rete.
+Abilitando IPv6 per entrambe le interfacce WAN e LAN senza specificare un indirizzo per la LAN, il router richiederà e riceverà automaticamente un prefisso IPv6 (solitamente un /64) dal tuo ISP tramite DHCPv6-PD. Questo prefisso verrà quindi utilizzato per assegnare singoli indirizzi IPv6 ai dispositivi sulla tua rete.
 
 ## Adattatori USB-to-Ethernet
 
-Gli adattatori USB-to-Ethernet non sono considerati idonei per l'uso in un dispositivo firewall critico per la comunicazione di rete, per questo motivo i driver non sono inclusi nell'immagine NethSecurity. Solo per scopi sperimentali, i driver specifici possono essere installati tramite il gestore dei pacchetti per l'uso in un ambiente di test.
+Gli adattatori USB-to-Ethernet non sono considerati idonei per l'uso in un dispositivo firewall critico per la comunicazione di rete, per questo motivo i driver non sono inclusi nell'immagine NethSecurity. Solo a scopo sperimentale, i driver specifici possono essere installati tramite il gestore pacchetti per l'uso in un ambiente di test.
 
-È fortemente consigliato **non utilizzare questi adattatori in ambienti di produzione**. Se l'unità dispone di una sottoscrizione Enterprise o Community, tieni presente che gli adattatori USB-to-Ethernet **non sono coperti dal supporto Nethesis**.
+È fortemente consigliato **di non utilizzare questi adattatori in ambienti di produzione**. Se l'unità ha un abbonamento Enterprise o Community, tieni presente che gli adattatori USB-to-Ethernet **non sono coperti dal supporto Nethesis**.
 
 :::warning
 
-I pacchetti extra, inclusi i moduli del kernel, non vengono preservati tra gli aggiornamenti dell'immagine, quindi in caso di aggiornamento, sarà necessario scaricarli e installarli di nuovo se necessario.
+I pacchetti aggiuntivi, inclusi i moduli del kernel, non vengono conservati negli aggiornamenti dell'immagine, quindi in caso di aggiornamento, dovrai scaricarli e installarli di nuovo se necessario.
 
 :::
 
 ### Come installare i moduli USB-to-Ethernet
 
-Questi pacchetti possono essere installati dalla console della riga di comando, basta trovare il modulo corretto e installarlo.
+Questi pacchetti possono essere installati dalla riga di comando della console, basta trovare il modulo corretto e installarlo.
 
-- Verifica che l'adattatore ethernet sia collegato a USB usando `lsusb`. Esempio di output:
+- Verifica che l'adattatore ethernet sia connesso a USB usando `lsusb`. Esempio di output:
 
       # lsusb
       Bus 002 Device 002: ID 0bda:8153 Realtek USB 10/100/1000 LAN
@@ -122,12 +122,12 @@ Questi pacchetti possono essere installati dalla console della riga di comando, 
 
 - Cerca il modulo del kernel:
 
-  Se stai eseguendo NethSecurity 8.8, utilizza:
+  Se stai eseguendo NethSecurity 8.8, usa:
 
       apk update
       apk search kmod-usb-net-*
 
-  Se stai eseguendo NethSecurity 8.7.2 o versioni precedenti, utilizza:
+  Se stai eseguendo NethSecurity 8.7.2 o precedente, usa:
 
       opkg update
       opkg find kmod-usb-net-*
@@ -149,14 +149,14 @@ Questi pacchetti possono essere installati dalla console della riga di comando, 
 
 - Installa il driver corretto:
 
-  Se stai eseguendo NethSecurity 8.8, utilizza:
+  Se stai eseguendo NethSecurity 8.8, usa:
 
       apk add kmod-usb-net-rtl8150
 
-  Se stai eseguendo NethSecurity 8.7.2 o versioni precedenti, utilizza:
+  Se stai eseguendo NethSecurity 8.7.2 o precedente, usa:
 
       opkg install kmod-usb-net-rtl8150
 
-- Verifica che appaia una nuova interfaccia ethX usando `ifconfig -a`
+- Verifica che una nuova interfaccia ethX appaia usando `ifconfig -a`
 
-- Configura ethernet dall'interfaccia utente
+- Configura l'ethernet dall'interfaccia utente
