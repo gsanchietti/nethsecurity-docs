@@ -52,12 +52,9 @@ const config: Config = {
     },
   },
 
-  // English only for now. The i18n/it/ tree is scaffolded for a later
-  // translation pass — add 'it' back to `locales` (and the localeDropdown
-  // navbar item) once Italian content exists.
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'it'],
     path: 'i18n',
     localeConfigs: {
       en: {
@@ -116,6 +113,10 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Tutorial',
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
         },
         {
           href: 'https://github.com/NethServer/nethsecurity-docs',
